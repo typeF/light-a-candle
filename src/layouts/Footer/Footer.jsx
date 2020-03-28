@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import PropTypes from "prop-types";
 import Notifications from "../../components/Notifications/Notifications";
@@ -7,8 +7,13 @@ import CandleButton from "../../components/CandleButton/CandleButton";
 const FooterContainer = styled.footer``;
 
 function Footer({ isMainPage }) {
-  console.log(isMainPage);
-  return <FooterContainer>{isMainPage ? <Notifications /> : <CandleButton />}</FooterContainer>;
+  const [notifications, setNotifications] = useState([]);
+
+  return (
+    <FooterContainer>
+      {isMainPage ? <Notifications notifications={notifications} /> : <CandleButton handleClick={setNotifications} />}
+    </FooterContainer>
+  );
 }
 
 Footer.propTypes = {
