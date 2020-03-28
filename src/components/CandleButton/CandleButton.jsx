@@ -16,6 +16,7 @@ function CandleButton({ handleClick }) {
 }
 
 CandleButton.propTypes = {
+  // eslint-disable-next-line react/require-default-props
   handleClick: PropTypes.func,
 };
 
