@@ -6,11 +6,17 @@ const NotificationContainer = styled.div`
   display: flex;
   flex-direction: column;
 `;
+
+const tempData = [
+  { user: "Alexa", message: "Thanks", date_created: Date.now() },
+  { user: "Frank", message: "Thanks", date_created: Date.now() },
+  { user: "Benard", message: "Thanks", date_created: Date.now() },
+];
 function Notifications() {
   // some logic here to fetch data on mount
   return (
     <NotificationContainer>
-      <NotificationList />
+      <NotificationList notifications={tempData} />
     </NotificationContainer>
   );
 }

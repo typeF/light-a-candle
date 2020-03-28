@@ -14,10 +14,10 @@ const ListItem = styled.li`
 function NotificationList({ notifications }) {
   return (
     <List>
-      {notifications.map((notification) => {
+      {notifications.map(({ id, user, message, date_created }) => {
         return (
-          <li key={notification.id}>
-            <p>Alexa: Thank you so much for alskdjasld</p>
+          <li key={id}>
+            <p>{`${user}: ${message}`}</p>
           </li>
         );
       })}
@@ -35,6 +35,6 @@ NotificationList.propTypes = {
 };
 
 NotificationList.defaultProps = {
-  notifications: [{ message: "Thanks", date_created: Date.now() }],
+  notifications: [{ id: 1, user: "Alexa", message: "Thanks", date_created: Date.now() }],
 };
 export default NotificationList;
