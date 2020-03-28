@@ -6,10 +6,16 @@ const TopBar = styled.div`
   margin-top: 7.5%;
 `;
 
+const HeaderText = styled.div`
+  margin: 0;
+`;
+
 function Header({ value }) {
   return (
     <TopBar>
-      <header>{value}</header>
+      <header>
+        <HeaderText>{value}</HeaderText>
+      </header>
     </TopBar>
   );
 }
