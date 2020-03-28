@@ -1,7 +1,8 @@
 import React from "react";
 import styled from "styled-components";
 import Hero from "./layouts/Hero/Hero";
-import Header from "./components/Header.jsx/Header";
+import Header from "./components/Header/Header";
+import Footer from "./components/Footer/Footer";
 
 const PageContainer = styled.div`
   height: 100vh;
@@ -17,6 +18,7 @@ function App() {
     <PageContainer>
       <Header />
       <Hero />
+      <Footer />
     </PageContainer>
   );
 }

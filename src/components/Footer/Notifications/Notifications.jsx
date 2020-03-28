@@ -1,4 +1,5 @@
 import React from "react";
+import styled from "styled-components";
 import NotificationList from "./NotificationList/NotificationList";
 
 const NotificationContainer = styled.div`

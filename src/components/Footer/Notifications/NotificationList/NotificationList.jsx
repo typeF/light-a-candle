@@ -4,6 +4,7 @@ import PropTypes from "prop-types";
 
 const List = styled.ul`
   list-style: none;
+  padding: 0;
 `;
 
 const ListItem = styled.li`
