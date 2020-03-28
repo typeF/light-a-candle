@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import Hero from "./layouts/Hero/Hero";
 import Header from "./layouts/Header/Header";
@@ -14,11 +14,16 @@ const PageContainer = styled.div`
 `;
 
 function App() {
+  // Boolean to swtich between 'homepage' & 'map'
+  const [isMainPage, setIsMainPage] = useState(false);
+  console.log(isMainPage);
+
   return (
     <PageContainer>
       <Header />
       <Hero />
-      <Footer />
+      <button onClick={() => setIsMainPage(!isMainPage)}>Switch</button>
+      <Footer isMainPage={isMainPage} />
     </PageContainer>
   );
 }
