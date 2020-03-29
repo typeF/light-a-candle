@@ -8,6 +8,7 @@ const TopBar = styled.div`
 
 const HeaderText = styled.div`
   margin: 0;
+  color: #fff;
 `;
 
 function Header({ value }) {

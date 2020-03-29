@@ -1,21 +1,21 @@
 import React from "react";
 import styled from "styled-components";
 import PropTypes from "prop-types";
+import NotificationListItem from "./NotificationListItem/NotificationListItem";
 
 const List = styled.ul`
+  width: 80%;
   list-style: none;
   padding: 0;
+  margin: 0 auto;
+  font-size: 0.75rem;
 `;
 
 function NotificationList({ notifications }) {
   return (
     <List>
-      {notifications.map(({ id, user, message, date_created }) => {
-        return (
-          <li key={id}>
-            <p>{`${user}: ${message}`}</p>
-          </li>
-        );
+      {notifications.map(({ user, message, date_created }) => {
+        return <NotificationListItem key={user} user={user} message={message} date_created={date_created} />;
       })}
     </List>
   );

@@ -6,6 +6,7 @@ import NotificationList from "./NotificationList/NotificationList";
 const NotificationContainer = styled.div`
   display: flex;
   flex-direction: column;
+  color: white;
 `;
 
 function Notifications({ notifications }) {
