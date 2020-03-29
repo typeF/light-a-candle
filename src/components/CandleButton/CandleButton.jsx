@@ -11,7 +11,7 @@ const Button = styled.button`
   margin-bottom: 30px;
 `;
 function CandleButton({ handleClick }) {
-  return <Button onClick={() => handleClick(true)} />;
+  return <Button onClick={() => handleClick(true)}>+</Button>;
 }
 
 CandleButton.propTypes = {

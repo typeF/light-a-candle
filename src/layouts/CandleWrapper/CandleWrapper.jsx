@@ -1,7 +1,10 @@
 import React, { useState } from "react";
+import styled from "styled-components";
 import PropTypes from "prop-types";
 import CandleForm from "../../components/CandleForm/CandleForm";
 import CandleButton from "../../components/CandleButton/CandleButton";
+
+const Wrapper = styled.div``;
 
 function CandleWrapper({ addNotification }) {
   const [showModal, setShowModal] = useState(true);
@@ -10,13 +13,13 @@ function CandleWrapper({ addNotification }) {
   }
 
   return (
-    <div>
+    <Wrapper>
       {showModal ? (
-        <CandleForm modalState={showModal} handleClose={closeModal} />
+        <CandleForm handleClose={closeModal} handleSubmit={addNotification} />
       ) : (
-        <CandleButton handleClick={setShowModal}>+</CandleButton>
+        <CandleButton handleClick={setShowModal} />
       )}
-    </div>
+    </Wrapper>
   );
 }
 

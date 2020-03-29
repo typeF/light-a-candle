@@ -28,6 +28,7 @@ function NotificationList({ notifications }) {
 NotificationList.propTypes = {
   notifications: PropTypes.arrayOf(
     PropTypes.shape({
+      user: PropTypes.string,
       message: PropTypes.string,
       date_created: PropTypes.instanceOf(Date),
     })
@@ -35,6 +36,6 @@ NotificationList.propTypes = {
 };
 
 NotificationList.defaultProps = {
-  notifications: [{ id: 1, user: "Alexa", message: "Thanks", date_created: Date.now() }],
+  notifications: [{ user: "Alexa", message: "Thanks", date_created: Date.now() }],
 };
 export default NotificationList;
