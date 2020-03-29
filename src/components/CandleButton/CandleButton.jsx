@@ -8,6 +8,7 @@ const Button = styled.button`
   width: 100px;
   height: 50px;
   border-radius: 100px;
+  margin: 0 auto;
   margin-bottom: 30px;
 `;
 function CandleButton({ handleClick }) {

@@ -7,7 +7,7 @@ import CandleButton from "../../components/CandleButton/CandleButton";
 const Wrapper = styled.div``;
 
 function CandleWrapper({ addNotification }) {
-  const [showModal, setShowModal] = useState(true);
+  const [showModal, setShowModal] = useState(false);
   function closeModal() {
     setShowModal(false);
   }

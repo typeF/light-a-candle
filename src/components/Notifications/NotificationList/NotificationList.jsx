@@ -7,10 +7,6 @@ const List = styled.ul`
   padding: 0;
 `;
 
-const ListItem = styled.li`
-  display: block;
-`;
-
 function NotificationList({ notifications }) {
   return (
     <List>
