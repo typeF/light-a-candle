@@ -16,13 +16,14 @@ const PageContainer = styled.div`
 function App() {
   // Boolean to swtich between 'homepage' & 'map'
   const [isMainPage, setIsMainPage] = useState(false);
-  console.log(isMainPage);
 
   return (
     <PageContainer>
       <Header />
       <Hero />
-      <button onClick={() => setIsMainPage(!isMainPage)}>Switch</button>
+      <button type="button" onClick={() => setIsMainPage(!isMainPage)}>
+        Switch
+      </button>
       <Footer isMainPage={isMainPage} />
     </PageContainer>
   );

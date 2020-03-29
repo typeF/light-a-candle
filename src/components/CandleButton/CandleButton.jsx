@@ -10,6 +10,7 @@ const Button = styled.button`
   border-radius: 100px;
   margin: 0 auto;
   margin-bottom: 30px;
+  border: 0;
 `;
 function CandleButton({ handleClick }) {
   return <Button onClick={() => handleClick(true)}>+</Button>;

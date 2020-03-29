@@ -41,7 +41,23 @@ function CandleForm({ handleClose, handleSubmit }) {
   const [name, setName] = useState("");
   const [message, setMessage] = useState("");
 
+  const [nameError, setNameError] = useState("");
+  const [messageError, setMessageError] = useState("");
+
+  const isValid = (textfield, messagefield) => {
+    if (textfield.length <= 0) {
+      setNameError("Name cannot be empty!");
+    }
+    if (messagefield.length <= 0) {
+      setMessageError("Message cannot be empty!");
+    }
+    return textfield.length && messagefield.length;
+  };
+
   const sumbitMessage = () => {
+    if (!isValid(name, message)) {
+      return;
+    }
     handleSubmit({ user: name, message, date_created: Date.now() });
     handleClose();
   };
@@ -51,8 +67,22 @@ function CandleForm({ handleClose, handleSubmit }) {
       <CancelButton onClick={handleClose}>
         <CancelIcon />
       </CancelButton>
-      <TextField id="name" label="Your Name" value={name} onChange={(e) => setName(e.target.value)} />
-      <TextField id="Message" label="Message" value={message} onChange={(e) => setMessage(e.target.value)} />
+      <TextField
+        error={nameError}
+        id="name"
+        label="Your Name"
+        value={name}
+        onChange={(e) => setName(e.target.value)}
+        helperText={nameError}
+      />
+      <TextField
+        error={messageError}
+        id="Message"
+        label="Message"
+        value={message}
+        onChange={(e) => setMessage(e.target.value)}
+        helperText={messageError}
+      />
       <SubmitButton onClick={sumbitMessage}>
         <WhatshotIcon />
       </SubmitButton>
