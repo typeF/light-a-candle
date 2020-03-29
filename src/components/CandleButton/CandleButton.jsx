@@ -10,15 +10,12 @@ const Button = styled.button`
   border-radius: 100px;
   margin-bottom: 30px;
 `;
-
 function CandleButton({ handleClick }) {
-  return <Button onClick={handleClick}>+</Button>;
+  return <Button onClick={() => handleClick(true)} />;
 }
 
 CandleButton.propTypes = {
-  // eslint-disable-next-line react/require-default-props
-  handleClick: PropTypes.func,
+  handleClick: PropTypes.func.isRequired,
 };
 
-CandleButton.defaultTypes = {};
 export default CandleButton;

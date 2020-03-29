@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import PropTypes from "prop-types";
 import Notifications from "../../components/Notifications/Notifications";
-import CandleButton from "../../components/CandleButton/CandleButton";
+import CandleWrapper from "../CandleWrapper/CandleWrapper";
 
 const FooterContainer = styled.footer``;
 
@@ -11,7 +11,11 @@ function Footer({ isMainPage }) {
 
   return (
     <FooterContainer>
-      {isMainPage ? <Notifications notifications={notifications} /> : <CandleButton handleClick={setNotifications} />}
+      {isMainPage ? (
+        <Notifications notifications={notifications} />
+      ) : (
+        <CandleWrapper addNotification={setNotifications} />
+      )}
     </FooterContainer>
   );
 }
