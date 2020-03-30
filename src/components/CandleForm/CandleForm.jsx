@@ -67,7 +67,7 @@ function CandleForm({ handleClose, handleSubmit }) {
     return textfield.length && messagefield.length;
   };
 
-  const sumbitMessage = () => {
+  const submitMessage = () => {
     if (!isValid(name, message)) {
       return;
     }
@@ -96,7 +96,7 @@ function CandleForm({ handleClose, handleSubmit }) {
         onChange={(e) => setMessage(e.target.value)}
         helperText={messageError}
       />
-      <SubmitButton size="small" onClick={sumbitMessage}>
+      <SubmitButton size="small" onClick={submitMessage}>
         <CandleIcon />
       </SubmitButton>
     </Form>
