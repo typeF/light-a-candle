@@ -9,6 +9,7 @@ export default {
       },
       properties: {
         title: "Mapbox",
+        count: 111,
         description: "Washington, D.C.",
       },
     },
@@ -20,6 +21,7 @@ export default {
       },
       properties: {
         title: "Mapbox",
+        count: 555,
         description: "San Francisco, California",
       },
     },
