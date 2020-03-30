@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React from "react";
+import PropTypes from "prop-types";
 import InputComponent from "../../components/InputComponent/InputComponent";
 import {
   Container,
@@ -10,19 +11,25 @@ import {
 
 const marginBottom = { "margin-bottom": "1rem" };
 
-const LocationDetails = () => {
-  // TODO: These states will likely need to be passed from parent in order to share with page 2 & 3
-  const [country, setCountry] = useState(""); // TODO: Use dropdown
-  const [province, setProvince] = useState(""); // TODO: Use dropdown
-  const [city, setCity] = useState("");
-  const [hospitalName, setHospitalName] = useState("");
-  const [occupation, setOccupation] = useState("");
-
+const LocationDetails = ({
+  country,
+  setCountry,
+  province,
+  setProvince,
+  city,
+  setCity,
+  hospitalName,
+  setHospitalName,
+  occupation,
+  setOccupation,
+  pageNum,
+  handleSubmit,
+}) => {
   return (
     <Container>
       <CloseButton onClick={() => console.log("Close this form and go back to main page")} />
       <main>
-        <FormHeader>Report a death 2/3</FormHeader>
+        <FormHeader>Report a death {pageNum}/3</FormHeader>
         <FormTheme>Healthcare workers who passed away during COVID-19.</FormTheme>
         <div>
           <InputComponent
@@ -57,11 +64,26 @@ const LocationDetails = () => {
           />
         </div>
       </main>
-      <NextButton type="button" onClick={() => console.log("Next button clicked, go to page 3")}>
+      <NextButton type="button" onClick={handleSubmit}>
         Next
       </NextButton>
     </Container>
   );
+};
+
+LocationDetails.propTypes = {
+  country: PropTypes.string.isRequired,
+  setCountry: PropTypes.func.isRequired,
+  province: PropTypes.string.isRequired,
+  setProvince: PropTypes.func.isRequired,
+  city: PropTypes.string.isRequired,
+  setCity: PropTypes.func.isRequired,
+  hospitalName: PropTypes.string.isRequired,
+  setHospitalName: PropTypes.func.isRequired,
+  occupation: PropTypes.string.isRequired,
+  setOccupation: PropTypes.func.isRequired,
+  pageNum: PropTypes.number.isRequired,
+  handleSubmit: PropTypes.func.isRequired,
 };
 
 export default LocationDetails;

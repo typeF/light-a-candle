@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React from "react";
+import PropTypes from "prop-types";
 import styled from "styled-components";
 import InputComponent from "../../components/InputComponent/InputComponent";
 import FileInputComponent from "../../components/FileInputComponent/FileInputComponent";
@@ -36,11 +37,7 @@ const AddButton = styled.button`
   }
 `;
 
-const LocationDetails = () => {
-  // TODO: These states will likely need to be passed from parent in order to share with page 2 & 3
-  const [tributeMessage, setTributeMessage] = useState("");
-  const [picture, setPicture] = useState("");
-
+const TributeDetails = ({ tributeMessage, setTributeMessage, picture, setPicture, pageNum, submitProfile }) => {
   const handlePictureUpload = (e) => {
     // TODO: Automatically resize photo
     // Source for toBase64 function: https://stackoverflow.com/a/57272491
@@ -65,7 +62,7 @@ const LocationDetails = () => {
     <Container>
       <CloseButton onClick={() => console.log("Close this form and go back to main page")} />
       <main>
-        <FormHeader>Report a death 3/3</FormHeader>
+        <FormHeader>Report a death {pageNum}/3</FormHeader>
         <FormTheme>Healthcare workers who passed away during COVID-19.</FormTheme>
         <div>
           <InputComponent
@@ -90,11 +87,20 @@ const LocationDetails = () => {
           </FileInputComponent>
         </div>
       </main>
-      <AddButton type="button" onClick={() => console.log("Next button clicked, go to page 2")}>
+      <AddButton type="button" onClick={submitProfile}>
         Submit
       </AddButton>
     </Container>
   );
 };
 
-export default LocationDetails;
+TributeDetails.propTypes = {
+  tributeMessage: PropTypes.string.isRequired,
+  setTributeMessage: PropTypes.func.isRequired,
+  picture: PropTypes.string.isRequired,
+  setPicture: PropTypes.func.isRequired,
+  pageNum: PropTypes.number.isRequired,
+  submitProfile: PropTypes.func.isRequired,
+};
+
+export default TributeDetails;

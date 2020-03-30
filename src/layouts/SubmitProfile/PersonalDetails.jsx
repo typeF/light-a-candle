@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React from "react";
+import PropTypes from "prop-types";
 import InputComponent from "../../components/InputComponent/InputComponent";
 import {
   Container,
@@ -10,19 +11,25 @@ import {
 
 const marginBottom = { "margin-bottom": "1rem" };
 
-const PersonalDetails = () => {
-  // TODO: These states will likely need to be passed from parent in order to share with page 2 & 3
-  const [firstName, setFirstName] = useState("");
-  const [middleName, setMiddleName] = useState("");
-  const [lastName, setLastName] = useState("");
-  const [dob, setDob] = useState(""); // TODO: use proper date in utc
-  const [deathDate, setDeathDate] = useState(""); // TODO: use proper date in utc
-
+const PersonalDetails = ({
+  firstName,
+  setFirstName,
+  middleName,
+  setMiddleName,
+  lastName,
+  setLastName,
+  dob,
+  setDob,
+  deathDate,
+  setDeathDate,
+  pageNum,
+  handleSubmit,
+}) => {
   return (
     <Container>
       <CloseButton onClick={() => console.log("Close this form and go back to main page")} />
       <main>
-        <FormHeader>Add a name 1/3</FormHeader>
+        <FormHeader>Report a death {pageNum}/3</FormHeader>
         <FormTheme>Personal Details</FormTheme>
         <div>
           <InputComponent
@@ -59,11 +66,26 @@ const PersonalDetails = () => {
           />
         </div>
       </main>
-      <NextButton type="button" onClick={() => console.log("Next button clicked, go to page 2")}>
+      <NextButton type="button" onClick={handleSubmit}>
         Next
       </NextButton>
     </Container>
   );
+};
+
+PersonalDetails.propTypes = {
+  firstName: PropTypes.string.isRequired,
+  setFirstName: PropTypes.func.isRequired,
+  middleName: PropTypes.string.isRequired,
+  setMiddleName: PropTypes.func.isRequired,
+  lastName: PropTypes.string.isRequired,
+  setLastName: PropTypes.func.isRequired,
+  dob: PropTypes.string.isRequired,
+  setDob: PropTypes.func.isRequired,
+  deathDate: PropTypes.string.isRequired,
+  setDeathDate: PropTypes.func.isRequired,
+  pageNum: PropTypes.number.isRequired,
+  handleSubmit: PropTypes.func.isRequired,
 };
 
 export default PersonalDetails;
