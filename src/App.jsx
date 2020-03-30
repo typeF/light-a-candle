@@ -7,6 +7,7 @@ import Hero from "./layouts/Hero/Hero";
 import Header from "./layouts/Header/Header";
 import Notifications from "./components/Notifications/Notifications";
 import Footer from "./layouts/Footer/Footer";
+import CityDrawer from "./layouts/CityDrawer/CityDrawer";
 
 const PageContainer = styled.div`
   height: 100vh;
@@ -37,7 +38,7 @@ const tempData = [
 
 function App() {
   // Boolean to swtich between 'homepage' & 'map'
-  const [isMainPage, setIsMainPage] = useState(false);
+  const [isMainPage, setIsMainPage] = useState(true);
   const [notifications, setNotifications] = useState(tempData);
 
   const addNotification = (notification) => {
@@ -59,6 +60,7 @@ function App() {
       <ExpandButton type="button" onClick={() => setIsMainPage(!isMainPage)}>
         <ExpandMoreIcon />
       </ExpandButton>
+      <CityDrawer />
     </PageContainer>
   );
 }
