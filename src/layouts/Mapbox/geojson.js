@@ -21,7 +21,7 @@ export default {
       },
       properties: {
         title: "Mapbox",
-        count: 555,
+        count: 55,
         description: "San Francisco, California",
       },
     },

@@ -16,24 +16,16 @@ const MarkerDiv = styled.div`
   width: ${markerSize};
 `;
 
-const Marker = ({ clickHandler, long, lat }) => {
-  return <MarkerDiv className="marker" data-latitude={lat} data-longitude={long} onClick={(e) => clickHandler(e)} />;
+const Marker = ({ clickHandler }) => {
+  return <MarkerDiv className="marker" onClick={(e) => clickHandler(e)} />;
 };
 
 Marker.propTypes = {
-  clickHandler: PropTypes.func,
-  lat: PropTypes.number,
-  long: PropTypes.number,
-};
-
-Marker.def = {
   clickHandler: PropTypes.func,
 };
 
 Marker.defaultProps = {
   clickHandler: () => {},
-  long: 0,
-  lat: 0,
 };
 
 export default Marker;

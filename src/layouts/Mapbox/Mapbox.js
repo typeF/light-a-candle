@@ -1,13 +1,12 @@
 import React, { useEffect, useState, useRef } from "react";
-// import ReactDOM from "react-dom";
+import ReactDOM from "react-dom";
 import styled from "styled-components";
 import mapboxgl from "mapbox-gl";
 import "mapbox-gl/dist/mapbox-gl.css";
-// import Marker from "./Marker";
 import geojson from "./geojson";
 import Home from "../Home/Home";
-import mapPin from "./map-pin.png";
-import mapLabelLt from "./map-label-lt.png";
+import Label from "./Label";
+import mapPin from "./Marker/map-pin.png";
 
 const MapContainer = styled.div`
   height: 100vh;
@@ -16,27 +15,77 @@ const MapContainer = styled.div`
 
 const Mapbox = () => {
   const [map, setMap] = useState(null);
+  const [currentLabelData, setCurrentLabelData] = useState({});
   const mapContainer = useRef(null);
 
   useEffect(() => {
     mapboxgl.accessToken = "pk.eyJ1Ijoia2F0ZWp1IiwiYSI6ImNqcXZoMjEzMzB2YjI0M2s4M244a3oxZHoifQ.jwSC6ztYKL8MXQJ0yPZ2vQ";
     /* eslint-disable no-shadow */
+
+    // ! Everything in here can set the state but can only get the INITIAL state
+    // ! It will not retrieve updated state values
     const initMap = ({ setMap, mapContainer }) => {
+      const defaultZoom = 3;
+      const zoomThreshold = 3.5;
+
       const map = new mapboxgl.Map({
         container: mapContainer.current,
         style: "mapbox://styles/kateju/ck8b3bitt0qkp1jmopgc349xb",
         center: [-123.1207, 49.2827], // longitude, latitude
-        zoom: 3,
+        zoom: defaultZoom,
       });
+
+      /* eslint-disable react/no-this-in-sfc  */
+      // Used to manage zoom state within Mapbox component
+      class Zoom {
+        constructor(prevZoom) {
+          this.prevZoom = prevZoom;
+        }
+
+        setPrevZoom(zoom) {
+          this.prevZoom = zoom;
+        }
+      }
+
+      const zoom = new Zoom(defaultZoom);
+
+      const flyToLabelAndZoom = (feature) => {
+        map.flyTo({
+          center: feature.geometry.coordinates,
+          offset: [0, -220], // [x, y] pixels
+          speed: 0.7,
+          zoom: 6,
+          essential: true,
+        });
+      };
+
+      const toggleLabels = () => {
+        const currentZoom = map.getZoom();
+        const { prevZoom } = zoom;
+        // Shows/hides labels only if we're changing over zoom level that's passed the threshold
+        const crossedThreshold =
+          !(prevZoom > zoomThreshold && currentZoom > zoomThreshold) ||
+          !(prevZoom > zoomThreshold && currentZoom > zoomThreshold);
+        zoom.setPrevZoom(currentZoom);
+        if (crossedThreshold) {
+          const labels = document.getElementsByClassName("label");
+          Array.prototype.forEach.call(labels, (label) => {
+            const isLabelLight = label.classList.contains("label-light");
+            if (currentZoom <= zoomThreshold) {
+              label.classList.add("hidden");
+              return;
+            }
+
+            if (isLabelLight) {
+              label.classList.remove("hidden");
+            }
+          });
+        }
+      };
 
       map.loadImage(mapPin, (err, img) => {
         if (err) throw err;
         if (!map.hasImage(mapPin)) map.addImage("mapPin", img);
-      });
-
-      map.loadImage(mapLabelLt, (err, img) => {
-        if (err) throw err;
-        if (!map.hasImage(mapLabelLt)) map.addImage("mapLabelLt", img);
       });
 
       map.on("load", () => {
@@ -48,68 +97,61 @@ const Mapbox = () => {
           data: geojson,
         });
 
-        const zoomThreshold = 3.5;
-
         map.addLayer({
-          id: "symbols",
+          id: "pins",
           type: "symbol",
           source: "points",
           maxzoom: zoomThreshold,
           layout: {
             "icon-image": "mapPin",
             "icon-size": 0.3,
+            "icon-anchor": "bottom",
           },
         });
 
-        map.addLayer({
-          id: "symbols2",
-          type: "symbol",
-          source: "points",
-          minzoom: zoomThreshold,
-          layout: {
-            "icon-image": "mapLabelLt",
-            "icon-size": 0.3,
-          },
+        map.on("click", "pins", (e) => {
+          map.flyTo({
+            center: e.features[0].geometry.coordinates,
+            offset: [0, -220], // [x, y] pixels
+            speed: 0.7,
+            zoom: 6,
+            essential: true,
+          });
         });
 
-        map.on("click", "symbols", (e) => {
-          map.flyTo({ center: e.features[0].geometry.coordinates, zoom: 6, essential: true });
-        });
-
-        map.on("mouseenter", "symbols", () => {
+        map.on("mouseenter", "pins", () => {
           map.getCanvas().style.cursor = "pointer";
         });
 
-        map.on("mouseleave", "symbols", () => {
+        map.on("mouseleave", "pins", () => {
           map.getCanvas().style.cursor = "";
         });
 
         // Renders markers based on geojson data object
-        // geojson.features.forEach((marker) => {
-        //   const markerContainer = document.createElement("div");
-        //   /* eslint-disable react/no-render-return-value */
+        geojson.features.forEach((marker) => {
+          const markerContainer = document.createElement("div");
 
-        //   // const clickHandler = () => console.log("Marker click handler");
-        //   const clickHandler = (e) => {
-        //     // map.flyTo({
-        //     //   center: end,
-        //     //   zoom: 9,
-        //     //   bearing: 0,
-        //     // });
-        //     // const features = map.queryRenderedFeatures(e.point);
-        //     // console.log(features[0]);
-        //   };
+          const clickHandler = (e) => {
+            flyToLabelAndZoom(marker);
+            const features = map.queryRenderedFeatures(e.point);
+            setCurrentLabelData(features);
+          };
 
-        //   const [long, lat] = marker.geometry.coordinates;
-        //   // Based on mapbox's implmentation, probably not the most optimal at the moment
-        //   const markerEl = ReactDOM.render(
-        //     <div>
-        //       <Marker long={long} lat={lat} clickHandler={clickHandler} />
-        //     </div>,
-        //     markerContainer
-        //   );
-        //   new mapboxgl.Marker(markerEl).setLngLat(marker.geometry.coordinates).addTo(map);
-        // });
+          // Based on mapbox's implmentation, probably not the most optimal at the moment
+          // These components cannot read updated state in the Mapbox component
+          /* eslint-disable react/no-render-return-value */
+          const labelEl = ReactDOM.render(
+            <div>
+              <Label background="light" count={marker.properties.count} clickHandler={clickHandler} />
+            </div>,
+            markerContainer
+          );
+          new mapboxgl.Marker(labelEl).setLngLat(marker.geometry.coordinates).addTo(map);
+        });
+
+        map.on("zoom", () => {
+          toggleLabels();
+        });
       });
     };
 
