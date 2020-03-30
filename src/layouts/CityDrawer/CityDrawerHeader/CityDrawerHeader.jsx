@@ -4,9 +4,10 @@ import styled from "styled-components";
 import formatDate from "utils/formatDate";
 
 const Container = styled.div`
-  width: 90%;
+  width: 85%;
   margin: 0 auto;
-  padding-top: 7.5%;
+  padding-top: 10%;
+  margin-bottom: 4%;
 `;
 
 const Heading = styled.p`
@@ -14,7 +15,7 @@ const Heading = styled.p`
   font-weight: 300;
   color: #fff;
   margin: 0;
-  margin-bottom: 2%;
+  margin-bottom: 2.5%;
 `;
 
 const SubText = styled.p`

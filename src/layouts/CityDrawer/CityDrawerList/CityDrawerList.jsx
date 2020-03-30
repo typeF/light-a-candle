@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 import CityDrawerListItem from "./CityDrawListItem/CityDrawerListItem";
 
 const ListWrapper = styled.div`
-  width: 90%;
+  width: 85%;
   margin: 0 auto;
   position: relative;
   color: #fff;
@@ -15,12 +15,9 @@ const List = styled.ul`
   padding: 0;
 `;
 
-function CityDrawerList({ handleClose, memorials }) {
+function CityDrawerList({ memorials }) {
   return (
     <ListWrapper role="presentation">
-      <button type="button" onClick={() => handleClose(false)}>
-        close
-      </button>
       <List>
         {memorials.map(({ id, ...rest }) => (
           <CityDrawerListItem key={id} {...rest} />
@@ -31,7 +28,6 @@ function CityDrawerList({ handleClose, memorials }) {
 }
 
 CityDrawerList.propTypes = {
-  handleClose: PropTypes.func.isRequired,
   memorials: PropTypes.arrayOf(
     PropTypes.shape({
       id: PropTypes.number,

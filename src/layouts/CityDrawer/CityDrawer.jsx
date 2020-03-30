@@ -1,19 +1,31 @@
 import React, { useState } from "react";
 import { withStyles } from "@material-ui/core/styles";
-import { SwipeableDrawer, Button } from "@material-ui/core";
+import { SwipeableDrawer, IconButton, Button } from "@material-ui/core";
+import ClearIcon from "@material-ui/icons/Clear";
 import CityDrawerHeader from "./CityDrawerHeader/CityDrawerHeader";
+import CityDrawerFilter from "./CityDrawerFilter/CityDrawerFilter";
 import CityDrawerList from "./CityDrawerList/CityDrawerList";
 
 const CustomDrawer = withStyles({
   paper: {
     height: (props) => props.height,
     backgroundColor: "#1e2a32",
+    position: "relative",
   },
 })((props) => {
   const { classes, ...rest } = props;
   // eslint-disable-next-line react/jsx-props-no-spreading
   return <SwipeableDrawer classes={{ paper: classes.paper }} {...rest} />;
 });
+
+const ClearButton = withStyles({
+  root: {
+    position: "absolute",
+    top: "0",
+    right: "0",
+    color: "#fff",
+  },
+})(IconButton);
 
 const tempData = [
   {
@@ -39,6 +51,9 @@ const tempData = [
 function CityDrawer() {
   const [memorials, setMemorials] = useState(tempData);
   const [openDrawer, setOpenDrawer] = useState(true);
+
+  const [filter, setFilter] = useState("Most recent");
+  const filterOptions = ["Most recent", "Name(A-Z)", "Name(Z-A)"];
   // TODO: state to manage between half & full
   // const [isFullScreen, setisFullScreen] = useState(true);
 
@@ -50,7 +65,7 @@ function CityDrawer() {
 
   return (
     <>
-      <Button onClick={toggleDrawer}>Open</Button>
+      <Button onClick={toggleDrawer}>open</Button>
       <CustomDrawer
         // height is used to control the height of the CustomDrawer
         height="100%"
@@ -60,8 +75,12 @@ function CityDrawer() {
         onClose={() => toggleDrawer(false)}
         onOpen={() => toggleDrawer(true)}
       >
+        <ClearButton type="button" onClick={() => toggleDrawer(false)}>
+          <ClearIcon fontSize="large" />
+        </ClearButton>
         <CityDrawerHeader city="New York" date_updated={Date.now()} />
-        <CityDrawerList handleClose={toggleDrawer} memorials={memorials} />
+        <CityDrawerFilter selected={filter} handleClick={setFilter} filters={filterOptions} />
+        <CityDrawerList memorials={memorials} />
       </CustomDrawer>
     </>
   );
