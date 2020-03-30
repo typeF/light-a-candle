@@ -16,6 +16,7 @@ const ProfileSummary = ({ profileData }) => {
     img: "https://vignette.wikia.nocookie.net/spongebob/images/c/c2/GreenDoctor.png",
     name: "Shane Fisher",
     title: "Nurse",
+    workplace: "Bellevue Hospital Center",
     city: "New York",
     province: "NY",
     country: "USA",
