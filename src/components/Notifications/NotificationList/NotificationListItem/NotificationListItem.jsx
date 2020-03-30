@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import PropTypes from "prop-types";
+import CandleIcon from "../../../CandleIcon/CandleIcon";
 
 function timeSince(date) {
   const seconds = Math.floor((new Date() - date) / 1000);
@@ -9,7 +10,9 @@ function timeSince(date) {
 }
 
 const ListItem = styled.li`
-  /* display: flex; */
+  display: flex;
+  align-items: center;
+  margin-bottom: 5px;
 `;
 
 const Message = styled.p`
@@ -17,18 +20,27 @@ const Message = styled.p`
   font-size: 0.75rem;
 `;
 
+const TextWrapper = styled.div`
+  margin-left: 5px;
+  display: flex;
+  flex-direction: column;
+`;
+
 const SmallText = styled.small`
   margin: 0;
   padding: 0;
-  font-size: 0.45rem;
+  font-size: 0.5rem;
   color: #636c76;
 `;
 
 function NotificationListItem({ user, message, date_created }) {
   return (
     <ListItem>
-      <SmallText>{timeSince(date_created)}</SmallText>
-      <Message>{`${user}: ${message}`}</Message>
+      <CandleIcon size="25px" />
+      <TextWrapper>
+        <SmallText>{timeSince(date_created)}</SmallText>
+        <Message>{`${user}: ${message}`}</Message>
+      </TextWrapper>
     </ListItem>
   );
 }

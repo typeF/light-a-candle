@@ -4,6 +4,9 @@ import Hero from "./layouts/Hero/Hero";
 import Header from "./layouts/Header/Header";
 import Notifications from "./components/Notifications/Notifications";
 import Footer from "./layouts/Footer/Footer";
+import { withStyles } from "@material-ui/core/styles";
+import { IconButton } from "@material-ui/core";
+import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 
 const PageContainer = styled.div`
   height: 100vh;
@@ -17,11 +20,14 @@ const PageContainer = styled.div`
   font-weight: 300;
   position: relative;
 `;
-
-const ScreenButton = styled.button`
-  position: absolute;
-  bottom: 2%;
-`;
+const ExpandButton = withStyles({
+  root: {
+    position: "absolute",
+    fontSize: "2rem",
+    bottom: "0.25%",
+    color: "#a5b9bd",
+  },
+})(IconButton);
 
 const tempData = [
   { user: "Alexa", message: "Thank you so much !", date_created: Date.now() },
@@ -44,9 +50,9 @@ function App() {
       <Hero />
       <Notifications notifications={notifications} />
       <Footer isMainPage={isMainPage} handleNotification={addNotification} />
-      <ScreenButton type="button" onClick={() => setIsMainPage(!isMainPage)}>
-        Switch
-      </ScreenButton>
+      <ExpandButton type="button" onClick={() => setIsMainPage(!isMainPage)}>
+        <ExpandMoreIcon />
+      </ExpandButton>
     </PageContainer>
   );
 }
