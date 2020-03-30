@@ -45,10 +45,15 @@ function App() {
   };
 
   return (
+    // TODO: refractor HOC to manage mainPage toggle
     <PageContainer>
       <Header />
-      <Hero />
-      <Notifications notifications={notifications} />
+      {isMainPage && (
+        <>
+          <Hero />
+          <Notifications notifications={notifications} />
+        </>
+      )}
       <Footer isMainPage={isMainPage} handleNotification={addNotification} />
       <ExpandButton type="button" onClick={() => setIsMainPage(!isMainPage)}>
         <ExpandMoreIcon />

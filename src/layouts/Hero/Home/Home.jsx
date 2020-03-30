@@ -24,6 +24,7 @@ const HomeBodyText = styled.p`
   font-weight: 100;
   margin: 0;
   padding: 0 10%;
+  color: #c2b3df;
 `;
 
 function Home() {
