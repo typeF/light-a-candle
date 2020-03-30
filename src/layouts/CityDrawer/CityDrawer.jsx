@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { withStyles } from "@material-ui/core/styles";
 import { SwipeableDrawer, Button } from "@material-ui/core";
+import CityDrawerHeader from "./CityDrawerHeader/CityDrawerHeader";
 import CityDrawerList from "./CityDrawerList/CityDrawerList";
 
 const CustomDrawer = withStyles({
@@ -19,19 +20,19 @@ const tempData = [
     name: "Wendy Watson",
     occupation: "Doctor",
     img: `https://randomuser.me/api/portraits/thumb/men/${1}.jpg`,
-    date_died: Date.now() - 10,
+    date_died: Date.now() - 10 * 86400000,
   },
   {
     name: "Dustin Watson",
     occupation: "Doctor",
     img: `https://randomuser.me/api/portraits/thumb/men/${2}.jpg`,
-    date_died: Date.now() - 13,
+    date_died: Date.now() - 13 * 86400000,
   },
   {
     name: "Shane Fisher",
     occupation: "Nurse",
     img: `https://randomuser.me/api/portraits/thumb/men/${3}.jpg`,
-    date_died: Date.now() - 25,
+    date_died: Date.now() - 25 * 86400000,
   },
 ];
 
@@ -59,6 +60,7 @@ function CityDrawer() {
         onClose={() => toggleDrawer(false)}
         onOpen={() => toggleDrawer(true)}
       >
+        <CityDrawerHeader city="New York" date_updated={Date.now()} />
         <CityDrawerList handleClose={toggleDrawer} memorials={memorials} />
       </CustomDrawer>
     </>

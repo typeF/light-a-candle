@@ -34,11 +34,13 @@ const ItemName = styled.p`
 const ItemOccupatation = styled.p`
   font-size: 0.75rem;
   margin: 0;
+  color: #a5b9bd;
 `;
 
 const ItemDate = styled.p`
   font-size: 0.75rem;
   margin: 0;
+  color: #a5b9bd;
 `;
 
 function CityDrawerListItem({ name, occupation, img, date_died }) {
