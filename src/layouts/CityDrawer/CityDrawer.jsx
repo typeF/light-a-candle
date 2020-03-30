@@ -1,62 +1,64 @@
 import React, { useState } from "react";
-import styled from "styled-components";
 import { withStyles } from "@material-ui/core/styles";
 import { SwipeableDrawer, Button } from "@material-ui/core";
-import { List, ListItem, ListItemIcon, ListItemText, Divider } from "@material-ui/core";
-import InboxIcon from "@material-ui/icons/MoveToInbox";
-import MailIcon from "@material-ui/icons/Mail";
-
-const ListWrapper = styled.div`
-  width: auto;
-`;
+import CityDrawerList from "./CityDrawerList/CityDrawerList";
 
 const CustomDrawer = withStyles({
   paper: {
-    height: "100%",
+    height: (props) => props.height,
   },
-})(SwipeableDrawer);
+})((props) => {
+  const { classes, ...rest } = props;
+  // eslint-disable-next-line react/jsx-props-no-spreading
+  return <SwipeableDrawer classes={{ paper: classes.paper }} {...rest} />;
+});
+
+const tempData = [
+  {
+    name: "Wendy Watson",
+    occupation: "Doctor",
+    img: `https://randomuser.me/api/portraits/thumb/men/${1}.jpg`,
+    date_died: Date.now() - 10,
+  },
+  {
+    name: "Dustin Watson",
+    occupation: "Doctor",
+    img: `https://randomuser.me/api/portraits/thumb/men/${2}.jpg`,
+    date_died: Date.now() - 13,
+  },
+  {
+    name: "Shane Fisher",
+    occupation: "Nurse",
+    img: `https://randomuser.me/api/portraits/thumb/men/${3}.jpg`,
+    date_died: Date.now() - 25,
+  },
+];
 
 function CityDrawer() {
+  const [memorials, setMemorials] = useState(tempData);
   const [openDrawer, setOpenDrawer] = useState(true);
-  const [isFullScreen, setisFullScreen] = useState(true);
+  // TODO: state to manage between half & full
+  // const [isFullScreen, setisFullScreen] = useState(true);
+
+  // TODO: logic to make request to fetch people associated to a city    given as a prop?
 
   const toggleDrawer = (state) => {
     setOpenDrawer(state);
-    console.log("here");
   };
 
-  const list = (anchor) => (
-    <ListWrapper role="presentation" onClick={() => toggleDrawer()} onKeyDown={() => toggleDrawer()}>
-      <List>
-        {["Inbox", "Starred", "Send email", "Drafts"].map((text, index) => (
-          <ListItem button key={text}>
-            <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
-            <ListItemText primary={text} />
-          </ListItem>
-        ))}
-      </List>
-      <Divider />
-      <List>
-        {["All mail", "Trash", "Spam"].map((text, index) => (
-          <ListItem button key={text}>
-            <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
-            <ListItemText primary={text} />
-          </ListItem>
-        ))}
-      </List>
-    </ListWrapper>
-  );
   return (
     <>
       <Button onClick={toggleDrawer}>Open</Button>
       <CustomDrawer
+        // height is used to control the height of the CustomDrawer
+        height="100%"
         anchor="bottom"
         open={openDrawer}
         containerStyle={{ height: "calc(100% - 64px)", top: 64 }}
         onClose={() => toggleDrawer(false)}
         onOpen={() => toggleDrawer(true)}
       >
-        {list("bottom")}
+        <CityDrawerList handleClose={toggleDrawer} memorials={memorials} />
       </CustomDrawer>
     </>
   );
