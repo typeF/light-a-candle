@@ -5,7 +5,7 @@ const COVIDBlock = styled.div`
   display: flex;
   background-color: #636c76;
   width: 150px;
-  height: 35px;
+  height: 30px;
   border-radius: 25px;
   color: white;
   align-items: center;

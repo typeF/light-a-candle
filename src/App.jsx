@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 import styled from "styled-components";
+import { withStyles } from "@material-ui/core/styles";
+import { IconButton } from "@material-ui/core";
+import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import Hero from "./layouts/Hero/Hero";
 import Header from "./layouts/Header/Header";
 import Notifications from "./components/Notifications/Notifications";
 import Footer from "./layouts/Footer/Footer";
-import { withStyles } from "@material-ui/core/styles";
-import { IconButton } from "@material-ui/core";
-import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 
 const PageContainer = styled.div`
   height: 100vh;
@@ -37,17 +37,18 @@ const tempData = [
 
 function App() {
   // Boolean to swtich between 'homepage' & 'map'
-  const [isMainPage, setIsMainPage] = useState(true);
+  const [isMainPage, setIsMainPage] = useState(false);
   const [notifications, setNotifications] = useState(tempData);
 
   const addNotification = (notification) => {
+    setIsMainPage(true);
     setNotifications((state) => [...state, notification]);
   };
 
   return (
     // TODO: refractor HOC to manage mainPage toggle
     <PageContainer>
-      <Header />
+      <Header isMainPage={isMainPage} />
       {isMainPage && (
         <>
           <Hero />

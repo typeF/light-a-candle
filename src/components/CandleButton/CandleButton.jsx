@@ -1,19 +1,25 @@
 import React from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
+import CandleIcon from "../CandleIcon/CandleIcon";
 
 const Button = styled.button`
-  display: block;
   background-color: grey;
-  width: 100px;
+  width: 50px;
   height: 50px;
   border-radius: 100px;
   margin: 0 auto;
   margin-bottom: 30px;
   border: 0;
+  display: flex;
 `;
+
 function CandleButton({ handleClick }) {
-  return <Button onClick={() => handleClick(true)}>+</Button>;
+  return (
+    <Button onClick={() => handleClick(true)}>
+      <CandleIcon size="50px" />
+    </Button>
+  );
 }
 
 CandleButton.propTypes = {

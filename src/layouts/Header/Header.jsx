@@ -1,32 +1,35 @@
 import React from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
+import COVIDBanner from "../../components/COVIDBanner/COVIDBanner";
 
-const TopBar = styled.div`
+const TopBar = styled.header`
   margin-top: 7.5%;
 `;
 
 const HeaderText = styled.div`
-  margin: 0;
   color: #fff;
+  margin: 0 auto;
+  font-size: ${(props) => (props.isMainPage ? "1rem" : "0.75rem")};
 `;
 
-function Header({ value }) {
+function Header({ isMainPage }) {
   return (
     <TopBar>
-      <header>
-        <HeaderText>{value}</HeaderText>
-      </header>
+      {!isMainPage && <COVIDBanner />}
+      <HeaderText isMainPage={isMainPage}>
+        {isMainPage ? "Light up for COVID-19" : "For all our brave health care heroes"}
+      </HeaderText>
     </TopBar>
   );
 }
 
 Header.propTypes = {
-  value: PropTypes.string,
+  isMainPage: PropTypes.bool,
 };
 
 Header.defaultProps = {
-  value: "Light a candle",
+  isMainPage: true,
 };
 
 export default Header;

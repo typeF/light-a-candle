@@ -7,10 +7,13 @@ const NotificationContainer = styled.div`
   display: flex;
   flex-direction: column;
   color: white;
+  max-height: 120px;
+  overflow: hidden;
 `;
 
 function Notifications({ notifications }) {
   // some logic here to fetch data on mount
+  // TODO: create scrolling animation
   return (
     <NotificationContainer>
       <NotificationList notifications={notifications} />

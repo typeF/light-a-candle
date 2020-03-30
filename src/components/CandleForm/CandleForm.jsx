@@ -3,15 +3,16 @@ import styled from "styled-components";
 import PropTypes from "prop-types";
 import { TextField, IconButton } from "@material-ui/core";
 import { withStyles } from "@material-ui/core/styles";
-import CancelIcon from "@material-ui/icons/Cancel";
-import WhatshotIcon from "@material-ui/icons/Whatshot";
+import ClearIcon from "@material-ui/icons/Clear";
+import CandleIcon from "../CandleIcon/CandleIcon";
 
 const Form = styled.div`
-  background: rgba(0, 0, 0, 0.5);
+  background: #636c76;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  border-radius: 10px;
   padding-bottom: 30px;
   width: 80%;
   margin: 0 auto;
@@ -22,20 +23,32 @@ const Form = styled.div`
 const CancelButton = withStyles({
   root: {
     position: "absolute",
-    top: "0",
-    right: "0",
+    top: "-15px",
+    right: "-15px",
+    backgroundColor: "#c2b3df",
+    color: "#fff",
   },
 })(IconButton);
 
 const SubmitButton = withStyles({
   root: {
-    display: "block",
-    backgroundColor: "grey",
+    display: "inline-block",
+    backgroundColor: "#636c76",
     borderRadius: "25px",
     position: "absolute",
-    bottom: "-20px",
+    bottom: "-25px",
   },
 })(IconButton);
+
+// TODO: Style TextField
+const CustomTextField = withStyles({
+  root: {
+    // color: "#c2b3df",
+  },
+  input: {
+    color: "#c2b3df",
+  },
+})(TextField);
 
 function CandleForm({ handleClose, handleSubmit }) {
   const [name, setName] = useState("");
@@ -64,18 +77,18 @@ function CandleForm({ handleClose, handleSubmit }) {
 
   return (
     <Form>
-      <CancelButton onClick={handleClose}>
-        <CancelIcon />
+      <CancelButton size="small" onClick={handleClose}>
+        <ClearIcon />
       </CancelButton>
-      <TextField
-        error={nameError}
+      <CustomTextField
         id="name"
         label="Your Name"
         value={name}
         onChange={(e) => setName(e.target.value)}
+        error={nameError}
         helperText={nameError}
       />
-      <TextField
+      <CustomTextField
         error={messageError}
         id="Message"
         label="Message"
@@ -83,8 +96,8 @@ function CandleForm({ handleClose, handleSubmit }) {
         onChange={(e) => setMessage(e.target.value)}
         helperText={messageError}
       />
-      <SubmitButton onClick={sumbitMessage}>
-        <WhatshotIcon />
+      <SubmitButton size="small" onClick={sumbitMessage}>
+        <CandleIcon />
       </SubmitButton>
     </Form>
   );
