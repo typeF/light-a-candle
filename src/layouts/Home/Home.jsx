@@ -3,7 +3,7 @@ import React from "react";
 // Mapbox doesn't seem to like to share space. Components need z-index >= 1 with absolute positioning to stay on top of
 const style = {
   position: "absolute",
-  "z-index": "1",
+  zIndex: "1",
   color: "white",
 };
 
