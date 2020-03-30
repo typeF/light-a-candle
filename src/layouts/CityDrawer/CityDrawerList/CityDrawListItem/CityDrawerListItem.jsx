@@ -22,10 +22,12 @@ const ItemMeta = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-around;
+  font-weight: 100;
 `;
 
 const ItemName = styled.p`
   font-size: 1.25rem;
+  font-weight: 300;
   margin: 0;
 `;
 

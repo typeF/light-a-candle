@@ -6,6 +6,7 @@ import CityDrawerList from "./CityDrawerList/CityDrawerList";
 const CustomDrawer = withStyles({
   paper: {
     height: (props) => props.height,
+    backgroundColor: "#1e2a32",
   },
 })((props) => {
   const { classes, ...rest } = props;

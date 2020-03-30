@@ -4,12 +4,15 @@ import PropTypes from "prop-types";
 import CityDrawerListItem from "./CityDrawListItem/CityDrawerListItem";
 
 const ListWrapper = styled.div`
-  width: auto;
+  width: 90%;
+  margin: 0 auto;
+  position: relative;
+  color: #fff;
 `;
 
 const List = styled.ul`
   list-style: none;
-  margin: 0;
+  padding: 0;
 `;
 
 function CityDrawerList({ handleClose, memorials }) {
