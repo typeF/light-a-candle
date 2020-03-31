@@ -47,7 +47,8 @@ function App() {
   // Boolean to swtich between 'homepage' & 'map'
   const [isMainPage, setIsMainPage] = useState(true);
   const [notifications, setNotifications] = useState(tempData);
-  const [openDrawer, setOpenDrawer] = useState(false);
+  const [openDrawer, setOpenDrawer] = useState(true);
+  const [location, setLocation] = useState({});
 
   const addNotification = (notification) => {
     setIsMainPage(true);
@@ -57,7 +58,7 @@ function App() {
   return (
     // TODO: refractor HOC to manage mainPage toggle
     <div>
-      <Mapbox handleDrawer={setOpenDrawer} />
+      <Mapbox handleDrawer={setOpenDrawer} handleLocation={setLocation} />
       <PageContainer>
         <Header isMainPage={isMainPage} />
         {isMainPage && (

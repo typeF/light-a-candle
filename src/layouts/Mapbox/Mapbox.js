@@ -12,7 +12,7 @@ const MapContainer = styled.div`
   position: "absolute";
 `;
 
-const Mapbox = ({ handleDrawer }) => {
+const Mapbox = ({ handleDrawer, handleLocation }) => {
   const [map, setMap] = useState(null);
   const [currentLabelData, setCurrentLabelData] = useState({});
   const mapContainer = useRef(null);
@@ -134,6 +134,10 @@ const Mapbox = ({ handleDrawer }) => {
             flyToLabelAndZoom(marker);
             const features = map.queryRenderedFeatures(e.point);
             setCurrentLabelData(features);
+
+            // handles passing location to drawer
+            handleLocation(e);
+            // handles opening drawers
             handleDrawer(true);
           };
 

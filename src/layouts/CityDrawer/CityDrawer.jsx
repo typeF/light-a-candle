@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { withStyles } from "@material-ui/core/styles";
 import { SwipeableDrawer, IconButton, Button } from "@material-ui/core";
 import ClearIcon from "@material-ui/icons/Clear";
+import ExpandLessIcon from "@material-ui/icons/ExpandLess";
 import CityDrawerHeader from "./CityDrawerHeader/CityDrawerHeader";
 import CityDrawerFilter from "./CityDrawerFilter/CityDrawerFilter";
 import CityDrawerList from "./CityDrawerList/CityDrawerList";
@@ -11,6 +12,7 @@ const CustomDrawer = withStyles({
     height: (props) => props.height,
     backgroundColor: "#1e2a32",
     borderRadius: "20px 20px 0px 0px",
+    transition: "height 225ms cubic-bezier(0,0,0.2,1) 0ms",
   },
 })((props) => {
   const { classes, ...rest } = props;
@@ -24,6 +26,15 @@ const ClearButton = withStyles({
     top: "0",
     right: "0",
     color: "#fff",
+  },
+})(IconButton);
+
+const ExpandButton = withStyles({
+  root: {
+    position: "absolute",
+    top: "-2.5%",
+    color: "#fff",
+    left: "44%",
   },
 })(IconButton);
 
@@ -55,11 +66,20 @@ function CityDrawer({ isOpen, handleDrawer }) {
   const [filter, setFilter] = useState("Most recent");
   const filterOptions = ["Most recent", "Name(A-Z)", "Name(Z-A)"];
   // TODO: state to manage between half & full
-  // const [isFullScreen, setisFullScreen] = useState(true);
+  const [isFullScreen, setisFullScreen] = useState(false);
 
   // TODO: logic to make request to fetch people associated to a city    given as a prop?
 
   // TODO: add logic to filter memorials
+
+  const toggleFullScreen = (state) => {
+    setisFullScreen(state);
+  };
+
+  const handleClose = (state) => {
+    setisFullScreen(state);
+    handleDrawer(state);
+  };
 
   const toggleDrawer = (state) => {
     handleDrawer(state);
@@ -70,14 +90,19 @@ function CityDrawer({ isOpen, handleDrawer }) {
       {/* <Button onClick={toggleDrawer}>open</Button> */}
       <CustomDrawer
         // height is used to control the height of the CustomDrawer
-        height="50%"
+        height={isFullScreen ? "100%" : "50%"}
         anchor="bottom"
         open={isOpen}
         containerStyle={{ height: "calc(100% - 64px)", top: 64 }}
         onClose={() => toggleDrawer(false)}
-        onOpen={() => toggleDrawer(true)}
+        onOpen={(event) => toggleDrawer(true)}
       >
-        <ClearButton type="button" onClick={() => toggleDrawer(false)}>
+        {!isFullScreen && (
+          <ExpandButton type="button" onClick={() => toggleFullScreen(true)}>
+            <ExpandLessIcon fontSize="small" />
+          </ExpandButton>
+        )}
+        <ClearButton type="button" onClick={() => handleClose(false)}>
           <ClearIcon fontSize="large" />
         </ClearButton>
         <CityDrawerHeader city="New York" date_updated={Date.now()} />
