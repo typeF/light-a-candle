@@ -7,7 +7,8 @@ import Hero from "./layouts/Hero/Hero";
 import Header from "./layouts/Header/Header";
 import Notifications from "./components/Notifications/Notifications";
 import Footer from "./layouts/Footer/Footer";
-import CityDrawer from "./layouts/CityDrawer/CityDrawer";
+// import CityDrawer from "./layouts/CityDrawer/CityDrawer";
+import Mapbox from "./layouts/Mapbox";
 
 const PageContainer = styled.div`
   height: 100vh;
@@ -16,10 +17,13 @@ const PageContainer = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
-  background-color: #1e2a32;
+  background-color: rgba(30, 42, 50, 0.4);
   font-family: "Crimson Pro", serif;
   font-weight: 300;
-  position: relative;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1;
 `;
 const ExpandButton = withStyles({
   root: {
@@ -48,20 +52,23 @@ function App() {
 
   return (
     // TODO: refractor HOC to manage mainPage toggle
-    <PageContainer>
-      <Header isMainPage={isMainPage} />
-      {isMainPage && (
-        <>
-          <Hero />
-          <Notifications notifications={notifications} />
-        </>
-      )}
-      <Footer isMainPage={isMainPage} handleNotification={addNotification} />
-      <ExpandButton type="button" onClick={() => setIsMainPage(!isMainPage)}>
-        <ExpandMoreIcon />
-      </ExpandButton>
-      {/* <CityDrawer /> */}
-    </PageContainer>
+    <div>
+      <Mapbox />
+      <PageContainer>
+        <Header isMainPage={isMainPage} />
+        {isMainPage && (
+          <>
+            <Hero />
+            <Notifications notifications={notifications} />
+          </>
+        )}
+        <Footer isMainPage={isMainPage} handleNotification={addNotification} />
+        <ExpandButton type="button" onClick={() => setIsMainPage(!isMainPage)}>
+          <ExpandMoreIcon />
+        </ExpandButton>
+        {/* <CityDrawer /> */}
+      </PageContainer>
+    </div>
   );
 }
 

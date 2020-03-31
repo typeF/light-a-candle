@@ -4,7 +4,6 @@ import styled from "styled-components";
 import mapboxgl from "mapbox-gl";
 import "mapbox-gl/dist/mapbox-gl.css";
 import geojson from "./geojson";
-import Home from "../Home/Home";
 import Label from "./Label";
 import mapPin from "./Marker/map-pin.png";
 
@@ -161,7 +160,6 @@ const Mapbox = () => {
   /* eslint-disable no-return-assign */
   return (
     <div>
-      <Home />
       <MapContainer ref={(el) => (mapContainer.current = el)} />
     </div>
   );
