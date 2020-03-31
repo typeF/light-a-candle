@@ -34,7 +34,7 @@ function Home() {
       <HomeNumbers>100,389</HomeNumbers>
       <HomeMainText>Candles Lit</HomeMainText>
       <HomeBodyText>
-        to honor and remmember all healthcare workers who devoted their lives to the fight of COVID-19.
+        to honor and remember all healthcare workers who devoted their lives to the fight of COVID-19.
       </HomeBodyText>
     </HomeContainer>
   );

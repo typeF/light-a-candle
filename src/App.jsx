@@ -7,7 +7,7 @@ import Hero from "./layouts/Hero/Hero";
 import Header from "./layouts/Header/Header";
 import Notifications from "./components/Notifications/Notifications";
 import Footer from "./layouts/Footer/Footer";
-// import CityDrawer from "./layouts/CityDrawer/CityDrawer";
+import CityDrawer from "./layouts/CityDrawer/CityDrawer";
 import Mapbox from "./layouts/Mapbox";
 
 const PageContainer = styled.div`
@@ -44,6 +44,7 @@ function App() {
   // Boolean to swtich between 'homepage' & 'map'
   const [isMainPage, setIsMainPage] = useState(true);
   const [notifications, setNotifications] = useState(tempData);
+  const [openDrawer, setOpenDrawer] = useState(false);
 
   const addNotification = (notification) => {
     setIsMainPage(true);
@@ -53,7 +54,7 @@ function App() {
   return (
     // TODO: refractor HOC to manage mainPage toggle
     <div>
-      <Mapbox />
+      <Mapbox handleDrawer={setOpenDrawer} />
       <PageContainer>
         <Header isMainPage={isMainPage} />
         {isMainPage && (
@@ -66,7 +67,7 @@ function App() {
         <ExpandButton type="button" onClick={() => setIsMainPage(!isMainPage)}>
           <ExpandMoreIcon />
         </ExpandButton>
-        {/* <CityDrawer /> */}
+        <CityDrawer isOpen={openDrawer} handleDrawer={setOpenDrawer} />
       </PageContainer>
     </div>
   );

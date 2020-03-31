@@ -48,9 +48,9 @@ const tempData = [
   },
 ];
 
-function CityDrawer() {
+function CityDrawer({ isOpen, handleDrawer }) {
   const [memorials, setMemorials] = useState(tempData);
-  const [openDrawer, setOpenDrawer] = useState(true);
+  // const [openDrawer, setOpenDrawer] = useState(true);
 
   const [filter, setFilter] = useState("Most recent");
   const filterOptions = ["Most recent", "Name(A-Z)", "Name(Z-A)"];
@@ -62,17 +62,17 @@ function CityDrawer() {
   // TODO: add logic to filter memorials
 
   const toggleDrawer = (state) => {
-    setOpenDrawer(state);
+    handleDrawer(state);
   };
 
   return (
     <>
-      <Button onClick={toggleDrawer}>open</Button>
+      {/* <Button onClick={toggleDrawer}>open</Button> */}
       <CustomDrawer
         // height is used to control the height of the CustomDrawer
         height="50%"
         anchor="bottom"
-        open={openDrawer}
+        open={isOpen}
         containerStyle={{ height: "calc(100% - 64px)", top: 64 }}
         onClose={() => toggleDrawer(false)}
         onOpen={() => toggleDrawer(true)}

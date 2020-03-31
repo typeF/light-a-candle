@@ -12,7 +12,7 @@ const MapContainer = styled.div`
   position: "absolute";
 `;
 
-const Mapbox = () => {
+const Mapbox = ({ handleDrawer }) => {
   const [map, setMap] = useState(null);
   const [currentLabelData, setCurrentLabelData] = useState({});
   const mapContainer = useRef(null);
@@ -134,6 +134,7 @@ const Mapbox = () => {
             flyToLabelAndZoom(marker);
             const features = map.queryRenderedFeatures(e.point);
             setCurrentLabelData(features);
+            handleDrawer(true);
           };
 
           // Based on mapbox's implmentation, probably not the most optimal at the moment
