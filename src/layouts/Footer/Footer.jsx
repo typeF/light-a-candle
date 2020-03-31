@@ -7,6 +7,7 @@ import COVIDBanner from "../../components/COVIDBanner/COVIDBanner";
 const FooterContainer = styled.footer`
   width: 100%;
   margin-bottom: 10%;
+  pointer-events: initial;
 `;
 
 function Footer({ isMainPage, handleNotification }) {
