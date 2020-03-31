@@ -9,6 +9,7 @@ const NotificationContainer = styled.div`
   color: white;
   max-height: 120px;
   overflow: hidden;
+  pointer-events: initial;
 `;
 
 function Notifications({ notifications }) {
