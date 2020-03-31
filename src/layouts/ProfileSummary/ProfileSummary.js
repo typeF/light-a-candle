@@ -8,6 +8,8 @@ import ProfileSummaryDetails from "./ProfileSummaryDetails";
 const backgroundColor = "#1E2A32";
 
 const ProfileSummaryOuterContainer = styled.div`
+  position: absolute;
+  z-index: 1 !important;
   background-color: ${backgroundColor};
   height: 100vh;
   width: 100%;
