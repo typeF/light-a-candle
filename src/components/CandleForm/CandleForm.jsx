@@ -7,17 +7,18 @@ import ClearIcon from "@material-ui/icons/Clear";
 import CandleIcon from "../CandleIcon/CandleIcon";
 
 const Form = styled.div`
-  background: #636c76;
+  background-image: url("/rectangle.svg");
+  background-position-y: bottom;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   border-radius: 10px;
-  padding-bottom: 30px;
-  width: 80%;
+  width: 85%;
+  height: 25%;
   margin: 0 auto;
-  margin-bottom: 10%;
-  position: relative;
+  position: absolute;
+  bottom: 9.75%;
 `;
 
 const CancelButton = withStyles({
@@ -32,21 +33,36 @@ const CancelButton = withStyles({
 
 const SubmitButton = withStyles({
   root: {
-    display: "inline-block",
-    backgroundColor: "#636c76",
-    borderRadius: "25px",
+    backgroundColor: (props) => (props.isValid ? "#636c76" : "transparent"),
+    height: "50px",
+    width: "50px",
+    borderRadius: "50%",
     position: "absolute",
-    bottom: "-25px",
+    bottom: "5px",
+    paddingTop: "0%",
+    transition: "background-color 1s ease-in",
   },
 })(IconButton);
 
-// TODO: Style TextField
 const CustomTextField = withStyles({
   root: {
-    // color: "#c2b3df",
-  },
-  input: {
-    color: "#c2b3df",
+    top: "-15%",
+    width: "80%",
+    "& label.MuiFormLabel-root": {
+      color: "#d9cdf0",
+    },
+    "& input.MuiInputBase-input": {
+      color: "#d9cdf0",
+    },
+    "& label.Mui-focused": {
+      color: "#d9cdf0",
+    },
+    "& .MuiInput-underline:after": {
+      borderBottomColor: "#d9cdf0",
+    },
+    "& .MuiInput-underline:before": {
+      borderBottomColor: "#d9cdf0",
+    },
   },
 })(TextField);
 
@@ -85,18 +101,18 @@ function CandleForm({ handleClose, handleSubmit }) {
         label="Your Name"
         value={name}
         onChange={(e) => setName(e.target.value)}
-        error={nameError}
-        helperText={nameError}
+        // error={nameError}
+        // helperText={nameError}
       />
       <CustomTextField
-        error={messageError}
         id="Message"
         label="Message"
         value={message}
         onChange={(e) => setMessage(e.target.value)}
-        helperText={messageError}
+        // error={messageError}
+        // helperText={messageError}
       />
-      <SubmitButton size="small" onClick={submitMessage}>
+      <SubmitButton size="small" isValid={name.length && message.length} onClick={submitMessage}>
         <CandleIcon />
       </SubmitButton>
     </Form>

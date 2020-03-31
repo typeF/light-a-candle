@@ -45,7 +45,7 @@ const tempData = [
 
 function App() {
   // Boolean to swtich between 'homepage' & 'map'
-  const [isMainPage, setIsMainPage] = useState(true);
+  const [isMainPage, setIsMainPage] = useState(false);
   const [notifications, setNotifications] = useState(tempData);
   const [openDrawer, setOpenDrawer] = useState(false);
   const [location, setLocation] = useState({});
