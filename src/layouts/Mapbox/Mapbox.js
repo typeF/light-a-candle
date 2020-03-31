@@ -6,13 +6,14 @@ import "mapbox-gl/dist/mapbox-gl.css";
 import geojson from "./geojson";
 import Label from "./Label";
 import mapPin from "./Marker/map-pin.png";
+import getTributesForLocation from "../../api/tributes";
 
 const MapContainer = styled.div`
   height: 100vh;
   position: "absolute";
 `;
 
-const Mapbox = ({ handleDrawer, setLocation }) => {
+const Mapbox = ({ handleDrawer, setLocation, setMemorials }) => {
   const [map, setMap] = useState(null);
   const mapContainer = useRef(null);
 
@@ -55,6 +56,10 @@ const Mapbox = ({ handleDrawer, setLocation }) => {
           zoom: 6,
           essential: true,
         });
+      };
+
+      const getTributes = async (searchParams) => {
+        return await getTributesForLocation(searchParams);
       };
 
       const toggleLabels = () => {
@@ -135,6 +140,7 @@ const Mapbox = ({ handleDrawer, setLocation }) => {
             // const features = map.queryRenderedFeatures(e.point);
             handleDrawer(true);
             setLocation({ city, province, country });
+            getTributes({ city, province, country }).then((res) => setMemorials(res.data));
           };
 
           // Based on mapbox's implmentation, probably not the most optimal at the moment

@@ -23,11 +23,11 @@ const LabelDiv = styled.div`
 const LabelCount = styled.p`
   color: ${(props) => (props.background === "dark" ? "#FFFFFF" : "#1e2a32")};
   font-family: Noto Sans;
-  font-size: 16px;
+  font-size: 14px;
   line-height: 22px;
   text-align: center;
   position: relative;
-  bottom: 15px;
+  bottom: 14px;
 `;
 
 const Label = ({ clickHandler, count }) => {

@@ -49,6 +49,7 @@ function App() {
   const [notifications, setNotifications] = useState(tempData);
   const [openDrawer, setOpenDrawer] = useState(false);
   const [location, setLocation] = useState({});
+  const [memorials, setMemorials] = useState({});
 
   const addNotification = (notification) => {
     setIsMainPage(true);
@@ -58,7 +59,7 @@ function App() {
   return (
     // TODO: refractor HOC to manage mainPage toggle
     <div>
-      <Mapbox handleDrawer={setOpenDrawer} setLocation={setLocation} />
+      <Mapbox handleDrawer={setOpenDrawer} setLocation={setLocation} setMemorials={setMemorials} />
       <PageContainer>
         <Header isMainPage={isMainPage} />
         {isMainPage && (
