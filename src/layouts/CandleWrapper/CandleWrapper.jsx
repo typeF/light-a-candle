@@ -3,9 +3,16 @@ import PropTypes from "prop-types";
 import CandleForm from "../../components/CandleForm/CandleForm";
 import CandleButton from "../../components/CandleButton/CandleButton";
 
-function CandleWrapper({ addNotification }) {
-  const [showModal, setShowModal] = useState(false);
+function CandleWrapper({ addNotification, setOnlyShowIcon }) {
+  const [showModal, setShowModal] = useState(false); // TODO: This is unnecessary with onlyShowIcon; Refactor later
+
+  const handleShow = () => {
+    setOnlyShowIcon("lightCandle");
+    setShowModal(true);
+  };
+
   function closeModal() {
+    setOnlyShowIcon("");
     setShowModal(false);
   }
 
@@ -15,7 +22,7 @@ function CandleWrapper({ addNotification }) {
         // Convert Form to Dialog?
         <CandleForm handleClose={closeModal} handleSubmit={addNotification} />
       ) : (
-        <CandleButton handleClick={setShowModal} />
+        <CandleButton handleClick={handleShow} />
       )}
     </>
   );
@@ -23,6 +30,7 @@ function CandleWrapper({ addNotification }) {
 
 CandleWrapper.propTypes = {
   addNotification: PropTypes.func.isRequired,
+  setOnlyShowIcon: PropTypes.func.isRequired,
 };
 
 CandleWrapper.defaultTypes = {};

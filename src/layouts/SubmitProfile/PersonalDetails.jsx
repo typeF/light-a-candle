@@ -24,10 +24,11 @@ const PersonalDetails = ({
   setDeathDate,
   pageNum,
   handleSubmit,
+  handleClose,
 }) => {
   return (
     <Container>
-      <CloseButton onClick={() => console.log("Close this form and go back to main page")} />
+      <CloseButton onClick={handleClose} />
       <main>
         <FormHeader>Report a death {pageNum}/3</FormHeader>
         <FormTheme>Personal Details</FormTheme>
@@ -86,6 +87,7 @@ PersonalDetails.propTypes = {
   setDeathDate: PropTypes.func.isRequired,
   pageNum: PropTypes.number.isRequired,
   handleSubmit: PropTypes.func.isRequired,
+  handleClose: PropTypes.func.isRequired,
 };
 
 export default PersonalDetails;
