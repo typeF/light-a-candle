@@ -1,9 +1,22 @@
 import React, { useState } from "react";
+import PropTypes from "prop-types";
+import styled from "styled-components";
 import PersonalDetails from "./PersonalDetails"; // Page 1
 import LocationDetails from "./LocationDetails"; // Page 2
 import TributeDetails from "./TributeDetails"; // Page 3
 
-const SubmitProfile = () => {
+const Container = styled.div`
+  /* TODO: It's probably better to use a portal (ie. modals) but this is the fastest way to get it on the screen for now
+     It may not be reliable if any one of its parents change in the future though.
+  */
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  z-index: 1;
+`;
+
+const SubmitProfile = ({ handleClose }) => {
   const [pageNum, setPageNum] = useState(1);
 
   const [firstName, setFirstName] = useState("");
@@ -53,7 +66,7 @@ const SubmitProfile = () => {
   };
 
   return (
-    <div>
+    <Container>
       {pageNum === 1 && (
         <PersonalDetails
           firstName={firstName}
@@ -68,6 +81,7 @@ const SubmitProfile = () => {
           setDeathDate={setDeathDate}
           pageNum={pageNum}
           handleSubmit={handlePersonalDetailsSubmit}
+          handleClose={handleClose}
         />
       )}
       {pageNum === 2 && (
@@ -84,6 +98,7 @@ const SubmitProfile = () => {
           setOccupation={setOccupation}
           pageNum={pageNum}
           handleSubmit={handleLocationDetailsSubmit}
+          handleClose={handleClose}
         />
       )}
       {pageNum === 3 && (
@@ -94,10 +109,15 @@ const SubmitProfile = () => {
           setPicture={setPicture}
           pageNum={pageNum}
           submitProfile={handleSubmitProfile}
+          handleClose={handleClose}
         />
       )}
-    </div>
+    </Container>
   );
+};
+
+SubmitProfile.propTypes = {
+  handleClose: PropTypes.func.isRequired,
 };
 
 export default SubmitProfile;

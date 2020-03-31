@@ -37,7 +37,15 @@ const AddButton = styled.button`
   }
 `;
 
-const TributeDetails = ({ tributeMessage, setTributeMessage, picture, setPicture, pageNum, submitProfile }) => {
+const TributeDetails = ({
+  tributeMessage,
+  setTributeMessage,
+  picture,
+  setPicture,
+  pageNum,
+  submitProfile,
+  handleClose,
+}) => {
   const handlePictureUpload = (e) => {
     // TODO: Automatically resize photo
     // Source for toBase64 function: https://stackoverflow.com/a/57272491
@@ -60,7 +68,7 @@ const TributeDetails = ({ tributeMessage, setTributeMessage, picture, setPicture
 
   return (
     <Container>
-      <CloseButton onClick={() => console.log("Close this form and go back to main page")} />
+      <CloseButton onClick={handleClose} />
       <main>
         <FormHeader>Report a death {pageNum}/3</FormHeader>
         <FormTheme>Healthcare workers who passed away during COVID-19.</FormTheme>
@@ -101,6 +109,7 @@ TributeDetails.propTypes = {
   setPicture: PropTypes.func.isRequired,
   pageNum: PropTypes.number.isRequired,
   submitProfile: PropTypes.func.isRequired,
+  handleClose: PropTypes.func.isRequired,
 };
 
 export default TributeDetails;
