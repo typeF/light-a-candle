@@ -9,8 +9,10 @@ const COVIDBlock = styled.div`
   border-radius: 25px;
   color: white;
   align-items: center;
-  margin: 0 auto;
+  margin: 0 auto 1% auto;
   justify-content: center;
+  font-weight: 1.6rem;
+  line-height: 22px;
 `;
 
 function COVIDBanner() {

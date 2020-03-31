@@ -59,7 +59,7 @@ const tempData = [
   },
 ];
 
-function CityDrawer({ isOpen, handleDrawer }) {
+function CityDrawer({ isOpen, handleDrawer, city }) {
   const [memorials, setMemorials] = useState(tempData);
   // const [openDrawer, setOpenDrawer] = useState(true);
 

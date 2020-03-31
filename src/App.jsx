@@ -47,7 +47,7 @@ function App() {
   // Boolean to swtich between 'homepage' & 'map'
   const [isMainPage, setIsMainPage] = useState(true);
   const [notifications, setNotifications] = useState(tempData);
-  const [openDrawer, setOpenDrawer] = useState(false);
+  const [openDrawer, setOpenDrawer] = useState(true);
   const [location, setLocation] = useState({});
 
   const addNotification = (notification) => {
@@ -71,6 +71,7 @@ function App() {
         <ExpandButton type="button" onClick={() => setIsMainPage(!isMainPage)}>
           <ExpandMoreIcon />
         </ExpandButton>
+        {/* need to pass location  */}
         <CityDrawer isOpen={openDrawer} handleDrawer={setOpenDrawer} />
       </PageContainer>
     </div>

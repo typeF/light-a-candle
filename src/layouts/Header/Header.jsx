@@ -11,7 +11,7 @@ const TopBar = styled.header`
 const HeaderText = styled.div`
   color: #fff;
   margin: 0 auto;
-  font-size: ${(props) => (props.isMainPage ? "1rem" : "0.75rem")};
+  font-size: ${(props) => (props.isMainPage ? "1.6rem" : "1rem")};
 `;
 
 function Header({ isMainPage }) {

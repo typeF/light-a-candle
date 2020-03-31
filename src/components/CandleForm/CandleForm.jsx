@@ -1,10 +1,28 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import PropTypes from "prop-types";
 import { TextField, IconButton } from "@material-ui/core";
 import { withStyles } from "@material-ui/core/styles";
 import ClearIcon from "@material-ui/icons/Clear";
 import CandleIcon from "../CandleIcon/CandleIcon";
+
+const Overlay = styled.div`
+  position: absolute;
+  top: 0;
+  height: 100vh;
+  width: 100vw;
+  background-color: rgba(255, 255, 255, 0.2);
+  animation: fadeIn 0.1s;
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 0.2;
+    }
+  }
+`;
 
 const Form = styled.div`
   background-image: url("/rectangle.svg");
@@ -24,15 +42,15 @@ const Form = styled.div`
 const CancelButton = withStyles({
   root: {
     position: "absolute",
-    top: "-15px",
-    right: "-15px",
+    top: "-5%",
+    right: "-2.5%",
     backgroundColor: "#c2b3df",
     color: "#fff",
   },
 })(IconButton);
 
 const CandleText = styled.p`
-  font-size: 0.75rem;
+  font-size: 1.25rem;
   width: 200%;
   position: absolute;
   top: 100%;
@@ -58,9 +76,11 @@ const CustomTextField = withStyles({
     width: "80%",
     "& label.MuiFormLabel-root": {
       color: "#d9cdf0",
+      fontSize: "1.6rem",
     },
     "& input.MuiInputBase-input": {
       color: "#d9cdf0",
+      fontSize: "1.6rem",
     },
     "& label.Mui-focused": {
       color: "#d9cdf0",
@@ -77,17 +97,16 @@ const CustomTextField = withStyles({
 function CandleForm({ handleClose, handleSubmit }) {
   const [name, setName] = useState("");
   const [message, setMessage] = useState("");
-
-  const [nameError, setNameError] = useState("");
-  const [messageError, setMessageError] = useState("");
+  // const [nameError, setNameError] = useState("");
+  // const [messageError, setMessageError] = useState("");
 
   const isValid = (textfield, messagefield) => {
-    if (textfield.length <= 0) {
-      setNameError("Name cannot be empty!");
-    }
-    if (messagefield.length <= 0) {
-      setMessageError("Message cannot be empty!");
-    }
+    // if (textfield.length <= 0) {
+    //   setNameError("Name cannot be empty!");
+    // }
+    // if (messagefield.length <= 0) {
+    //   setMessageError("Message cannot be empty!");
+    // }
     return textfield.length && messagefield.length;
   };
 
@@ -100,31 +119,34 @@ function CandleForm({ handleClose, handleSubmit }) {
   };
 
   return (
-    <Form>
-      <CancelButton size="small" onClick={handleClose}>
-        <ClearIcon />
-      </CancelButton>
-      <CustomTextField
-        id="name"
-        label="Your Name"
-        value={name}
-        onChange={(e) => setName(e.target.value)}
-        // error={nameError}
-        // helperText={nameError}
-      />
-      <CustomTextField
-        id="Message"
-        label="Message"
-        value={message}
-        onChange={(e) => setMessage(e.target.value)}
-        // error={messageError}
-        // helperText={messageError}
-      />
-      <SubmitButton size="small" isValid={name.length && message.length} onClick={submitMessage}>
-        <CandleIcon />
-        <CandleText>Light a Candle</CandleText>
-      </SubmitButton>
-    </Form>
+    <>
+      <Overlay />
+      <Form>
+        <CancelButton size="small" onClick={handleClose}>
+          <ClearIcon />
+        </CancelButton>
+        <CustomTextField
+          id="name"
+          label="Your Name"
+          value={name}
+          onChange={(e) => setName(e.target.value)}
+          // error={nameError}
+          // helperText={nameError}
+        />
+        <CustomTextField
+          id="Message"
+          label="Message"
+          value={message}
+          onChange={(e) => setMessage(e.target.value)}
+          // error={messageError}
+          // helperText={messageError}
+        />
+        <SubmitButton size="small" isValid={name.length && message.length} onClick={submitMessage}>
+          <CandleIcon />
+          <CandleText>Light a Candle</CandleText>
+        </SubmitButton>
+      </Form>
+    </>
   );
 }
 

@@ -14,12 +14,12 @@ const Filters = styled.ul`
 `;
 
 const FilterText = styled.li`
-  font-size: 0.75rem;
+  font-size: 1.2rem;
   color: #fff;
 `;
 
 const FilterTabs = styled.li`
-  font-size: 0.75rem;
+  font-size: 1.2rem;
   color: ${(props) => (props.selected ? "#000" : "#fff")};
   width: 25%;
   height: 30px;

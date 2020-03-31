@@ -14,7 +14,7 @@ const ItemImg = styled.img`
   border-radius: 10px;
   height: 55px;
   width: 55px;
-  margin-right: 2.5%;
+  margin-right: 5%;
 `;
 
 const ItemMeta = styled.div`
@@ -26,19 +26,19 @@ const ItemMeta = styled.div`
 `;
 
 const ItemName = styled.p`
-  font-size: 1.25rem;
+  font-size: 2rem;
   font-weight: 300;
   margin: 0;
 `;
 
 const ItemOccupatation = styled.p`
-  font-size: 0.75rem;
+  font-size: 1.2rem;
   margin: 0;
   color: #a5b9bd;
 `;
 
 const ItemDate = styled.p`
-  font-size: 0.75rem;
+  font-size: 1.2rem;
   margin: 0;
   color: #a5b9bd;
 `;

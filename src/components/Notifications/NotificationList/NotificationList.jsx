@@ -8,7 +8,7 @@ const List = styled.ul`
   list-style: none;
   padding: 0;
   margin: 0 auto;
-  font-size: 0.75rem;
+  font-size: 1.2rem;
 `;
 
 function NotificationList({ notifications }) {

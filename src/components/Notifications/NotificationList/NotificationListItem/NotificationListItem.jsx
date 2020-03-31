@@ -12,12 +12,12 @@ function timeSince(date) {
 const ListItem = styled.li`
   display: flex;
   align-items: center;
-  margin-bottom: 5px;
+  margin-bottom: 2.5%;
 `;
 
 const Message = styled.p`
   margin: 0;
-  font-size: 0.75rem;
+  font-size: 1.1rem;
 `;
 
 const TextWrapper = styled.div`
@@ -29,7 +29,7 @@ const TextWrapper = styled.div`
 const SmallText = styled.small`
   margin: 0;
   padding: 0;
-  font-size: 0.5rem;
+  font-size: 0.8rem;
   color: #636c76;
 `;
 
