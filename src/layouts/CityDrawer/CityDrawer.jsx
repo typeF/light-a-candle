@@ -10,7 +10,7 @@ const CustomDrawer = withStyles({
   paper: {
     height: (props) => props.height,
     backgroundColor: "#1e2a32",
-    position: "relative",
+    borderRadius: "20px 20px 0px 0px",
   },
 })((props) => {
   const { classes, ...rest } = props;
@@ -59,6 +59,8 @@ function CityDrawer() {
 
   // TODO: logic to make request to fetch people associated to a city    given as a prop?
 
+  // TODO: add logic to filter memorials
+
   const toggleDrawer = (state) => {
     setOpenDrawer(state);
   };
@@ -68,7 +70,7 @@ function CityDrawer() {
       <Button onClick={toggleDrawer}>open</Button>
       <CustomDrawer
         // height is used to control the height of the CustomDrawer
-        height="100%"
+        height="50%"
         anchor="bottom"
         open={openDrawer}
         containerStyle={{ height: "calc(100% - 64px)", top: 64 }}

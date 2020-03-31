@@ -60,7 +60,7 @@ function App() {
       <ExpandButton type="button" onClick={() => setIsMainPage(!isMainPage)}>
         <ExpandMoreIcon />
       </ExpandButton>
-      <CityDrawer />
+      {/* <CityDrawer /> */}
     </PageContainer>
   );
 }
