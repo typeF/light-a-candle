@@ -19,7 +19,7 @@ const FilterText = styled.li`
 `;
 
 const FilterTabs = styled.li`
-  font-size: 1.2rem;
+  font-size: 1.1rem;
   color: ${(props) => (props.selected ? "#000" : "#fff")};
   width: 25%;
   height: 30px;

@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import PropTypes from "prop-types";
 import { withStyles } from "@material-ui/core/styles";
 import { SwipeableDrawer, IconButton, Button } from "@material-ui/core";
 import ClearIcon from "@material-ui/icons/Clear";
@@ -32,9 +33,9 @@ const ClearButton = withStyles({
 const ExpandButton = withStyles({
   root: {
     position: "absolute",
-    top: "-2.5%",
+    top: "-1.25%",
     color: "#fff",
-    left: "44%",
+    left: "45.5%",
   },
 })(IconButton);
 
@@ -105,12 +106,27 @@ function CityDrawer({ isOpen, handleDrawer, city }) {
         <ClearButton type="button" onClick={() => handleClose(false)}>
           <ClearIcon fontSize="large" />
         </ClearButton>
-        <CityDrawerHeader city="New York" date_updated={Date.now()} />
+        <CityDrawerHeader city={city.city} date_updated={Date.now()} />
         <CityDrawerFilter selected={filter} handleClick={setFilter} filters={filterOptions} />
-        <CityDrawerList memorials={memorials} />
+        <CityDrawerList memorials={memorials} handleClose={handleClose} />
       </CustomDrawer>
     </>
   );
 }
 
+CityDrawer.propTypes = {
+  isOpen: PropTypes.bool.isRequired,
+  handleDrawer: PropTypes.func.isRequired,
+  city: PropTypes.shape({
+    city: PropTypes.string,
+    country: PropTypes.string,
+  }),
+};
+
+CityDrawer.defaultProps = {
+  city: {
+    city: "New York",
+    country: "USA",
+  },
+};
 export default CityDrawer;
