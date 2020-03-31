@@ -1,5 +1,7 @@
 import React from "react";
-import Home from "../Home/Home";
+import Home from "./Home/Home";
+
+// const HomeContainer = styled.div`
 
 function Hero() {
   return (
