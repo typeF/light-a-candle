@@ -22,8 +22,8 @@ const HeroName = styled.div`
   font-family: Crimson Pro;
   font-size: 30px;
   line-height: 33px;
-  text-align center;
-  color: #FFFFFF;
+  text-align: center;
+  color: #ffffff;
   margin-bottom: 8px;
 `;
 
@@ -31,7 +31,7 @@ const HeroTitle = styled.div`
   font-family: Noto Sans;
   font-size: 16px;
   line-height: 22px;
-  text-align center;
+  text-align: center;
   color: #a5b9bd;
 `;
 
