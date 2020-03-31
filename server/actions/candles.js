@@ -1,12 +1,10 @@
-const data = [
-  { id: 1, name: "Wendy", message: "Thank you!" },
-  { id: 2, name: "Jack", message: "Keep it up!" },
-  { id: 3, name: "Bob Shane", message: "You are all heroes!!!!" },
-];
-
 class FakeDb {
   constructor() {
-    this.data = data;
+    this.data = [
+      { id: 1, name: "Wendy", message: "Thank you!" },
+      { id: 2, name: "Jack", message: "Keep it up!" },
+      { id: 3, name: "Bob Shane", message: "You are all heroes!!!!" },
+    ];
   }
 
   saveData(candle) {
