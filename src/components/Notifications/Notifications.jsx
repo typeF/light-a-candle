@@ -8,7 +8,7 @@ const NotificationContainer = styled.div`
   flex-direction: column;
   color: white;
   max-height: 120px;
-  overflow: hidden;
+  overflow: scroll;
   pointer-events: initial;
 `;
 

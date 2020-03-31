@@ -12,7 +12,7 @@ const CustomDrawer = withStyles({
     height: (props) => props.height,
     backgroundColor: "#1e2a32",
     borderRadius: "20px 20px 0px 0px",
-    transition: "transform 225ms cubic-bezier(0, 0, 0.2, 1) 0ms, height 225ms cubic-bezier(0,0,0.2,1) 0ms !important",
+    // transition: "transform 225ms cubic-bezier(0, 0, 0.2, 1) 0ms, height 225ms cubic-bezier(0,0,0.2,1) 0ms !important",
   },
 })((props) => {
   const { classes, ...rest } = props;

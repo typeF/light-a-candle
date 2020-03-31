@@ -31,6 +31,14 @@ const CancelButton = withStyles({
   },
 })(IconButton);
 
+const CandleText = styled.p`
+  font-size: 0.75rem;
+  width: 200%;
+  position: absolute;
+  top: 100%;
+  color: white;
+`;
+
 const SubmitButton = withStyles({
   root: {
     backgroundColor: (props) => (props.isValid ? "#636c76" : "transparent"),
@@ -114,6 +122,7 @@ function CandleForm({ handleClose, handleSubmit }) {
       />
       <SubmitButton size="small" isValid={name.length && message.length} onClick={submitMessage}>
         <CandleIcon />
+        <CandleText>Light a Candle</CandleText>
       </SubmitButton>
     </Form>
   );

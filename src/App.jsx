@@ -18,7 +18,7 @@ const PageContainer = styled.div`
   align-items: center;
   justify-content: space-between;
   background-color: rgba(30, 42, 50, 0.4);
-  font-family: "Crimson Pro", serif;
+  font-family: "Noto Sans", serif;
   font-weight: 300;
   position: absolute;
   top: 0;
@@ -45,7 +45,7 @@ const tempData = [
 
 function App() {
   // Boolean to swtich between 'homepage' & 'map'
-  const [isMainPage, setIsMainPage] = useState(false);
+  const [isMainPage, setIsMainPage] = useState(true);
   const [notifications, setNotifications] = useState(tempData);
   const [openDrawer, setOpenDrawer] = useState(false);
   const [location, setLocation] = useState({});
