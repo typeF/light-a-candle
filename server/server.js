@@ -3,7 +3,7 @@ const helmet = require("helmet");
 const cors = require("cors");
 const candleRoutes = require("./routes/candles");
 const tributeRoutes = require("./routes/tributes");
-const pinRoutes = require("./routes/pins");
+const locationRoutes = require("./routes/location");
 
 const PORT = process.env.PORT || 4000;
 const app = express();
@@ -15,6 +15,6 @@ app.use(express.urlencoded({ extended: true }));
 
 app.use("/candles", candleRoutes);
 app.use("/tribute", tributeRoutes);
-app.use("/pins", pinRoutes);
+app.use("/location", locationRoutes);
 
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
