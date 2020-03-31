@@ -24,13 +24,16 @@ const PageContainer = styled.div`
   top: 0;
   left: 0;
   z-index: 1;
+  pointer-events: none;
 `;
+
 const ExpandButton = withStyles({
   root: {
     position: "absolute",
     fontSize: "2rem",
     bottom: "0.25%",
     color: "#a5b9bd",
+    "pointer-events": "initial",
   },
 })(IconButton);
 

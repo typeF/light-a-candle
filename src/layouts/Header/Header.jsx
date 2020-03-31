@@ -5,6 +5,7 @@ import COVIDBanner from "../../components/COVIDBanner/COVIDBanner";
 
 const TopBar = styled.header`
   margin-top: 7.5%;
+  pointer-events: initial;
 `;
 
 const HeaderText = styled.div`
