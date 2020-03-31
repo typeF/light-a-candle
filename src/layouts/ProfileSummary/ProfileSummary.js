@@ -5,12 +5,28 @@ import ProfileSummaryHeader from "./ProfileSummaryHeader";
 import ProfileHero from "./ProfileHero";
 import ProfileSummaryDetails from "./ProfileSummaryDetails";
 
-const ProfileSummaryContainer = styled.div`
-  background-color: #1e2a32;
+const backgroundColor = "#1E2A32";
+
+const ProfileSummaryOuterContainer = styled.div`
+  background-color: ${backgroundColor};
   height: 100vh;
   width: 100%;
+  display: flex;
+  justify-content: center;
+  overflow: auto;
 `;
 
+const ProfileSummaryContainer = styled.div`
+  background-color: ${backgroundColor};
+  padding: 36px 32px 0px 32px;
+  max-width: 375px;
+  height: 100%;
+  background-color: #1e2a32;
+`;
+
+/*
+Takes in a profileData prop with structure matching that of the fake data
+ */
 const ProfileSummary = ({ profileData }) => {
   const fakeProfileData = {
     img: "https://vignette.wikia.nocookie.net/spongebob/images/c/c2/GreenDoctor.png",
@@ -31,11 +47,13 @@ const ProfileSummary = ({ profileData }) => {
   };
 
   return (
-    <ProfileSummaryContainer>
-      <ProfileSummaryHeader clickHandler={closeSummary} />
-      <ProfileHero profileData={fakeProfileData} />
-      <ProfileSummaryDetails profileData={fakeProfileData} />
-    </ProfileSummaryContainer>
+    <ProfileSummaryOuterContainer>
+      <ProfileSummaryContainer>
+        <ProfileSummaryHeader clickHandler={closeSummary} />
+        <ProfileHero profileData={fakeProfileData} />
+        <ProfileSummaryDetails profileData={fakeProfileData} />
+      </ProfileSummaryContainer>
+    </ProfileSummaryOuterContainer>
   );
 };
 
