@@ -12,7 +12,7 @@ const CustomDrawer = withStyles({
     height: (props) => props.height,
     backgroundColor: "#1e2a32",
     borderRadius: "20px 20px 0px 0px",
-    transition: "height 225ms cubic-bezier(0,0,0.2,1) 0ms",
+    transition: "transform 225ms cubic-bezier(0, 0, 0.2, 1) 0ms, height 225ms cubic-bezier(0,0,0.2,1) 0ms !important",
   },
 })((props) => {
   const { classes, ...rest } = props;
@@ -95,7 +95,7 @@ function CityDrawer({ isOpen, handleDrawer }) {
         open={isOpen}
         containerStyle={{ height: "calc(100% - 64px)", top: 64 }}
         onClose={() => toggleDrawer(false)}
-        onOpen={(event) => toggleDrawer(true)}
+        onOpen={() => toggleDrawer(true)}
       >
         {!isFullScreen && (
           <ExpandButton type="button" onClick={() => toggleFullScreen(true)}>
