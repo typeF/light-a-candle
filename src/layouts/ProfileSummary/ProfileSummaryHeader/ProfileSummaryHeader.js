@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import x from "./x.svg";
+import chevronLeft from "./chevron-left.svg";
 
 const HeaderContainer = styled.div`
   display: flex;
@@ -9,22 +10,34 @@ const HeaderContainer = styled.div`
 `;
 
 const HeaderBack = styled.div`
+  display: flex;
+  cursor: pointer;
+`;
+
+const HeaderBackText = styled.span`
   color: #ffffff;
   font-family: Noto Sans, sans-serif;
   font-size: 18px;
   line-height: 25px;
 `;
 
+const HeaderBackImg = styled.img``;
+
 const closeSize = 20;
+
 const HeaderClose = styled.img`
-  height: ${closeSize}
-  width: ${closeSize}
+  height: ${closeSize};
+  width: ${closeSize};
+  cursor: pointer;
 `;
 
 const ProfileSummaryHeader = ({ clickHandler }) => {
   return (
     <HeaderContainer>
-      <HeaderBack onClick={() => clickHandler()}>COVID-19 Memorial</HeaderBack>
+      <HeaderBack onClick={() => clickHandler()}>
+        <HeaderBackImg src={chevronLeft} alt="Summary back chevron" />
+        <HeaderBackText>COVID-19 Memorial</HeaderBackText>
+      </HeaderBack>
       <HeaderClose src={x} alt="Close summary button" onClick={() => clickHandler()} />
     </HeaderContainer>
   );
