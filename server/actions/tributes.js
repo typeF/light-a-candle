@@ -1,69 +1,39 @@
-class FakeDb {
-  constructor() {
-    this.data = [
-      {
-        id: 1,
-        img: "https://vignette.wikia.nocookie.net/spongebob/images/c/c2/GreenDoctor.png",
-        name: "Shane Fisher",
-        title: "Nurse",
-        workplace: "Bellevue Hospital Center",
-        city: "New York",
-        province: "NY",
-        country: "USA",
-        dob: "1970/01/02",
-        dod: "2020/03/10",
-        date_died: Date.now() - 10 * 86400000,
-        tribute:
-          " Curabitur neque tortor, tempor lobortis accumsan at, malesuada vel mauris. Vestibulum nec condimentum ipsum. Maecenas ut metus sodales, feugiat lectus quis, lacinia urna. Fusce viverra varius condimentum. Nunc nec magna gravida urna luctus pulvinar vel ut nisi. Sed commodo pellentesque odio et cursus. Duis magna magna, lobortis sed ligula in, mollis luctus justo.",
-      },
-      {
-        name: "Wendy Watson",
-        occupation: "Doctor",
-        img: `https://randomuser.me/api/portraits/thumb/men/${1}.jpg`,
-        date_died: Date.now() - 10 * 86400000,
-      },
-      {
-        name: "Dustin Watson",
-        occupation: "Doctor",
-        img: `https://randomuser.me/api/portraits/thumb/men/${2}.jpg`,
-        date_died: Date.now() - 13 * 86400000,
-      },
-      {
-        name: "Shane Fisher",
-        occupation: "Nurse",
-        img: `https://randomuser.me/api/portraits/thumb/men/${3}.jpg`,
-        date_died: Date.now() - 25 * 86400000,
-      },
-    ];
-
-    this.tributes = [];
-  }
-
-  getTributesInLocation(searchParams) {
-    return this.data;
-  }
-
-  saveData(tribute) {
-    this.tributes.push(tribute);
-  }
-}
-
-const fakeDb = new FakeDb();
+const { Tribute, Location } = require("../sequelize");
 
 module.exports = {
-  async getTribute(tributeId) {
-    const tribute = await fakeDb.data;
-    return tribute[0];
-  },
-
-  async getTributesForLocation(searchParams) {
-    const tribute = await fakeDb.getTributesInLocation(searchParams);
-    return tribute;
+  async getTributesForLocation(locationId) {
+    const tributes = await Tribute.findAll({ where: { locationId } });
+    return tributes;
   },
 
   async saveTribute(data) {
-    console.log("Saving tribute...");
-    console.log(data);
-    await fakeDb.saveData(data);
-  },
+    const { longitude, latitude, city, province, country } = data;
+
+    if (!longitude || !longitude) {
+      console.error("Error saving tribute: No coordinates provided");
+    }
+
+    const existingLocation = await Location.findAll({
+      where: { longitude, latitude }
+    });
+
+    let locationId;
+
+    // Create a new location if not already existing
+    if (existingLocation.length > 0) {
+      locationId = existingLocation[0].dataValues.id;
+    } else {
+      const newLocation = await Location.create({
+        longitude,
+        latitude,
+        city,
+        province,
+        country
+      });
+      locationId = newLocation.id;
+    }
+
+    const tribute = Tribute.create({ locationId, ...data });
+    return tribute;
+  }
 };

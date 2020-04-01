@@ -4,7 +4,7 @@ const { getTributesForLocation } = require("../actions/tributes");
 
 const router = express.Router();
 
-router.get("/pins", async (req, res) => {
+router.get("/", async (req, res) => {
   const data = await getAllPins();
   return res.status(200).json(data);
 });
