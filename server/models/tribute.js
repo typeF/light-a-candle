@@ -3,6 +3,7 @@ module.exports = (sequelize, DataTypes) => {
   const Tribute = sequelize.define(
     "Tribute",
     {
+      locationId: DataTypes.INTEGER,
       firstName: DataTypes.STRING,
       middleName: DataTypes.STRING,
       lastName: DataTypes.STRING,

@@ -9,11 +9,12 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       locationId: {
-        model: {
-          tableName: "locations",
-          schema: "schema"
+        references: {
+          model: {
+            tableName: "Locations"
+          },
+          key: "id"
         },
-        key: "id",
         type: Sequelize.INTEGER,
         allowNull: false
       },
