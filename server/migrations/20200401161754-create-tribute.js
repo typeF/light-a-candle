@@ -28,9 +28,8 @@ module.exports = {
         type: Sequelize.STRING,
         allowNull: false
       },
-      picture: {
-        type: Sequelize.TEXT,
-        allowNull: false
+      img: {
+        type: Sequelize.TEXT
       },
       dob: {
         type: Sequelize.DATE,
@@ -41,26 +40,14 @@ module.exports = {
         allowNull: false
       },
       tribute: {
-        type: Sequelize.STRING,
+        type: Sequelize.STRING(3000),
         allowNull: false
       },
-      title: {
+      occupation: {
         type: Sequelize.STRING,
         allowNull: false
       },
       workplace: {
-        type: Sequelize.STRING,
-        allowNull: false
-      },
-      city: {
-        type: Sequelize.STRING,
-        allowNull: false
-      },
-      province: {
-        type: Sequelize.STRING,
-        allowNull: false
-      },
-      country: {
         type: Sequelize.STRING,
         allowNull: false
       },

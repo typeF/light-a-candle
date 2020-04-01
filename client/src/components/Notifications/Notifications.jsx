@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 import NotificationList from "./NotificationList/NotificationList";
-import getAllCandles from "../../api/candlesApi";
+import { getAllCandles } from "../../api/candlesApi";
 
 const NotificationContainer = styled.div`
   display: flex;

@@ -6,6 +6,7 @@ module.exports = {
       "Locations",
       [
         {
+          id: 1,
           longitude: -123.11934,
           latitude: 49.23966,
           city: "Vancouver",
@@ -15,6 +16,7 @@ module.exports = {
           updatedAt: new Date()
         },
         {
+          id: 2,
           longitude: -77.032,
           latitude: 38.913,
           city: "Washington",
@@ -24,6 +26,7 @@ module.exports = {
           updatedAt: new Date()
         },
         {
+          id: 3,
           longitude: -122.414,
           latitude: 37.776,
           city: "San Franciso",
