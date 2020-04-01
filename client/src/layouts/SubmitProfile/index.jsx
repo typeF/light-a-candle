@@ -4,6 +4,7 @@ import styled from "styled-components";
 import PersonalDetails from "./PersonalDetails"; // Page 1
 import LocationDetails from "./LocationDetails"; // Page 2
 import TributeDetails from "./TributeDetails"; // Page 3
+import { saveTribute } from "../../api/tributesApi";
 
 const Container = styled.div`
   /* TODO: It's probably better to use a portal (ie. modals) but this is the fastest way to get it on the screen for now
@@ -16,7 +17,7 @@ const Container = styled.div`
   z-index: 1;
 `;
 
-const SubmitProfile = ({ handleClose }) => {
+const SubmitProfile = ({ setShowProfileSummary, handleClose }) => {
   const [pageNum, setPageNum] = useState(1);
 
   // TODO: should also probably use a reducer here
@@ -24,13 +25,13 @@ const SubmitProfile = ({ handleClose }) => {
   const [middleName, setMiddleName] = useState("");
   const [lastName, setLastName] = useState("");
   const [dob, setDob] = useState(""); // TODO: use proper date in utc
-  const [deathDate, setDeathDate] = useState(""); // TODO: use proper date in utc
+  const [dod, setDod] = useState(""); // TODO: use proper date in utc
 
   const [country, setCountry] = useState(""); // TODO: Use dropdown
   const [province, setProvince] = useState(""); // TODO: Use dropdown
   const [city, setCity] = useState("");
   const [coords, setCoords] = useState([0, 0]);
-  const [hospitalName, setHospitalName] = useState("");
+  const [workplace, setworkplace] = useState("");
   const [occupation, setOccupation] = useState("");
 
   const [tributeMessage, setTributeMessage] = useState("");
@@ -53,19 +54,26 @@ const SubmitProfile = ({ handleClose }) => {
       firstName,
       middleName,
       lastName,
-      dob,
-      deathDate,
+      dob: new Date(dob),
+      dod: new Date(dod),
       country,
       province,
       city,
-      coords,
-      hospitalName,
+      latitude: coords[1],
+      longitude: coords[0],
+      // coords,
+      workplace,
       occupation,
-      tributeMessage,
-      picture,
+      tribute: tributeMessage,
+      img: picture,
     };
-
-    // TODO: Make backend call with axios and go to summary page
+    saveTribute(data)
+      .then((res) => console.log(res))
+      .catch((err) => {
+        console.log(err);
+      });
+    handleClose();
+    setShowProfileSummary(true);
   };
 
   return (
@@ -80,8 +88,8 @@ const SubmitProfile = ({ handleClose }) => {
           setLastName={setLastName}
           dob={dob}
           setDob={setDob}
-          deathDate={deathDate}
-          setDeathDate={setDeathDate}
+          dod={dod}
+          setDod={setDod}
           pageNum={pageNum}
           handleSubmit={handlePersonalDetailsSubmit}
           handleClose={handleClose}
@@ -97,8 +105,8 @@ const SubmitProfile = ({ handleClose }) => {
           setCity={setCity}
           coords={coords}
           setCoords={setCoords}
-          hospitalName={hospitalName}
-          setHospitalName={setHospitalName}
+          workplace={workplace}
+          setworkplace={setworkplace}
           occupation={occupation}
           setOccupation={setOccupation}
           pageNum={pageNum}
@@ -115,6 +123,7 @@ const SubmitProfile = ({ handleClose }) => {
           pageNum={pageNum}
           submitProfile={handleSubmitProfile}
           handleClose={handleClose}
+          setShowProfileSummary={setShowProfileSummary}
         />
       )}
     </Container>

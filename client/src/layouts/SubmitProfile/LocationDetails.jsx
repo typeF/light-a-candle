@@ -27,8 +27,8 @@ const LocationDetails = ({
   city,
   setCity,
   setCoords,
-  hospitalName,
-  setHospitalName,
+  workplace,
+  setworkplace,
   occupation,
   setOccupation,
   pageNum,
@@ -92,9 +92,9 @@ const LocationDetails = ({
             containerCustomStyles={{ ...marginBottom }}
           />
           <InputComponent
-            value={hospitalName}
-            setValue={setHospitalName}
-            placeholder="Hospital"
+            value={workplace}
+            setValue={setworkplace}
+            placeholder="Workplace"
             containerCustomStyles={{ ...marginBottom }}
           />
           <InputComponent
@@ -121,8 +121,8 @@ LocationDetails.propTypes = {
   city: PropTypes.string.isRequired,
   setCity: PropTypes.func.isRequired,
   setCoords: PropTypes.func.isRequired,
-  hospitalName: PropTypes.string.isRequired,
-  setHospitalName: PropTypes.func.isRequired,
+  workplace: PropTypes.string.isRequired,
+  setworkplace: PropTypes.func.isRequired,
   occupation: PropTypes.string.isRequired,
   setOccupation: PropTypes.func.isRequired,
   pageNum: PropTypes.number.isRequired,

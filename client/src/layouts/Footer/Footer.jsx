@@ -5,6 +5,7 @@ import CandleWrapper from "../CandleWrapper/CandleWrapper";
 import COVIDBanner from "../../components/COVIDBanner/COVIDBanner";
 import AddHeroButton from "../../components/AddHeroButton/AddHeroButton";
 import SubmitProfile from "../SubmitProfile";
+import ProfileSummary from "../ProfileSummary";
 
 const FooterContainer = styled.footer`
   width: 100%;
@@ -19,6 +20,9 @@ const IconsContainer = styled.div`
 
 function Footer({ isMainPage, handleNotification }) {
   const [onlyShowIcon, setOnlyShowIcon] = useState("");
+  // Did this quickly, could probably be implemented better
+  const [showProfileSummary, setShowProfileSummary] = useState(false);
+  const [summaryData, setSummaryData] = useState({});
 
   return (
     <FooterContainer>
@@ -37,7 +41,10 @@ function Footer({ isMainPage, handleNotification }) {
           )}
         </IconsContainer>
       )}
-      {onlyShowIcon === "addHero" && <SubmitProfile handleClose={() => setOnlyShowIcon("")} />}
+      {onlyShowIcon === "addHero" && (
+        <SubmitProfile setShowProfileSummary={setShowProfileSummary} handleClose={() => setOnlyShowIcon("")} />
+      )}
+      {showProfileSummary && <ProfileSummary />}
     </FooterContainer>
   );
 }

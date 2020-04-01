@@ -21,8 +21,8 @@ const PersonalDetails = ({
   setLastName,
   dob,
   setDob,
-  deathDate,
-  setDeathDate,
+  dod,
+  setDod,
   pageNum,
   handleSubmit,
   handleClose,
@@ -61,9 +61,9 @@ const PersonalDetails = ({
           />
           <InputComponent
             // TODO: This needs to be a Date picker component
-            value={deathDate}
-            setValue={setDeathDate}
-            placeholder="Last Name"
+            value={dod}
+            setValue={setDod}
+            placeholder="Date of Death"
             containerCustomStyles={{ ...marginBottom }}
           />
         </FormContainer>
@@ -84,8 +84,8 @@ PersonalDetails.propTypes = {
   setLastName: PropTypes.func.isRequired,
   dob: PropTypes.string.isRequired,
   setDob: PropTypes.func.isRequired,
-  deathDate: PropTypes.string.isRequired,
-  setDeathDate: PropTypes.func.isRequired,
+  dod: PropTypes.string.isRequired,
+  setDod: PropTypes.func.isRequired,
   pageNum: PropTypes.number.isRequired,
   handleSubmit: PropTypes.func.isRequired,
   handleClose: PropTypes.func.isRequired,
