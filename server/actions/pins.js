@@ -1,4 +1,5 @@
 const { Location } = require("../sequelize");
+const formatPinDataObj = require("../util/locationUtils");
 
 class FakeDb {
   constructor() {
@@ -65,7 +66,9 @@ module.exports = {
   async getAllPins() {
     try {
       const pins = await Location.findAll();
-      return pins;
+      // TODO: Get all counts
+      const formattedPins = formatPinDataObj(pins, []);
+      return formattedPins;
     } catch (err) {
       console.error(`Error fetching pins: ${err}`);
     }

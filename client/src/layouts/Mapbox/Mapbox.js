@@ -24,7 +24,7 @@ const Mapbox = ({ handleDrawer, setLocation, setMemorials }) => {
   //   return res;
   // });
 
-  const url = "http://localhost:4000/location/pins";
+  const url = "http://localhost:4000/location";
 
   useEffect(() => {
     mapboxgl.accessToken = "pk.eyJ1Ijoia2F0ZWp1IiwiYSI6ImNqcXZoMjEzMzB2YjI0M2s4M244a3oxZHoifQ.jwSC6ztYKL8MXQJ0yPZ2vQ";
