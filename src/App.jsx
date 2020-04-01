@@ -58,7 +58,7 @@ function App() {
   return (
     // TODO: refractor HOC to manage mainPage toggle
     <div>
-      <Mapbox handleDrawer={setOpenDrawer} handleLocation={setLocation} />
+      <Mapbox handleDrawer={setOpenDrawer} setLocation={setLocation} />
       <PageContainer>
         <Header isMainPage={isMainPage} />
         {isMainPage && (

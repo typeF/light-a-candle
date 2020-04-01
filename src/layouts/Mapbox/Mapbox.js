@@ -12,9 +12,8 @@ const MapContainer = styled.div`
   position: "absolute";
 `;
 
-const Mapbox = ({ handleDrawer, handleLocation }) => {
+const Mapbox = ({ handleDrawer, setLocation }) => {
   const [map, setMap] = useState(null);
-  const [currentLabelData, setCurrentLabelData] = useState({});
   const mapContainer = useRef(null);
 
   useEffect(() => {
@@ -128,15 +127,16 @@ const Mapbox = ({ handleDrawer, handleLocation }) => {
 
         // Renders markers based on geojson data object
         geojson.features.forEach((marker) => {
+          const { city, province, country } = marker.properties;
           const markerContainer = document.createElement("div");
 
           const clickHandler = (e) => {
             flyToLabelAndZoom(marker);
             const features = map.queryRenderedFeatures(e.point);
-            setCurrentLabelData(features);
+            // setCurrentLabelData(features);
 
             // handles passing location to drawer
-            handleLocation(e);
+            setLocation({ city, province, country });
             // handles opening drawers
             handleDrawer(true);
           };
