@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import PropTypes from "prop-types";
 import x from "./x.svg";
 import chevronLeft from "./chevron-left.svg";
 
@@ -31,16 +32,21 @@ const HeaderClose = styled.img`
   cursor: pointer;
 `;
 
-const ProfileSummaryHeader = ({ clickHandler }) => {
+const ProfileSummaryHeader = ({ clickHandler, backHandler }) => {
   return (
     <HeaderContainer>
-      <HeaderBack onClick={() => clickHandler()}>
+      <HeaderBack onClick={() => backHandler()}>
         <HeaderBackImg src={chevronLeft} alt="Summary back chevron" />
         <HeaderBackText>COVID-19 Memorial</HeaderBackText>
       </HeaderBack>
       <HeaderClose src={x} alt="Close summary button" onClick={() => clickHandler()} />
     </HeaderContainer>
   );
+};
+
+ProfileSummaryHeader.propTypes = {
+  clickHandler: PropTypes.func.isRequired,
+  backHandler: PropTypes.func.isRequired,
 };
 
 export default ProfileSummaryHeader;

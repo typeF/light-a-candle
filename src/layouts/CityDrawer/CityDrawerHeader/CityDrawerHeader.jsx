@@ -6,12 +6,13 @@ import formatDate from "utils/formatDate";
 const Container = styled.div`
   width: 85%;
   margin: 0 auto;
-  padding-top: 10%;
+  padding-top: 6%;
   margin-bottom: 4%;
 `;
 
 const Heading = styled.p`
-  font-size: 1.75rem;
+  font-size: 3rem;
+  font-family: "Crimson Pro";
   font-weight: 300;
   color: #fff;
   margin: 0;
@@ -19,7 +20,7 @@ const Heading = styled.p`
 `;
 
 const SubText = styled.p`
-  font-size: 1rem;
+  font-size: 1.4rem;
   font-weight: 100;
   color: #a5b9bd;
   margin: 0;

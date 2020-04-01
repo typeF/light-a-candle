@@ -1,6 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
+import ChevronRightIcon from "@material-ui/icons/ChevronRight";
 import formatDate from "utils/formatDate";
 
 const ItemContainer = styled.div`
@@ -14,7 +15,7 @@ const ItemImg = styled.img`
   border-radius: 10px;
   height: 55px;
   width: 55px;
-  margin-right: 2.5%;
+  margin-right: 5%;
 `;
 
 const ItemMeta = styled.div`
@@ -26,24 +27,31 @@ const ItemMeta = styled.div`
 `;
 
 const ItemName = styled.p`
-  font-size: 1.25rem;
+  font-size: 2rem;
   font-weight: 300;
   margin: 0;
 `;
 
 const ItemOccupatation = styled.p`
-  font-size: 0.75rem;
+  font-size: 1.2rem;
   margin: 0;
   color: #a5b9bd;
 `;
 
 const ItemDate = styled.p`
-  font-size: 0.75rem;
+  font-size: 1.2rem;
   margin: 0;
   color: #a5b9bd;
 `;
 
-function CityDrawerListItem({ name, occupation, img, date_died }) {
+const ProfileButton = styled.button`
+  background: transparent;
+  border: 0;
+  color: white;
+  margin-left: auto;
+`;
+
+function CityDrawerListItem({ name, occupation, img, date_died, handleClick }) {
   return (
     <ItemContainer>
       <ItemImg src={img} />
@@ -52,6 +60,9 @@ function CityDrawerListItem({ name, occupation, img, date_died }) {
         <ItemOccupatation>{occupation}</ItemOccupatation>
         <ItemDate>{`Died on: ${formatDate(date_died)}`}</ItemDate>
       </ItemMeta>
+      <ProfileButton onClick={() => handleClick({ name, occupation, img, date_died })}>
+        <ChevronRightIcon fontSize="large" />
+      </ProfileButton>
     </ItemContainer>
   );
 }
@@ -61,6 +72,7 @@ CityDrawerListItem.propTypes = {
   occupation: PropTypes.string,
   img: PropTypes.string,
   date_died: PropTypes.instanceOf(Date),
+  handleClick: PropTypes.func.isRequired,
 };
 
 CityDrawerListItem.defaultProps = {
