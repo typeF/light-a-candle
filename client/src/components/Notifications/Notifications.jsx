@@ -2,7 +2,6 @@ import React, { useEffect } from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 import NotificationList from "./NotificationList/NotificationList";
-import { getAllCandles } from "../../api/candlesApi";
 
 const NotificationContainer = styled.div`
   display: flex;
@@ -15,16 +14,6 @@ const NotificationContainer = styled.div`
 
 function Notifications({ notifications }) {
   // TODO: create scrolling animation
-
-  // Fetches candle data from back end
-  useEffect(() => {
-    getAllCandles()
-      .then((res) => console.log(res.data))
-      .catch((err) => {
-        console.err(`Error fetching candles: ${err}`);
-      });
-  });
-
   return (
     <NotificationContainer>
       <NotificationList notifications={notifications} />

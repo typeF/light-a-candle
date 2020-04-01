@@ -40,7 +40,7 @@ function CityDrawerHeader({ city, totalDeaths, date_updated }) {
 CityDrawerHeader.propTypes = {
   city: PropTypes.string,
   totalDeaths: PropTypes.number,
-  date_updated: PropTypes.instanceOf(Date),
+  date_updated: PropTypes.number,
 };
 
 CityDrawerHeader.defaultProps = {

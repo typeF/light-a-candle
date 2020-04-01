@@ -106,7 +106,7 @@ function CandleForm({ handleClose, handleSubmit }) {
     if (!isValid(name, message)) {
       return;
     }
-    handleSubmit({ user: name, message, date_created: Date.now() });
+    handleSubmit({ user: name, message });
     handleClose();
   };
 
