@@ -18,7 +18,6 @@ router.get("/:locationId/", async (req, res) => {
 // TODO: Data validation
 router.post("/", async (req, res) => {
   const tribute = req.body;
-  console.log(`Tribute data: ${tribute}`);
   await saveTribute(tribute);
   return res.status(200).end();
 });

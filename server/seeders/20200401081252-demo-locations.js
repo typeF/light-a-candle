@@ -7,8 +7,8 @@ module.exports = {
       [
         {
           id: 1,
-          longitude: -123.11934,
-          latitude: 49.23966,
+          longitude: -123.1139,
+          latitude: 49.2609,
           city: "Vancouver",
           province: "BC",
           country: "Canada",

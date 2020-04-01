@@ -17,16 +17,8 @@ export async function getTributesForLocation(locationId) {
 export async function saveTribute(data) {
   // TODO: Data validation
   try {
-    // Data should contain everything in the inputfields + coordinates
-    /* { firstname: "a", lastName: "b", middleName(optional): "c", city: "a", province: "a", 
-         country: "a", latitude: 1, longitude: 2, img: "", tribute: "", occupation: "" } 
-    */
-    await axios.post(`${server}/tributes`, data).then((res) =>
-      console.log(res).catch((err) => {
-        console.log(err);
-      })
-    );
+    return await axios.post(`${server}/tributes`, data);
   } catch (err) {
-    console.log(`Error while fetching tributesForLocation: ${err}`);
+    console.error(`Error while fetching tributesForLocation: ${err}`);
   }
 }

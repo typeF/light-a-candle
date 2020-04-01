@@ -14,9 +14,19 @@ const PhotoInstruction = styled.p`
   margin-bottom: 1rem;
 `;
 
+const DivWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
+
 const DeceasedImage = styled.img`
-  max-width: 100%;
+  max-width: 128px;
+  max-height: 128px;
   margin-bottom: 1rem;
+  border-radius: 10px;
+  margin-left: auto;
+  margin-right: auto;
 `;
 
 const AddButton = styled.button`
@@ -45,6 +55,7 @@ const TributeDetails = ({
   pageNum,
   submitProfile,
   handleClose,
+  setShowProfileSummary,
 }) => {
   const handlePictureUpload = (e) => {
     // TODO: Automatically resize photo
