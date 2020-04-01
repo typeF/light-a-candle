@@ -78,6 +78,6 @@ Tribute
 
 ```
 
-npx sequelize-cli model:generate --name Tribute --attributes firstName:string,middleName:string,lastName:string,picture:string,dob:date,dod:date,tribute:string,title:string,workplace:string,city:string,province:string,country:string
+npx sequelize-cli model:generate --name Tribute --attributes firstName:string,middleName:string,lastName:string,picture:text,dob:date,dod:date,tribute:string,title:string,workplace:string,city:string,province:string,country:string
 
 ```

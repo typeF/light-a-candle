@@ -1,0 +1,80 @@
+"use strict";
+module.exports = {
+  up: (queryInterface, Sequelize) => {
+    return queryInterface.createTable("Tributes", {
+      id: {
+        allowNull: false,
+        autoIncrement: true,
+        primaryKey: true,
+        type: Sequelize.INTEGER
+      },
+      locationId: {
+        model: {
+          tableName: "locations",
+          schema: "schema"
+        },
+        key: "id",
+        type: Sequelize.INTEGER,
+        allowNull: false
+      },
+      firstName: {
+        type: Sequelize.STRING,
+        allowNull: false
+      },
+      middleName: {
+        type: Sequelize.STRING
+      },
+      lastName: {
+        type: Sequelize.STRING,
+        allowNull: false
+      },
+      picture: {
+        type: Sequelize.TEXT,
+        allowNull: false
+      },
+      dob: {
+        type: Sequelize.DATE,
+        allowNull: false
+      },
+      dod: {
+        type: Sequelize.DATE,
+        allowNull: false
+      },
+      tribute: {
+        type: Sequelize.STRING,
+        allowNull: false
+      },
+      title: {
+        type: Sequelize.STRING,
+        allowNull: false
+      },
+      workplace: {
+        type: Sequelize.STRING,
+        allowNull: false
+      },
+      city: {
+        type: Sequelize.STRING,
+        allowNull: false
+      },
+      province: {
+        type: Sequelize.STRING,
+        allowNull: false
+      },
+      country: {
+        type: Sequelize.STRING,
+        allowNull: false
+      },
+      createdAt: {
+        allowNull: false,
+        type: Sequelize.DATE
+      },
+      updatedAt: {
+        allowNull: false,
+        type: Sequelize.DATE
+      }
+    });
+  },
+  down: (queryInterface, Sequelize) => {
+    return queryInterface.dropTable("Tributes");
+  }
+};
