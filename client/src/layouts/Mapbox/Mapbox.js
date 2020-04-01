@@ -24,7 +24,7 @@ const Mapbox = ({ handleDrawer, setLocation, setMemorials }) => {
   //   return res;
   // });
 
-  const url = "http://localhost:4000/location/pins";
+  const url = "http://localhost:4000/location";
 
   useEffect(() => {
     mapboxgl.accessToken = process.env.REACT_APP_MAPBOX_TOKEN;
@@ -66,10 +66,6 @@ const Mapbox = ({ handleDrawer, setLocation, setMemorials }) => {
           zoom: 6,
           essential: true,
         });
-      };
-
-      const getTributes = async (searchParams) => {
-        return await getTributesForLocation(searchParams);
       };
 
       const toggleLabels = () => {
@@ -152,7 +148,8 @@ const Mapbox = ({ handleDrawer, setLocation, setMemorials }) => {
         getPinGeoJson()
           .then((res) => {
             res.features.forEach((marker) => {
-              const { city, province, country } = marker.properties;
+              const { id, city, province, country, count } = marker.properties;
+              // console.log(`${city} : ${count}`);
               const markerContainer = document.createElement("div");
 
               const clickHandler = (e) => {
@@ -160,7 +157,9 @@ const Mapbox = ({ handleDrawer, setLocation, setMemorials }) => {
                 // const features = map.queryRenderedFeatures(e.point);
                 handleDrawer(true);
                 setLocation({ city, province, country });
-                getTributes({ city, province, country }).then((res) => setMemorials(res.data));
+                getTributesForLocation(id).then((res) => {
+                  setMemorials(res.data);
+                });
               };
 
               // Based on mapbox's implmentation, probably not the most optimal at the moment
@@ -168,7 +167,7 @@ const Mapbox = ({ handleDrawer, setLocation, setMemorials }) => {
               /* eslint-disable react/no-render-return-value */
               const labelEl = ReactDOM.render(
                 <div>
-                  <Label background="light" count={marker.properties.count} clickHandler={clickHandler} />
+                  <Label background="light" count={count} clickHandler={clickHandler} />
                 </div>,
                 markerContainer
               );

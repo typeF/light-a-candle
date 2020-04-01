@@ -1,0 +1,11 @@
+version: "3"
+services:
+  light-a-candle:
+    image: "postgres"
+    env_file:
+      - database.env
+    volumes:
+      - candle:/var/lib/postgresql/data
+
+volumes:
+  candle:

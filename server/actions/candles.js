@@ -1,28 +1,25 @@
-class FakeDb {
-  constructor() {
-    this.data = [
-      { id: 1, name: "Wendy", message: "Thank you!" },
-      { id: 2, name: "Jack", message: "Keep it up!" },
-      { id: 3, name: "Bob Shane", message: "You are all heroes!!!!" },
-    ];
-  }
-
-  saveData(candle) {
-    this.data.push(candle);
-  }
-}
-
-const fakeDb = new FakeDb();
+const { Candle } = require("../sequelize");
 
 module.exports = {
   async getAllCandles() {
-    const allCandles = await fakeDb.data;
-    return allCandles;
+    try {
+      const candles = await Candle.findAll({ limit: 200 });
+      return candles;
+    } catch (err) {
+      console.err(`Error fetching candles: ${err}`);
+    }
   },
 
-  async saveCandle(candle) {
-    console.log("Saving candle...");
-    console.log(candle);
-    await fakeDb.saveData(candle);
+  async saveCandle(candleData) {
+    if (!candleData.name || !candleData.message) {
+      console.error("Candle is missing fields!");
+      return;
+    }
+    try {
+      const candle = await Candle.create(candleData);
+      console.log(`Saved candle: ${JSON.stringify(candle)}`);
+    } catch (err) {
+      console.err(`Error fetching candles: ${err}`);
+    }
   },
 };
