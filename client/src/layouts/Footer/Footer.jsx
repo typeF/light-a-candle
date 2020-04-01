@@ -18,7 +18,7 @@ const IconsContainer = styled.div`
 `;
 
 function Footer({ isMainPage, handleNotification }) {
-  const [onlyShowIcon, setOnlyShowIcon] = useState("addHero");
+  const [onlyShowIcon, setOnlyShowIcon] = useState("");
 
   return (
     <FooterContainer>

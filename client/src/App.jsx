@@ -43,9 +43,12 @@ const tempData = [
   { user: "Benard", message: "Thank you for saving my family. You are all heroes", date_created: Date.now() },
 ];
 
+const tempCandles = 100_389;
+
 function App() {
   // Boolean to swtich between 'homepage' & 'map'
-  const [isMainPage, setIsMainPage] = useState(false);
+  const [isMainPage, setIsMainPage] = useState(true);
+  const [candlesLit, setCandlesLit] = useState(tempCandles);
   const [notifications, setNotifications] = useState(tempData);
   const [openDrawer, setOpenDrawer] = useState(false);
   const [location, setLocation] = useState({});
@@ -53,6 +56,7 @@ function App() {
 
   const addNotification = (notification) => {
     setIsMainPage(true);
+    setCandlesLit((state) => state + 1);
     setNotifications((state) => [...state, notification]);
   };
 
@@ -64,7 +68,7 @@ function App() {
         <Header isMainPage={isMainPage} />
         {isMainPage && (
           <>
-            <Hero />
+            <Hero count={candlesLit} />
             <Notifications notifications={notifications} />
           </>
         )}
