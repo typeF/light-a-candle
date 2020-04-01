@@ -18,7 +18,7 @@ const PageContainer = styled.div`
   align-items: center;
   justify-content: space-between;
   background-color: rgba(30, 42, 50, 0.4);
-  font-family: "Crimson Pro", serif;
+  font-family: "Noto Sans", serif;
   font-weight: 300;
   position: absolute;
   top: 0;
@@ -71,6 +71,7 @@ function App() {
         <ExpandButton type="button" onClick={() => setIsMainPage(!isMainPage)}>
           <ExpandMoreIcon />
         </ExpandButton>
+        {/* need to pass location  */}
         <CityDrawer isOpen={openDrawer} handleDrawer={setOpenDrawer} />
       </PageContainer>
     </div>

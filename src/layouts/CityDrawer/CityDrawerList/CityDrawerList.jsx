@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import PropTypes from "prop-types";
+import ProfileSummary from "layouts/ProfileSummary/ProfileSummary";
 import CityDrawerListItem from "./CityDrawListItem/CityDrawerListItem";
 
 const ListWrapper = styled.div`
@@ -15,15 +16,36 @@ const List = styled.ul`
   padding: 0;
 `;
 
-function CityDrawerList({ memorials }) {
+function CityDrawerList({ memorials, handleClose }) {
+  const [openProfile, setOpenProfile] = useState(false);
+  // use to pass info about which profile to pass into profileSummary
+  const [profile, setProfile] = useState({});
+
+  const openProfileSummary = (currentProfile) => {
+    setOpenProfile(true);
+    setProfile(currentProfile);
+  };
+
+  const closeProfileSummary = () => {
+    setOpenProfile(false);
+  };
+
   return (
-    <ListWrapper role="presentation">
-      <List>
-        {memorials.map(({ id, ...rest }) => (
-          <CityDrawerListItem key={id} {...rest} />
-        ))}
-      </List>
-    </ListWrapper>
+    <>
+      <ListWrapper role="presentation">
+        <List>
+          {memorials.map(({ id, ...rest }) => (
+            <CityDrawerListItem key={id} {...rest} handleClick={openProfileSummary} />
+          ))}
+        </List>
+      </ListWrapper>
+      <ProfileSummary
+        isOpen={openProfile}
+        profileDate={profile}
+        handleClose={handleClose}
+        handleBack={closeProfileSummary}
+      />
+    </>
   );
 }
 
@@ -37,6 +59,7 @@ CityDrawerList.propTypes = {
       date_died: PropTypes.instanceOf(Date),
     })
   ).isRequired,
+  handleClose: PropTypes.func.isRequired,
 };
 
 export default CityDrawerList;

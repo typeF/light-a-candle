@@ -8,7 +8,8 @@ import ProfileSummaryDetails from "./ProfileSummaryDetails";
 const backgroundColor = "#1E2A32";
 
 const ProfileSummaryOuterContainer = styled.div`
-  position: absolute;
+  position: fixed;
+  top: 0%;
   z-index: 1 !important;
   background-color: ${backgroundColor};
   height: 100vh;
@@ -16,6 +17,8 @@ const ProfileSummaryOuterContainer = styled.div`
   display: flex;
   justify-content: center;
   overflow: auto;
+  transform: ${(props) => (props.open ? "none" : "translateX(100%)")};
+  transition: transform 0.25s ease-out;
 `;
 
 const ProfileSummaryContainer = styled.div`
@@ -29,7 +32,7 @@ const ProfileSummaryContainer = styled.div`
 /*
 Takes in a profileData prop with structure matching that of the fake data
  */
-const ProfileSummary = ({ profileData }) => {
+const ProfileSummary = ({ isOpen, profileData, handleClose, handleBack }) => {
   const fakeProfileData = {
     img: "https://vignette.wikia.nocookie.net/spongebob/images/c/c2/GreenDoctor.png",
     name: "Shane Fisher",
@@ -45,13 +48,13 @@ const ProfileSummary = ({ profileData }) => {
   };
 
   const closeSummary = () => {
-    console.log("Close profile clicked");
+    handleClose(false);
   };
 
   return (
-    <ProfileSummaryOuterContainer>
+    <ProfileSummaryOuterContainer open={isOpen}>
       <ProfileSummaryContainer>
-        <ProfileSummaryHeader clickHandler={closeSummary} />
+        <ProfileSummaryHeader clickHandler={closeSummary} backHandler={handleBack} />
         <ProfileHero profileData={fakeProfileData} />
         <ProfileSummaryDetails profileData={fakeProfileData} />
       </ProfileSummaryContainer>
@@ -62,6 +65,9 @@ const ProfileSummary = ({ profileData }) => {
 ProfileSummary.propTypes = {
   /* eslint-disable react/forbid-prop-types */
   profileData: PropTypes.object,
+  isOpen: PropTypes.bool.isRequired,
+  handleClose: PropTypes.func.isRequired,
+  handleBack: PropTypes.func.isRequired,
 };
 
 ProfileSummary.defaultProps = {
