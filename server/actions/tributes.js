@@ -53,16 +53,9 @@ class FakeDb {
 const fakeDb = new FakeDb();
 
 module.exports = {
-  async getTribute(tributeId) {
-    const tribute = await fakeDb.data;
-    return tribute[0];
-  },
-
-  async getTributesForLocation(searchParams) {
-    const realTributes = await Tribute.findAll();
-    console.log(JSON.stringify(realTributes));
-    const tribute = await fakeDb.getTributesInLocation(searchParams);
-    return tribute;
+  async getTributesForLocation(locationId) {
+    const tributes = await Tribute.findAll({ where: { locationId } });
+    return tributes;
   },
 
   async saveTribute(data) {

@@ -14,7 +14,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 app.use("/candles", candleRoutes);
-app.use("/tribute", tributeRoutes);
+app.use("/tributes", tributeRoutes);
 app.use("/location", locationRoutes);
 
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
