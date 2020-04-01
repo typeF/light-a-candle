@@ -1,8 +1,9 @@
 # Database Setup
 
+1. Install packages
 1. Start Database
-2. Create tables
-3. Seed database
+1. Create tables
+1. Seed database
 
 ### Start database
 
@@ -14,7 +15,7 @@ POSTGRES_PASSWORD=123
 POSTGRES_DB=candle
 ```
 
-Install docker-compose
+Install [docker-compose](https://docs.docker.com/compose/install/)
 
 Run server
 
@@ -25,15 +26,14 @@ docker-compose up -d
 ### Create tables
 
 ```
-npx sequelize-cli db:migrate
+npm run migrate
 ```
 
 ### Seed database
 
 ```
 
-npx sequelize-cli db:seed:all
-
+npm run seed
 ```
 
 # Misc
