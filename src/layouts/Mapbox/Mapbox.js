@@ -4,9 +4,10 @@ import styled from "styled-components";
 import mapboxgl from "mapbox-gl";
 import "mapbox-gl/dist/mapbox-gl.css";
 // import geojson from "./geojson";
+import PropTypes from "prop-types";
 import Label from "./Label";
 import mapPin from "./Marker/map-pin.png";
-import getTributesForLocation from "../../api/tributesApi";
+import { getTributesForLocation } from "../../api/tributesApi";
 import getPinGeoJson from "../../api/locationApi";
 
 const MapContainer = styled.div`
@@ -190,4 +191,15 @@ const Mapbox = ({ handleDrawer, setLocation, setMemorials }) => {
   );
 };
 
+Mapbox.propTypes = {
+  handleDrawer: PropTypes.func,
+  setLocation: PropTypes.func,
+  setMemorial: PropTypes.func,
+};
+
+Mapbox.defaultProps = {
+  handleDrawer: () => {},
+  setLocation: () => {},
+  setMemorial: () => {},
+};
 export default Mapbox;

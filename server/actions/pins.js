@@ -66,6 +66,8 @@ module.exports = {
   },
 
   async savePin(data) {
+    console.log("Saving pin...");
+    console.log(data);
     await fakeDb.saveData(data);
   },
 };

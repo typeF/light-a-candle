@@ -62,6 +62,8 @@ module.exports = {
   },
 
   async saveTribute(data) {
+    console.log("Saving tribute...");
+    console.log(data);
     await fakeDb.saveData(data);
   },
 };

@@ -21,6 +21,8 @@ module.exports = {
   },
 
   async saveCandle(candle) {
+    console.log("Saving candle...");
+    console.log(candle);
     await fakeDb.saveData(candle);
   },
 };
