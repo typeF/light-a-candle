@@ -51,16 +51,16 @@ const ProfileButton = styled.button`
   margin-left: auto;
 `;
 
-function CityDrawerListItem({ name, occupation, img, date_died, handleClick }) {
+function CityDrawerListItem({ name, title, img, date_died, handleClick, ...rest }) {
   return (
     <ItemContainer>
       <ItemImg src={img} />
       <ItemMeta>
         <ItemName>{name}</ItemName>
-        <ItemOccupatation>{occupation}</ItemOccupatation>
+        <ItemOccupatation>{title}</ItemOccupatation>
         <ItemDate>{`Died on: ${formatDate(date_died)}`}</ItemDate>
       </ItemMeta>
-      <ProfileButton onClick={() => handleClick({ name, occupation, img, date_died })}>
+      <ProfileButton onClick={() => handleClick({ name, title, img, date_died, ...rest })}>
         <ChevronRightIcon fontSize="large" />
       </ProfileButton>
     </ItemContainer>
@@ -68,16 +68,24 @@ function CityDrawerListItem({ name, occupation, img, date_died, handleClick }) {
 }
 
 CityDrawerListItem.propTypes = {
-  name: PropTypes.string,
-  occupation: PropTypes.string,
+  id: PropTypes.number,
   img: PropTypes.string,
+  name: PropTypes.string,
+  title: PropTypes.string,
+  workplace: PropTypes.string,
+  city: PropTypes.string,
+  province: PropTypes.string,
+  country: PropTypes.string,
+  dob: PropTypes.string,
+  dod: PropTypes.string,
   date_died: PropTypes.instanceOf(Date),
+  tribute: PropTypes.string,
   handleClick: PropTypes.func.isRequired,
 };
 
 CityDrawerListItem.defaultProps = {
   name: "Wendy Watson",
-  occupation: "Doctor",
+  title: "Doctor",
   img: "",
   date_died: Date.now(),
 };

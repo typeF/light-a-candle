@@ -4,6 +4,7 @@ import InputComponent from "../../components/InputComponent/InputComponent";
 import {
   Container,
   CloseButton,
+  FormContainer,
   FormHeader,
   FormTheme,
   NextButton,
@@ -16,7 +17,7 @@ const ErrorMessage = styled.p`
   margin-top: 2rem;
 `;
 
-const marginBottom = { "margin-bottom": "1rem" };
+const marginBottom = { "margin-bottom": "3rem" };
 
 const LocationDetails = ({
   country,
@@ -41,27 +42,28 @@ const LocationDetails = ({
     let location = "";
     if (city) {
       location += `${city.toLowerCase()}`;
-
       if (province) {
         location += `,${province.toLowerCase()}`;
       }
-
       url += `https://api.mapbox.com/geocoding/v5/mapbox.places/${location}.json?`;
       if (country) url += `${country.toLowerCase()}&`;
       url += `access_token=${process.env.REACT_APP_MAPBOX_TOKEN}`;
-    }
-
-    axios.get(url).then((res) => {
-      const [firstLocation] = res.data.features;
-      const coordinates = firstLocation?.geometry?.coordinates;
-      if (coordinates) {
-        setCoords(coordinates);
-        handleSubmit();
-      } else
-        setError(
-          "Could not find a location, please try to input City, Province, and Country perfectly, including the spelling."
-        );
-    });
+      axios.get(url).then((res) => {
+        console.log("res: ", res);
+        const [firstLocation] = res.data.features;
+        const coordinates = firstLocation?.geometry?.coordinates;
+        if (coordinates) {
+          setCoords(coordinates);
+          handleSubmit();
+        } else
+          setError(
+            "Could not find a location, please try to input City, Province, and Country perfectly, including the spelling."
+          );
+      });
+    } else
+      setError(
+        "Could not find a location, please try to input City, Province, and Country perfectly, including the spelling."
+      );
   };
 
   return (
@@ -70,7 +72,7 @@ const LocationDetails = ({
       <main>
         <FormHeader>Report a death {pageNum}/3</FormHeader>
         <FormTheme>Healthcare workers who passed away during COVID-19.</FormTheme>
-        <div>
+        <FormContainer>
           <InputComponent
             value={country}
             setValue={setCountry}
@@ -101,7 +103,7 @@ const LocationDetails = ({
             placeholder="Title/Occupation"
             containerCustomStyles={{ ...marginBottom }}
           />
-        </div>
+        </FormContainer>
         {error && <ErrorMessage>{error}</ErrorMessage>}
       </main>
       <NextButton type="button" onClick={handleNextButton}>

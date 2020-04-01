@@ -3,10 +3,10 @@ import Home from "./Home/Home";
 
 // const HomeContainer = styled.div`
 
-function Hero() {
+function Hero({ count }) {
   return (
     <div id="hero" className="hero">
-      <Home />
+      <Home count={count} />
     </div>
   );
 }

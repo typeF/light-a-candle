@@ -41,7 +41,7 @@ function CityDrawerList({ memorials, handleClose }) {
       </ListWrapper>
       <ProfileSummary
         isOpen={openProfile}
-        profileDate={profile}
+        profileData={profile}
         handleClose={handleClose}
         handleBack={closeProfileSummary}
       />
@@ -53,10 +53,17 @@ CityDrawerList.propTypes = {
   memorials: PropTypes.arrayOf(
     PropTypes.shape({
       id: PropTypes.number,
-      name: PropTypes.string,
-      occupation: PropTypes.string,
       img: PropTypes.string,
+      name: PropTypes.string,
+      title: PropTypes.string,
+      workplace: PropTypes.string,
+      city: PropTypes.string,
+      province: PropTypes.string,
+      country: PropTypes.string,
+      dob: PropTypes.string,
+      dod: PropTypes.string,
       date_died: PropTypes.instanceOf(Date),
+      tribute: PropTypes.string,
     })
   ).isRequired,
   handleClose: PropTypes.func.isRequired,

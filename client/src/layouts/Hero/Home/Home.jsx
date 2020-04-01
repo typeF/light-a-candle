@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import CandleIcon from "../../../components/CandleIcon/CandleIcon";
+import formatNumber from "utils/formatNumber";
 
 const HomeContainer = styled.div`
   text-align: center;
@@ -28,11 +29,11 @@ const HomeBodyText = styled.p`
   color: #c2b3df;
 `;
 
-function Home() {
+function Home({ count }) {
   return (
     <HomeContainer>
       <CandleIcon size="50px" />
-      <HomeNumbers>100,389</HomeNumbers>
+      <HomeNumbers>{formatNumber(count)}</HomeNumbers>
       <HomeMainText>Candles Lit</HomeMainText>
       <HomeBodyText>
         to honor and remember all healthcare workers who devoted their lives to the fight of COVID-19.

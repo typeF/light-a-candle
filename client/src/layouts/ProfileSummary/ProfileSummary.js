@@ -33,19 +33,19 @@ const ProfileSummaryContainer = styled.div`
 Takes in a profileData prop with structure matching that of the fake data
  */
 const ProfileSummary = ({ isOpen, profileData, handleClose, handleBack }) => {
-  const fakeProfileData = {
-    img: "https://vignette.wikia.nocookie.net/spongebob/images/c/c2/GreenDoctor.png",
-    name: "Shane Fisher",
-    title: "Nurse",
-    workplace: "Bellevue Hospital Center",
-    city: "New York",
-    province: "NY",
-    country: "USA",
-    dob: "1970/01/02",
-    dod: "2020/03/10",
-    tribute:
-      " Curabitur neque tortor, tempor lobortis accumsan at, malesuada vel mauris. Vestibulum nec condimentum ipsum. Maecenas ut metus sodales, feugiat lectus quis, lacinia urna. Fusce viverra varius condimentum. Nunc nec magna gravida urna luctus pulvinar vel ut nisi. Sed commodo pellentesque odio et cursus. Duis magna magna, lobortis sed ligula in, mollis luctus justo.",
-  };
+  // const fakeProfileData = {
+  //   img: "https://vignette.wikia.nocookie.net/spongebob/images/c/c2/GreenDoctor.png",
+  //   name: "Shane Fisher",
+  //   title: "Nurse",
+  //   workplace: "Bellevue Hospital Center",
+  //   city: "New York",
+  //   province: "NY",
+  //   country: "USA",
+  //   dob: "1970/01/02",
+  //   dod: "2020/03/10",
+  //   tribute:
+  //     " Curabitur neque tortor, tempor lobortis accumsan at, malesuada vel mauris. Vestibulum nec condimentum ipsum. Maecenas ut metus sodales, feugiat lectus quis, lacinia urna. Fusce viverra varius condimentum. Nunc nec magna gravida urna luctus pulvinar vel ut nisi. Sed commodo pellentesque odio et cursus. Duis magna magna, lobortis sed ligula in, mollis luctus justo.",
+  // };
 
   const closeSummary = () => {
     handleClose(false);
@@ -55,8 +55,8 @@ const ProfileSummary = ({ isOpen, profileData, handleClose, handleBack }) => {
     <ProfileSummaryOuterContainer open={isOpen}>
       <ProfileSummaryContainer>
         <ProfileSummaryHeader clickHandler={closeSummary} backHandler={handleBack} />
-        <ProfileHero profileData={fakeProfileData} />
-        <ProfileSummaryDetails profileData={fakeProfileData} />
+        <ProfileHero profileData={profileData} />
+        <ProfileSummaryDetails profileData={profileData} />
       </ProfileSummaryContainer>
     </ProfileSummaryOuterContainer>
   );
@@ -64,7 +64,20 @@ const ProfileSummary = ({ isOpen, profileData, handleClose, handleBack }) => {
 
 ProfileSummary.propTypes = {
   /* eslint-disable react/forbid-prop-types */
-  profileData: PropTypes.object,
+  profileData: PropTypes.shape({
+    id: PropTypes.number,
+    img: PropTypes.string,
+    name: PropTypes.string,
+    title: PropTypes.string,
+    workplace: PropTypes.string,
+    city: PropTypes.string,
+    province: PropTypes.string,
+    country: PropTypes.string,
+    dob: PropTypes.string,
+    dod: PropTypes.string,
+    date_died: PropTypes.instanceOf(Date),
+    tribute: PropTypes.string,
+  }),
   isOpen: PropTypes.bool.isRequired,
   handleClose: PropTypes.func.isRequired,
   handleBack: PropTypes.func.isRequired,
