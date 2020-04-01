@@ -49,7 +49,7 @@ function App() {
   const [notifications, setNotifications] = useState(tempData);
   const [openDrawer, setOpenDrawer] = useState(false);
   const [location, setLocation] = useState({});
-  const [memorials, setMemorials] = useState({});
+  const [memorials, setMemorials] = useState([]);
 
   const addNotification = (notification) => {
     setIsMainPage(true);
@@ -73,7 +73,7 @@ function App() {
           <ExpandMoreIcon />
         </ExpandButton>
         {/* need to pass location  */}
-        <CityDrawer isOpen={openDrawer} handleDrawer={setOpenDrawer} />
+        <CityDrawer isOpen={openDrawer} handleDrawer={setOpenDrawer} city={location} data={memorials} />
       </PageContainer>
     </div>
   );

@@ -39,29 +39,29 @@ const ExpandButton = withStyles({
   },
 })(IconButton);
 
-const tempData = [
-  {
-    name: "Wendy Watson",
-    occupation: "Doctor",
-    img: `https://randomuser.me/api/portraits/thumb/men/${1}.jpg`,
-    date_died: Date.now() - 10 * 86400000,
-  },
-  {
-    name: "Dustin Watson",
-    occupation: "Doctor",
-    img: `https://randomuser.me/api/portraits/thumb/men/${2}.jpg`,
-    date_died: Date.now() - 13 * 86400000,
-  },
-  {
-    name: "Shane Fisher",
-    occupation: "Nurse",
-    img: `https://randomuser.me/api/portraits/thumb/men/${3}.jpg`,
-    date_died: Date.now() - 25 * 86400000,
-  },
-];
+// const tempData = [
+//   {
+//     name: "Wendy Watson",
+//     occupation: "Doctor",
+//     img: `https://randomuser.me/api/portraits/thumb/men/${1}.jpg`,
+//     date_died: Date.now() - 10 * 86400000,
+//   },
+//   {
+//     name: "Dustin Watson",
+//     occupation: "Doctor",
+//     img: `https://randomuser.me/api/portraits/thumb/men/${2}.jpg`,
+//     date_died: Date.now() - 13 * 86400000,
+//   },
+//   {
+//     name: "Shane Fisher",
+//     occupation: "Nurse",
+//     img: `https://randomuser.me/api/portraits/thumb/men/${3}.jpg`,
+//     date_died: Date.now() - 25 * 86400000,
+//   },
+// ];
 
-function CityDrawer({ isOpen, handleDrawer, city }) {
-  const [memorials, setMemorials] = useState(tempData);
+function CityDrawer({ isOpen, handleDrawer, city, data }) {
+  const memorials = data;
   // const [openDrawer, setOpenDrawer] = useState(true);
 
   const [filter, setFilter] = useState("Most recent");
@@ -121,6 +121,22 @@ CityDrawer.propTypes = {
     city: PropTypes.string,
     country: PropTypes.string,
   }),
+  data: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.number,
+      img: PropTypes.string,
+      name: PropTypes.string,
+      title: PropTypes.string,
+      workplace: PropTypes.string,
+      city: PropTypes.string,
+      province: PropTypes.string,
+      country: PropTypes.string,
+      dob: PropTypes.string,
+      dod: PropTypes.string,
+      date_died: PropTypes.instanceOf(Date),
+      tribute: PropTypes.string,
+    })
+  ).isRequired,
 };
 
 CityDrawer.defaultProps = {
