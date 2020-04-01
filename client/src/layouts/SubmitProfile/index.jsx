@@ -19,6 +19,7 @@ const Container = styled.div`
 const SubmitProfile = ({ handleClose }) => {
   const [pageNum, setPageNum] = useState(1);
 
+  // TODO: should also probably use a reducer here
   const [firstName, setFirstName] = useState("");
   const [middleName, setMiddleName] = useState("");
   const [lastName, setLastName] = useState("");

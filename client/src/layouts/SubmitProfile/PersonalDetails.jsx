@@ -4,12 +4,13 @@ import InputComponent from "../../components/InputComponent/InputComponent";
 import {
   Container,
   CloseButton,
+  FormContainer,
   FormHeader,
   FormTheme,
   NextButton,
 } from "../../components/SubmitProfile/CommonComponents";
 
-const marginBottom = { "margin-bottom": "1rem" };
+const marginBottom = { "margin-bottom": "3rem" };
 
 const PersonalDetails = ({
   firstName,
@@ -30,9 +31,9 @@ const PersonalDetails = ({
     <Container>
       <CloseButton onClick={handleClose} />
       <main>
-        <FormHeader>Report a death {pageNum}/3</FormHeader>
-        <FormTheme>Personal Details</FormTheme>
-        <div>
+        <FormHeader>Add a Hero {pageNum}/3</FormHeader>
+        <FormTheme>Health care workers who passed away during COVID-19</FormTheme>
+        <FormContainer>
           <InputComponent
             value={firstName}
             setValue={setFirstName}
@@ -65,7 +66,7 @@ const PersonalDetails = ({
             placeholder="Last Name"
             containerCustomStyles={{ ...marginBottom }}
           />
-        </div>
+        </FormContainer>
       </main>
       <NextButton type="button" onClick={handleSubmit}>
         Next

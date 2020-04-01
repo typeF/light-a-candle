@@ -3,8 +3,7 @@ import PropTypes from "prop-types";
 import styled from "styled-components";
 
 const Container = styled.div(({ customStyles }) => ({
-  "background-color": "black",
-  "border-bottom": "1px solid white",
+  "border-bottom": "1px solid #d9cdf0",
   display: "flex",
   ...customStyles,
 }));
@@ -16,25 +15,26 @@ const Input = styled.input`
   flex: 1;
   margin: 4px 0;
   outline: 0;
+  font-size: 1.6rem;
 
   &::placeholder {
-    color: rgba(255, 255, 255, 0.7);
+    color: #d9cdf0;
   }
 `;
 
 const TextArea = styled.textarea`
   background-color: inherit;
   border: 0;
-  color: white;
+  color: #d9cdf0;
   flex: 1;
-  font-family: Arial, sans-serif;
+  font-family: "Noto Sans", serif;
   margin: 4px 0;
   min-height: 35px;
   max-height: 200px;
   outline: 0;
 
   &::placeholder {
-    color: rgba(255, 255, 255, 0.7);
+    color: #d9cdf0;
   }
 `;
 

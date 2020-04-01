@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
-  background-color: black;
+  background-color: #1e2a32;
   box-sizing: border-box; /* TODO: This should be global for all elements */
   color: white;
   display: flex;
@@ -15,31 +15,38 @@ export const Container = styled.div`
 export const CloseButton = styled.div`
   /* TODO: This needs to be refactored to look like a real close button */
   position: absolute;
-  top: 1rem;
-  right: 1rem;
+  top: 3%;
+  right: 8%;
   &:after {
     content: "x";
     color: #fff;
-    font-size: 2rem;
-    font-weight: 900;
-    font-family: Arial, sans-serif;
+    font-size: 3rem;
+    font-weight: 500;
+    font-family: "Noto Sans", sans-serif;
   }
+`;
+
+export const FormContainer = styled.div`
+  width: 90%;
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
 `;
 
 export const FormHeader = styled.h1`
   display: flex;
-  font-size: 1.2rem;
+  font-size: 3rem;
   font-weight: 300;
-  margin: 0;
-  margin-bottom: 1.5rem;
+  margin: 1rem 1.5rem 1.5rem 1.5rem;
+  font-family: "Crimson Pro", serif;
 `;
 
 export const FormTheme = styled.h2`
   display: flex;
-  font-size: 1.2rem;
+  color: #d9cdf0;
+  font-size: 1.4rem;
   font-weight: 300;
-  margin: 0;
-  margin-bottom: 1.5rem;
+  margin: 1rem 1.5rem 3rem 1.5rem;
 `;
 
 export const NextButton = styled.button`
