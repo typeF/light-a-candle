@@ -133,14 +133,12 @@ const Mapbox = ({ handleDrawer, setLocation }) => {
           const clickHandler = (e) => {
             flyToLabelAndZoom(marker);
             const features = map.queryRenderedFeatures(e.point);
-            setCurrentLabelData(features);
+            // setCurrentLabelData(features);
 
             // handles passing location to drawer
-            setLocation(e);
-            // handles opening drawers
-            // const features = map.queryRenderedFeatures(e.point);
-            handleDrawer(true);
             setLocation({ city, province, country });
+            // handles opening drawers
+            handleDrawer(true);
           };
 
           // Based on mapbox's implmentation, probably not the most optimal at the moment
