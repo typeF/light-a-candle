@@ -149,10 +149,6 @@ const Mapbox = ({ handleDrawer, setLocation, setMemorials }) => {
           .then((res) => {
             res.features.forEach((marker) => {
               const { id, city, province, country, count } = marker.properties;
-<<<<<<< HEAD
-=======
-              // console.log(`${city} : ${count}`);
->>>>>>> master
               const markerContainer = document.createElement("div");
 
               const clickHandler = (e) => {

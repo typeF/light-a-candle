@@ -24,6 +24,10 @@ function Footer({ isMainPage, handleNotification }) {
   const [showProfileSummary, setShowProfileSummary] = useState(false);
   const [summaryData, setSummaryData] = useState({});
 
+  // isOpen={openProfile}
+  // profileData={profile}
+  // handleClose={handleClose}
+  // handleBack={closeProfileSummary}
   return (
     <FooterContainer>
       {isMainPage ? (
@@ -42,9 +46,20 @@ function Footer({ isMainPage, handleNotification }) {
         </IconsContainer>
       )}
       {onlyShowIcon === "addHero" && (
-        <SubmitProfile setShowProfileSummary={setShowProfileSummary} handleClose={() => setOnlyShowIcon("")} />
+        <SubmitProfile
+          setShowProfileSummary={setShowProfileSummary}
+          setSummaryData={setSummaryData}
+          handleClose={() => setOnlyShowIcon("")}
+        />
       )}
-      {showProfileSummary && <ProfileSummary />}
+      {showProfileSummary && (
+        <ProfileSummary
+          isOpen={() => {}}
+          handleBack={setShowProfileSummary}
+          handleClose={setShowProfileSummary}
+          profileData={summaryData}
+        />
+      )}
     </FooterContainer>
   );
 }

@@ -17,7 +17,7 @@ const Container = styled.div`
   z-index: 1;
 `;
 
-const SubmitProfile = ({ setShowProfileSummary, handleClose }) => {
+const SubmitProfile = ({ setShowProfileSummary, setSummaryData, handleClose }) => {
   const [pageNum, setPageNum] = useState(1);
 
   // TODO: should also probably use a reducer here
@@ -67,11 +67,23 @@ const SubmitProfile = ({ setShowProfileSummary, handleClose }) => {
       tribute: tributeMessage,
       img: picture,
     };
+
+    const profileData = {
+      name: `${firstName} ${middleName} ${lastName}`,
+      title: occupation,
+      img: picture,
+      city,
+      workplace,
+      dob,
+      dod,
+      tribute: tributeMessage,
+    };
     saveTribute(data)
       .then((res) => {
         if (res.status === 200) {
           handleClose();
           setShowProfileSummary(true);
+          setSummaryData(profileData);
         }
       })
       .catch((err) => {
@@ -127,6 +139,7 @@ const SubmitProfile = ({ setShowProfileSummary, handleClose }) => {
           submitProfile={handleSubmitProfile}
           handleClose={handleClose}
           setShowProfileSummary={setShowProfileSummary}
+          setSummaryData={setSummaryData}
         />
       )}
     </Container>

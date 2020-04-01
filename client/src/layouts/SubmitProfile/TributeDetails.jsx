@@ -55,6 +55,7 @@ const TributeDetails = ({
   pageNum,
   submitProfile,
   handleClose,
+  setShowProfileSummary,
 }) => {
   const handlePictureUpload = (e) => {
     // TODO: Automatically resize photo
