@@ -1,3 +1,5 @@
+const { Location } = require("../sequelize");
+
 class FakeDb {
   constructor() {
     this.pins = {
@@ -7,7 +9,7 @@ class FakeDb {
           type: "Feature",
           geometry: {
             type: "Point",
-            coordinates: [-123.11934, 49.23966],
+            coordinates: [-123.11934, 49.23966]
           },
           properties: {
             title: "Mapbox",
@@ -15,14 +17,14 @@ class FakeDb {
             city: "Vancouver",
             province: "BC",
             country: "Canada",
-            description: "Vancouver, BC",
-          },
+            description: "Vancouver, BC"
+          }
         },
         {
           type: "Feature",
           geometry: {
             type: "Point",
-            coordinates: [-77.032, 38.913],
+            coordinates: [-77.032, 38.913]
           },
           properties: {
             title: "Mapbox",
@@ -30,14 +32,14 @@ class FakeDb {
             city: "Washington",
             province: "DC",
             country: "USA",
-            description: "Washington, D.C.",
-          },
+            description: "Washington, D.C."
+          }
         },
         {
           type: "Feature",
           geometry: {
             type: "Point",
-            coordinates: [-122.414, 37.776],
+            coordinates: [-122.414, 37.776]
           },
           properties: {
             title: "Mapbox",
@@ -45,10 +47,10 @@ class FakeDb {
             city: "San Francisco",
             province: "CA",
             country: "USA",
-            description: "San Francisco, California",
-          },
-        },
-      ],
+            description: "San Francisco, California"
+          }
+        }
+      ]
     };
   }
 
@@ -61,13 +63,17 @@ const fakeDb = new FakeDb();
 
 module.exports = {
   async getAllPins() {
-    const pins = await fakeDb.pins;
-    return pins;
+    try {
+      const pins = await Location.findAll();
+      return pins;
+    } catch (err) {
+      console.error(`Error fetching pins: ${err}`);
+    }
   },
 
   async savePin(data) {
     console.log("Saving pin...");
     console.log(data);
     await fakeDb.saveData(data);
-  },
+  }
 };

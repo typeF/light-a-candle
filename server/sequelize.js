@@ -1,5 +1,6 @@
 const Sequelize = require("sequelize");
 const CandleModel = require("./models/candle");
+const LocationModel = require("./models/location");
 
 const sequelize = new Sequelize(
   "postgres://postgres:123@localhost:5432/candle"
@@ -15,7 +16,9 @@ sequelize
   });
 
 const Candle = CandleModel(sequelize, Sequelize);
+const Location = LocationModel(sequelize, Sequelize);
 
 module.exports = {
-  Candle
+  Candle,
+  Location
 };

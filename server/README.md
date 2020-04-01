@@ -1,6 +1,10 @@
-### Setup
+# Database Setup
 
-## Start server
+1. Start Database
+2. Create tables
+3. Seed database
+
+### Start database
 
 Add database.env file with the following fields:
 
@@ -18,12 +22,38 @@ Run server
 docker-compose up -d
 ```
 
-## Seed database
-
-Seed database
+### Create tables
 
 ```
+npx sequelize-cli db:migrate
+```
+
+### Seed database
+
+```
+
 npx sequelize-cli db:seed:all
+
+```
+
+# Misc
+
+## Stop database
+
+Server stops but data persists
+
+```
+
+docker-compose down
+
+```
+
+Server stops and data is deleted
+
+```
+
+docker-compose down --volumes
+
 ```
 
 ## Model creation
@@ -31,5 +61,23 @@ npx sequelize-cli db:seed:all
 Candle
 
 ```
-npx sequelize-cli model:generate Candle --attributes name:string,message:string(600)
+
+npx sequelize-cli model:generate --name Candle --attributes name:string,message:string(600)
+
+```
+
+Location
+
+```
+
+npx sequelize model:generate --name Location --attributes longitude:float,latitude:float,city:string,province:string,country:string
+
+```
+
+Tribute
+
+```
+
+npx sequelize-cli model:generate --name Tribute --attributes firstName:string,middleName:string,lastName:string,picture:string,dob:date,dod:date,tribute:string,title:string,workplace:string,city:string,province:string,country:string
+
 ```

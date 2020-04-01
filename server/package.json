@@ -6,7 +6,9 @@
   "scripts": {
     "dev": "nodemon server.js",
     "start": "node server.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "migrate-up": "sequelize db:migrate",
+    "seed": "sequelize db:seed:all"
   },
   "author": "",
   "license": "ISC",

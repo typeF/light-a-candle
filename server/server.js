@@ -5,37 +5,6 @@ const candleRoutes = require("./routes/candles");
 const tributeRoutes = require("./routes/tributes");
 const locationRoutes = require("./routes/location");
 
-// const Model = Sequelize.Model;
-
-// class User extends Model {}
-// User.init(
-//   {
-//     firstName: {
-//       type: Sequelize.STRING
-//     }
-//   },
-//   {
-//     sequelize,
-//     modelName: "user"
-//   }
-// );
-
-// User.sync({ force: true }).then(() => {
-//   return User.create({
-//     firstName: "John"
-//   });
-// });
-
-// User.create({
-//   firstName: "Jack"
-// }).then(user => {
-//   console.log("new user: " + user);
-// });
-
-// User.findAll().then(users => {
-//   console.log("All users: ", JSON.stringify(users, null, 4));
-// });
-
 const PORT = process.env.PORT || 4000;
 const app = express();
 
