@@ -106,7 +106,7 @@ function CityDrawer({ isOpen, handleDrawer, city, data }) {
         <ClearButton type="button" onClick={() => handleClose(false)}>
           <ClearIcon fontSize="large" />
         </ClearButton>
-        <CityDrawerHeader city={city.city} date_updated={Date.now()} />
+        <CityDrawerHeader city={city.city} />
         <CityDrawerFilter selected={filter} handleClick={setFilter} filters={filterOptions} />
         <CityDrawerList memorials={memorials} handleClose={handleClose} />
       </CustomDrawer>

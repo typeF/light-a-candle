@@ -1,8 +1,10 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
+import axios from "axios";
 import { withStyles } from "@material-ui/core/styles";
 import { IconButton } from "@material-ui/core";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
+import { getAllCandles, saveCandle } from "api/candlesApi";
 import Hero from "./layouts/Hero/Hero";
 import Header from "./layouts/Header/Header";
 import Notifications from "./components/Notifications/Notifications";
@@ -37,27 +39,35 @@ const ExpandButton = withStyles({
   },
 })(IconButton);
 
-const tempData = [
-  { user: "Alexa", message: "Thank you so much !", date_created: Date.now() },
-  { user: "Frank", message: "You will all be forever missed", date_created: Date.now() },
-  { user: "Benard", message: "Thank you for saving my family. You are all heroes", date_created: Date.now() },
-];
+// const tempData = [
+//   { user: "Alexa", message: "Thank you so much !", date_created: Date.now() },
+//   { user: "Frank", message: "You will all be forever missed", date_created: Date.now() },
+//   { user: "Benard", message: "Thank you for saving my family. You are all heroes", date_created: Date.now() },
+// ];
 
 const tempCandles = 100_389;
 
 function App() {
   // Boolean to swtich between 'homepage' & 'map'
   const [isMainPage, setIsMainPage] = useState(true);
-  const [candlesLit, setCandlesLit] = useState(tempCandles);
-  const [notifications, setNotifications] = useState(tempData);
+  const [candlesLit, setCandlesLit] = useState([]);
   const [openDrawer, setOpenDrawer] = useState(false);
   const [location, setLocation] = useState({});
   const [memorials, setMemorials] = useState([]);
 
+  // Fetches candle data from back end
+  useEffect(() => {
+    getAllCandles()
+      .then((res) => setCandlesLit(res.data))
+      .catch((err) => {
+        console.log(`Error fetching candles: ${err}`);
+      });
+  }, []);
+
   const addNotification = (notification) => {
     setIsMainPage(true);
-    setCandlesLit((state) => state + 1);
-    setNotifications((state) => [...state, notification]);
+    saveCandle(notification);
+    setCandlesLit((state) => [...state, notification]);
   };
 
   return (
@@ -68,8 +78,8 @@ function App() {
         <Header isMainPage={isMainPage} />
         {isMainPage && (
           <>
-            <Hero count={candlesLit} />
-            <Notifications notifications={notifications} />
+            <Hero count={candlesLit.length} />
+            <Notifications notifications={candlesLit} />
           </>
         )}
         <Footer isMainPage={isMainPage} handleNotification={addNotification} />

@@ -4,7 +4,7 @@ module.exports = {
   async getAllCandles() {
     try {
       const candles = await Candle.findAll({ limit: 200 });
-      return JSON.stringify(candles);
+      return candles;
     } catch (err) {
       console.err(`Error fetching candles: ${err}`);
     }
@@ -21,5 +21,5 @@ module.exports = {
     } catch (err) {
       console.err(`Error fetching candles: ${err}`);
     }
-  }
+  },
 };
