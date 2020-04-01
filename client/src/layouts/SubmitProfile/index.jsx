@@ -28,6 +28,7 @@ const SubmitProfile = ({ handleClose }) => {
   const [country, setCountry] = useState(""); // TODO: Use dropdown
   const [province, setProvince] = useState(""); // TODO: Use dropdown
   const [city, setCity] = useState("");
+  const [coords, setCoords] = useState([0, 0]);
   const [hospitalName, setHospitalName] = useState("");
   const [occupation, setOccupation] = useState("");
 
@@ -56,6 +57,7 @@ const SubmitProfile = ({ handleClose }) => {
       country,
       province,
       city,
+      coords,
       hospitalName,
       occupation,
       tributeMessage,
@@ -92,6 +94,8 @@ const SubmitProfile = ({ handleClose }) => {
           setProvince={setProvince}
           city={city}
           setCity={setCity}
+          coords={coords}
+          setCoords={setCoords}
           hospitalName={hospitalName}
           setHospitalName={setHospitalName}
           occupation={occupation}
