@@ -148,7 +148,6 @@ const Mapbox = ({ handleDrawer, setLocation, setMemorials }) => {
         // });
 
         // Renders markers based on geojson data object
-<<<<<<< HEAD
         getPinGeoJson().then((res) => {
           res.features.forEach((marker) => {
             const { city, province, country } = marker.properties;
@@ -173,33 +172,6 @@ const Mapbox = ({ handleDrawer, setLocation, setMemorials }) => {
             );
             new mapboxgl.Marker(labelEl).setLngLat(marker.geometry.coordinates).addTo(map);
           });
-=======
-        geojson.features.forEach((marker) => {
-          const { city, province, country } = marker.properties;
-          const markerContainer = document.createElement("div");
-
-          const clickHandler = (e) => {
-            flyToLabelAndZoom(marker);
-            const features = map.queryRenderedFeatures(e.point);
-            // setCurrentLabelData(features);
-
-            // handles passing location to drawer
-            setLocation({ city, province, country });
-            // handles opening drawers
-            handleDrawer(true);
-          };
-
-          // Based on mapbox's implmentation, probably not the most optimal at the moment
-          // These components cannot read updated state in the Mapbox component
-          /* eslint-disable react/no-render-return-value */
-          const labelEl = ReactDOM.render(
-            <div>
-              <Label background="light" count={marker.properties.count} clickHandler={clickHandler} />
-            </div>,
-            markerContainer
-          );
-          new mapboxgl.Marker(labelEl).setLngLat(marker.geometry.coordinates).addTo(map);
->>>>>>> 14768973102d80dedaa405d6ff6067e64cb2d373
         });
 
         map.on("zoom", () => {

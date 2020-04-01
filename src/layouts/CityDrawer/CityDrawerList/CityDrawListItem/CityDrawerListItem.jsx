@@ -30,6 +30,7 @@ const ItemName = styled.p`
   font-size: 2rem;
   font-weight: 300;
   margin: 0;
+  font-family: "Crimson Pro", serif;
 `;
 
 const ItemOccupatation = styled.p`
