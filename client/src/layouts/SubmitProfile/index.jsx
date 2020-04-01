@@ -68,12 +68,15 @@ const SubmitProfile = ({ setShowProfileSummary, handleClose }) => {
       img: picture,
     };
     saveTribute(data)
-      .then((res) => console.log(res))
+      .then((res) => {
+        if (res.status === 200) {
+          handleClose();
+          setShowProfileSummary(true);
+        }
+      })
       .catch((err) => {
         console.log(err);
       });
-    handleClose();
-    setShowProfileSummary(true);
   };
 
   return (
