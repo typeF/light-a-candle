@@ -27,7 +27,8 @@ const Mapbox = ({ handleDrawer, setLocation, setMemorials }) => {
   const url = "http://localhost:4000/location/pins";
 
   useEffect(() => {
-    mapboxgl.accessToken = "pk.eyJ1Ijoia2F0ZWp1IiwiYSI6ImNqcXZoMjEzMzB2YjI0M2s4M244a3oxZHoifQ.jwSC6ztYKL8MXQJ0yPZ2vQ";
+    mapboxgl.accessToken = process.env.REACT_APP_MAPBOX_TOKEN;
+    /* eslint-disable no-shadow */
 
     // ! Everything in here can set the state but can only get the INITIAL state
     // ! It will not retrieve updated state values
