@@ -10,7 +10,10 @@ router.get("/", async (req, res) => {
 
 router.post("/", async (req, res) => {
   const candle = req.body;
-  await saveCandle(candle);
+  const savedCandle = await saveCandle(candle);
+  if (!savedCandle) {
+    return res.status(400).end();
+  }
   return res.status(200).end();
 });
 

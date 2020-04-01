@@ -2,10 +2,11 @@ import axios from "axios";
 import server from "./config";
 
 /* eslint-disable no-console */
-export default async function getPinGeoJson() {
+// Limit 200 candles in backend
+export default async function getAllCandles() {
   try {
-    const pins = await axios.get(`${server}/location/pins`);
-    return pins.data;
+    const candles = await axios.get(`${server}/candles`);
+    return candles;
   } catch (err) {
     console.log(`Error fetching GeoJSON from server`);
   }
