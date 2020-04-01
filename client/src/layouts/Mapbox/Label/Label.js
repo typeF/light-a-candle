@@ -57,7 +57,6 @@ const Label = ({ clickHandler, count }) => {
     <div ref={labelRef}>
       <LabelDiv
         background="light"
-        count={count}
         className="label label-light hidden"
         onClick={(e) => {
           setToBlack();
@@ -68,7 +67,6 @@ const Label = ({ clickHandler, count }) => {
       </LabelDiv>
       <LabelDiv
         background="dark"
-        count={count}
         className="label label-dark hidden"
         onClick={(e) => {
           setToBlack();
@@ -83,7 +81,7 @@ const Label = ({ clickHandler, count }) => {
 
 Label.propTypes = {
   clickHandler: PropTypes.func,
-  count: PropTypes.number,
+  count: PropTypes.string,
 };
 
 Label.defaultProps = {
