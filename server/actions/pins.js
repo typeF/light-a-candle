@@ -12,10 +12,7 @@ module.exports = {
         ],
         group: ["locationId"]
       });
-      // console.log(weirdObj);
-      // TODO: Get all counts
       const formattedPins = formatPinDataObj(pins, tributeCounts);
-      console.log(formattedPins.features[1].properties);
       return formattedPins;
     } catch (err) {
       console.error(`Error fetching pins: ${err}`);

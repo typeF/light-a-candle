@@ -1,10 +1,4 @@
 function formatPinDataObj(pins, rawCountArray) {
-  const fakeCounts = [
-    { id: 2, count: 55 },
-    { id: 3, count: 111 },
-    { id: 4, count: 3 }
-  ];
-
   const counts = buildCountArray(rawCountArray);
 
   const updatedPins = pins.map(pin => {
