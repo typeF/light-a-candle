@@ -3,10 +3,11 @@ import ReactDOM from "react-dom";
 import styled from "styled-components";
 import mapboxgl from "mapbox-gl";
 import "mapbox-gl/dist/mapbox-gl.css";
-import geojson from "./geojson";
+// import geojson from "./geojson";
 import Label from "./Label";
 import mapPin from "./Marker/map-pin.png";
-import getTributesForLocation from "../../api/tributes";
+import getTributesForLocation from "../../api/tributesApi";
+import getPinGeoJson from "../../api/locationApi";
 
 const MapContainer = styled.div`
   height: 100vh;
@@ -17,12 +18,19 @@ const Mapbox = ({ handleDrawer, setLocation, setMemorials }) => {
   const [map, setMap] = useState(null);
   const mapContainer = useRef(null);
 
+  // const geojson =  getPinGeoJson().then((res) => {
+  //   // console.log(res);
+  //   return res;
+  // });
+
+  const url = "http://localhost:4000/location/pins";
+
   useEffect(() => {
     mapboxgl.accessToken = "pk.eyJ1Ijoia2F0ZWp1IiwiYSI6ImNqcXZoMjEzMzB2YjI0M2s4M244a3oxZHoifQ.jwSC6ztYKL8MXQJ0yPZ2vQ";
-    /* eslint-disable no-shadow */
 
     // ! Everything in here can set the state but can only get the INITIAL state
     // ! It will not retrieve updated state values
+    /* eslint-disable no-shadow */
     const initMap = ({ setMap, mapContainer }) => {
       const defaultZoom = 3;
       const zoomThreshold = 3.5;
@@ -97,7 +105,7 @@ const Mapbox = ({ handleDrawer, setLocation, setMemorials }) => {
 
         map.addSource("points", {
           type: "geojson",
-          data: geojson,
+          data: url,
         });
 
         map.addLayer({
@@ -130,29 +138,39 @@ const Mapbox = ({ handleDrawer, setLocation, setMemorials }) => {
           map.getCanvas().style.cursor = "";
         });
 
+        // map.on("sourcedata", () => {
+        //   if (map.getSource("points") && map.isSourceLoaded("points")) {
+        //     console.log("source loaded");
+        //     const features = map.querySourceFeatures("points");
+        //     console.log(features);
+        //   }
+        // });
+
         // Renders markers based on geojson data object
-        geojson.features.forEach((marker) => {
-          const { city, province, country } = marker.properties;
-          const markerContainer = document.createElement("div");
+        getPinGeoJson().then((res) => {
+          res.features.forEach((marker) => {
+            const { city, province, country } = marker.properties;
+            const markerContainer = document.createElement("div");
 
-          const clickHandler = (e) => {
-            flyToLabelAndZoom(marker);
-            // const features = map.queryRenderedFeatures(e.point);
-            handleDrawer(true);
-            setLocation({ city, province, country });
-            getTributes({ city, province, country }).then((res) => setMemorials(res.data));
-          };
+            const clickHandler = (e) => {
+              flyToLabelAndZoom(marker);
+              // const features = map.queryRenderedFeatures(e.point);
+              handleDrawer(true);
+              setLocation({ city, province, country });
+              getTributes({ city, province, country }).then((res) => setMemorials(res.data));
+            };
 
-          // Based on mapbox's implmentation, probably not the most optimal at the moment
-          // These components cannot read updated state in the Mapbox component
-          /* eslint-disable react/no-render-return-value */
-          const labelEl = ReactDOM.render(
-            <div>
-              <Label background="light" count={marker.properties.count} clickHandler={clickHandler} />
-            </div>,
-            markerContainer
-          );
-          new mapboxgl.Marker(labelEl).setLngLat(marker.geometry.coordinates).addTo(map);
+            // Based on mapbox's implmentation, probably not the most optimal at the moment
+            // These components cannot read updated state in the Mapbox component
+            /* eslint-disable react/no-render-return-value */
+            const labelEl = ReactDOM.render(
+              <div>
+                <Label background="light" count={marker.properties.count} clickHandler={clickHandler} />
+              </div>,
+              markerContainer
+            );
+            new mapboxgl.Marker(labelEl).setLngLat(marker.geometry.coordinates).addTo(map);
+          });
         });
 
         map.on("zoom", () => {
