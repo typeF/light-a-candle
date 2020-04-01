@@ -23,5 +23,6 @@ const Tribute = TributeModel(sequelize, Sequelize);
 module.exports = {
   Candle,
   Location,
-  Tribute
+  Tribute,
+  sequelize
 };

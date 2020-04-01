@@ -1,35 +1,20 @@
-function formatPinDataObj(pins, counts) {
+function formatPinDataObj(pins, rawCountArray) {
   const fakeCounts = [
     { id: 2, count: 55 },
     { id: 3, count: 111 },
     { id: 4, count: 3 }
   ];
-  // type: "FeatureCollection",
-  // features: [
-  //   {
-  //     type: "Feature",
-  //     geometry: {
-  //       type: "Point",
-  //       coordinates: [-123.11934, 49.23966]
-  //     },
-  //     properties: {
-  //       title: "Mapbox",
-  //       count: 6,
-  //       city: "Vancouver",
-  //       province: "BC",
-  //       country: "Canada",
-  //       description: "Vancouver, BC"
-  //     }
-  //   },
+
+  const counts = buildCountArray(rawCountArray);
 
   const updatedPins = pins.map(pin => {
     const { id, longitude, latitude } = pin;
-    const countObj = fakeCounts.find(count => count.id === id);
+    const countObj = counts.find(count => count.locationId === id);
     if (!countObj) {
       console.error("Could not find matching countObj for pin");
       return;
     }
-    pin.dataValues.count = countObj.count;
+    pin.dataValues.count = countObj.totalTributes;
     return {
       type: "Feature",
       geometry: {
@@ -44,6 +29,16 @@ function formatPinDataObj(pins, counts) {
     type: "FeatureCollection",
     features: updatedPins
   };
+}
+
+function buildCountArray(countsObj) {
+  return countsObj.map(count => {
+    const { locationId, totalTributes } = count.dataValues;
+    return {
+      locationId,
+      totalTributes
+    };
+  });
 }
 
 module.exports = formatPinDataObj;
