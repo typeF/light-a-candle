@@ -53,17 +53,17 @@ const PersonalDetails = ({
             containerCustomStyles={{ ...marginBottom }}
           />
           <InputComponent
-            // TODO: This needs to be a Date picker component
+            type="date"
             value={dob}
             setValue={setDob}
-            placeholder="Date of Birth"
+            label="Date of Birth"
             containerCustomStyles={{ ...marginBottom }}
           />
           <InputComponent
-            // TODO: This needs to be a Date picker component
+            type="date"
             value={dod}
             setValue={setDod}
-            placeholder="Date of Death"
+            label="Date of Death"
             containerCustomStyles={{ ...marginBottom }}
           />
         </FormContainer>

@@ -49,7 +49,7 @@ const LocationDetails = ({
       if (country) url += `${country.toLowerCase()}&`;
       url += `access_token=${process.env.REACT_APP_MAPBOX_TOKEN}`;
       axios.get(url).then((res) => {
-        console.log("res: ", res);
+        // console.log("res: ", res);
         const [firstLocation] = res.data.features;
         const coordinates = firstLocation?.geometry?.coordinates;
         if (coordinates) {

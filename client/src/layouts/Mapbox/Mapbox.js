@@ -3,28 +3,23 @@ import ReactDOM from "react-dom";
 import styled from "styled-components";
 import mapboxgl from "mapbox-gl";
 import "mapbox-gl/dist/mapbox-gl.css";
-// import geojson from "./geojson";
 import PropTypes from "prop-types";
 import Label from "./Label";
 import mapPin from "./Marker/map-pin.png";
 import { getTributesForLocation } from "../../api/tributesApi";
 import getPinGeoJson from "../../api/locationApi";
+import server from "../../api/config";
 
 const MapContainer = styled.div`
   height: 100vh;
   position: "absolute";
 `;
 
-const Mapbox = ({ handleDrawer, setLocation, setMemorials }) => {
+const Mapbox = ({ handleDrawer, setLocation, setMemorials, mapBoxInstance }) => {
   const [map, setMap] = useState(null);
   const mapContainer = useRef(null);
 
-  // const geojson =  getPinGeoJson().then((res) => {
-  //   // console.log(res);
-  //   return res;
-  // });
-
-  const url = "http://localhost:4000/location";
+  const url = `${server}/location`;
 
   useEffect(() => {
     mapboxgl.accessToken = process.env.REACT_APP_MAPBOX_TOKEN;
@@ -91,6 +86,7 @@ const Mapbox = ({ handleDrawer, setLocation, setMemorials }) => {
           });
         }
       };
+      const existingLabel = document.querySelector(`div[data-location="${5}"`);
 
       map.loadImage(mapPin, (err, img) => {
         if (err) throw err;
@@ -164,7 +160,7 @@ const Mapbox = ({ handleDrawer, setLocation, setMemorials }) => {
               // Based on mapbox's implmentation, probably not the most optimal at the moment
               // These components cannot read updated state in the Mapbox component
               const labelEl = ReactDOM.render(
-                <div>
+                <div data-location={id}>
                   <Label background="light" count={count} clickHandler={clickHandler} />
                 </div>,
                 markerContainer
@@ -177,6 +173,8 @@ const Mapbox = ({ handleDrawer, setLocation, setMemorials }) => {
         map.on("zoom", () => {
           toggleLabels();
         });
+
+        mapBoxInstance(map);
       });
     };
 
