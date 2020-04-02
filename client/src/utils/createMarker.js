@@ -4,33 +4,29 @@ import Label from "../layouts/Mapbox/Label";
 import mapboxgl from "mapbox-gl";
 import { getTributesForLocation } from "../api/tributesApi";
 
+// Ugly but it works. Don't judge me.
 export default function createMarker(fns, data) {
   const { map, handleDrawer, setMemorials, setLocation } = fns;
-  const { id, city, province, country, longitude, latitude } = data;
+  const { locationId, city, province, country, longitude, latitude } = data;
   const coords = [longitude, latitude];
 
-  const existingLabel = document.querySelector(`div[data-locationId="${id}"`);
+  const existingLabel = document.querySelector(`div[data-location="${locationId}"`);
 
   if (existingLabel) {
     // TODO: Update existing label count +1
     return;
   }
-  // console.log(fns);
-  // console.log(data);
-  // }
-  //   const { city, province, country } = data;
-  //   const { map, handleDrawer, setMemorials, setLocation } = fns;
+
   const clickHandler = (e) => {
     flyToLabelAndZoom(map, coords);
-    //     handleDrawer(true);
-    //     setLocation({ city, province, country });
-    //     getTributesForLocation(id).then((res) => {
-    //       setMemorials(res.data);
-    //     });
+    handleDrawer(true);
+    setLocation({ city, province, country });
+    getTributesForLocation(locationId).then((res) => {
+      setMemorials(res.data);
+    });
   };
 
   const markerContainer = document.createElement("div");
-  console.log("creating new div");
   const labelEl = ReactDOM.render(
     <div>
       <Label background="light" count="1" clickHandler={clickHandler} />
@@ -49,7 +45,3 @@ const flyToLabelAndZoom = (map, coords) => {
     essential: true,
   });
 };
-
-// res.features.forEach((marker) => {
-//   const { id, city, province, country, count } = marker.properties;
-// });
