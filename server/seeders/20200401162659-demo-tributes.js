@@ -19,7 +19,7 @@ module.exports = {
           tribute:
             " Curabitur neque tortor, tempor lobortis accumsan at, malesuada vel mauris. Vestibulum nec condimentum ipsum. Maecenas ut metus sodales, feugiat lectus quis, lacinia urna. Fusce viverra varius condimentum. Nunc nec magna gravida urna luctus pulvinar vel ut nisi. Sed commodo pellentesque odio et cursus. Duis magna magna, lobortis sed ligula in, mollis luctus justo.",
           createdAt: new Date(),
-          updatedAt: new Date()
+          updatedAt: new Date(),
         },
         {
           id: 2,
@@ -36,7 +36,7 @@ module.exports = {
           tribute:
             " Curabitur neque tortor, tempor lobortis accumsan at, malesuada vel mauris. Vestibulum nec condimentum ipsum. Maecenas ut metus sodales, feugiat lectus quis, lacinia urna. Fusce viverra varius condimentum. Nunc nec magna gravida urna luctus pulvinar vel ut nisi. Sed commodo pellentesque odio et cursus. Duis magna magna, lobortis sed ligula in, mollis luctus justo.",
           createdAt: new Date(),
-          updatedAt: new Date()
+          updatedAt: new Date(),
         },
         {
           id: 3,
@@ -45,13 +45,13 @@ module.exports = {
           lastName: "Watson",
           occupation: "Doctor",
           workplace: "UCSF Medical Center",
-          img: `data:image/jpeg;base64,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`,
+          img: "",
           dob: new Date("December 1, 1980"),
           dod: new Date("March 17, 2020"),
           tribute:
-            " Curabitur neque tortor, tempor lobortis accumsan at, malesuada vel mauris. Vestibulum nec condimentum ipsum. Maecenas ut metus sodales, feugiat lectus quis, lacinia urna. Fusce viverra varius condimentum. Nunc nec magna gravida urna luctus pulvinar vel ut nisi. Sed commodo pellentesque odio et cursus. Duis magna magna, lobortis sed ligula in, mollis luctus justo.",
+            "When we lost Dustin, it felt so senseless — like they had gotten the wrong guy. He was the kind of doctor the health care system needs more of. After Dustin gave so much to his patients throughout his career, he wasn't even able to retire and spend more time with his family. He sacrificed himself for the greater cause.",
           createdAt: new Date(),
-          updatedAt: new Date()
+          updatedAt: new Date(),
         },
         {
           id: 4,
@@ -60,15 +60,104 @@ module.exports = {
           lastName: "Howard",
           occupation: "Nurse",
           workplace: "The Mount Sinai Hospital",
-          img:
-            "data:image/jpeg;base64,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",
+          img: "",
           dob: new Date("December 1, 1980"),
           dod: new Date("March 28, 2020"),
           tribute:
-            " Curabitur neque tortor, tempor lobortis accumsan at, malesuada vel mauris. Vestibulum nec condimentum ipsum. Maecenas ut metus sodales, feugiat lectus quis, lacinia urna. Fusce viverra varius condimentum. Nunc nec magna gravida urna luctus pulvinar vel ut nisi. Sed commodo pellentesque odio et cursus. Duis magna magna, lobortis sed ligula in, mollis luctus justo.",
+            "When we lost Jack, it felt so senseless — like they had gotten the wrong guy. He was the kind of nurse the health care system needs more of. After Jack gave so much to his patients throughout his career, he wasn't even able to retire and spend more time with his family. He sacrificed himself for the greater cause.",
           createdAt: new Date(),
-          updatedAt: new Date()
-        }
+          updatedAt: new Date(),
+        },
+        {
+          id: 5,
+          locationId: 3,
+          firstName: "Jenny",
+          lastName: "Murphy",
+          occupation: "Nurse",
+          workplace: "The Mount Sinai Hospital",
+          img: "",
+          dob: new Date("December 1, 1984"),
+          dod: new Date("March 29, 2020"),
+          tribute:
+            "When we lost Jenny, it felt so senseless — like they had gotten the wrong person. She was the kind of nurse the health care system needs more of. After Jenny gave so much to her patients throughout her career, she wasn't even able to retire and spend more time with her family. She sacrificed herself for the greater cause.",
+          createdAt: new Date(),
+          updatedAt: new Date(),
+        },
+        {
+          id: 6,
+          locationId: 4,
+          firstName: "Angel",
+          lastName: "Cooper",
+          occupation: "Doctor",
+          workplace: "The Central Hospital",
+          img: "",
+          dob: new Date("November 1, 1974"),
+          dod: new Date("March 29, 2020"),
+          tribute:
+            "When we lost Angel, it felt so senseless — like they had gotten the wrong person. She was the kind of doctor the health care system needs more of. After Angel gave so much to her patients throughout her career, she wasn't even able to retire and spend more time with her family. She sacrificed herself for the greater cause.",
+          createdAt: new Date(),
+          updatedAt: new Date(),
+        },
+        {
+          id: 7,
+          locationId: 5,
+          firstName: "Shane",
+          lastName: "Fischer",
+          occupation: "Doctor",
+          workplace: "The Coastal Hospital",
+          img: "",
+          dob: new Date("November 1, 1984"),
+          dod: new Date("March 30, 2020"),
+          tribute:
+            "When we lost Shane, it felt so senseless — like they had gotten the wrong guy. He was the kind of doctor the health care system needs more of. After Shane gave so much to his patients throughout his career, he wasn't even able to retire and spend more time with his family. He sacrificed himself for the greater cause.",
+          createdAt: new Date(),
+          updatedAt: new Date(),
+        },
+        {
+          id: 8,
+          locationId: 6,
+          firstName: "Elaine",
+          lastName: "Fischer",
+          occupation: "Doctor",
+          workplace: "The Church Hospital",
+          img: "",
+          dob: new Date("October 1, 1988"),
+          dod: new Date("March 30, 2020"),
+          tribute:
+            "When we lost Elaine, it felt so senseless — like they had gotten the wrong person. She was the kind of doctor the health care system needs more of. After Elaine gave so much to her patients throughout her career, she wasn't even able to retire and spend more time with her family. She sacrificed herself for the greater cause.",
+          createdAt: new Date(),
+          updatedAt: new Date(),
+        },
+        {
+          id: 9,
+          locationId: 7,
+          firstName: "Marco",
+          lastName: "Williamson",
+          occupation: "Doctor",
+          workplace: "General Hospital",
+          img: "",
+          dob: new Date("October 1, 1982"),
+          dod: new Date("April 1, 2020"),
+          tribute:
+            "When we lost Marco, it felt so senseless — like they had gotten the wrong guy. He was the kind of doctor the health care system needs more of. After Marco gave so much to his patients throughout his career, he wasn't even able to retire and spend more time with his family. He sacrificed himself for the greater cause",
+          createdAt: new Date(),
+          updatedAt: new Date(),
+        },
+        {
+          id: 10,
+          locationId: 8,
+          firstName: "Francesca",
+          lastName: "Luca",
+          occupation: "Doctor",
+          workplace: "Napoli Hospital",
+          img: "",
+          dob: new Date("June 1, 1976"),
+          dod: new Date("April 2, 2020"),
+          tribute:
+            "When we lost Francesca, it felt so senseless — like they had gotten the wrong person. She was the kind of doctor the health care system needs more of. After Francesca gave so much to her patients throughout her career, she wasn't even able to retire and spend more time with her family. She sacrificed herself for the greater cause.",
+          createdAt: new Date(),
+          updatedAt: new Date(),
+        },
       ],
       {}
     );
@@ -76,5 +165,5 @@ module.exports = {
 
   down: (queryInterface, Sequelize) => {
     return queryInterface.bulkDelete("Tributes", null, {});
-  }
+  },
 };

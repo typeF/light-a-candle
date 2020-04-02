@@ -14,7 +14,7 @@ module.exports = {
     }
 
     const existingLocation = await Location.findAll({
-      where: { longitude, latitude }
+      where: { longitude, latitude },
     });
 
     let locationId;
@@ -28,12 +28,19 @@ module.exports = {
         latitude,
         city,
         province,
-        country
+        country,
       });
       locationId = newLocation.id;
     }
 
-    const tribute = Tribute.create({ locationId, ...data });
-    return tribute;
-  }
+    data.dob = new Date(data.dob);
+    data.dod = new Date(data.dod);
+    try {
+      const tribute = await Tribute.create({ locationId, ...data });
+      delete tribute.img;
+      return tribute;
+    } catch (err) {
+      console.error(`Error saving tribute: ${err}`);
+    }
+  },
 };
