@@ -14,7 +14,7 @@ module.exports = {
     }
 
     const existingLocation = await Location.findAll({
-      where: { longitude, latitude }
+      where: { longitude, latitude },
     });
 
     let locationId;
@@ -28,12 +28,13 @@ module.exports = {
         latitude,
         city,
         province,
-        country
+        country,
       });
       locationId = newLocation.id;
     }
 
     const tribute = Tribute.create({ locationId, ...data });
+    delete tribute.img;
     return tribute;
-  }
+  },
 };
