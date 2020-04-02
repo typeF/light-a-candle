@@ -11,7 +11,7 @@ const COVIDBlock = styled.div`
   align-items: center;
   margin: 0 auto 1% auto;
   justify-content: center;
-  font-weight: 1.6rem;
+  font-size: 1.4rem;
   line-height: 22px;
 `;
 

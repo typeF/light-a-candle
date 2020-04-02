@@ -163,7 +163,6 @@ const Mapbox = ({ handleDrawer, setLocation, setMemorials }) => {
 
               // Based on mapbox's implmentation, probably not the most optimal at the moment
               // These components cannot read updated state in the Mapbox component
-              /* eslint-disable react/no-render-return-value */
               const labelEl = ReactDOM.render(
                 <div>
                   <Label background="light" count={count} clickHandler={clickHandler} />

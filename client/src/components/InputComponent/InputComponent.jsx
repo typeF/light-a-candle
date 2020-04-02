@@ -63,7 +63,8 @@ const InputComponent = ({ containerCustomStyles, placeholder, value, setValue, t
 };
 
 InputComponent.propTypes = {
-  containerCustomStyles: PropTypes.object, // eslint-disable-line react/forbid-prop-types
+  // eslint-disable-line react/forbid-prop-types
+  containerCustomStyles: PropTypes.object,
   placeholder: PropTypes.string,
   type: PropTypes.oneOf(["text", "number", "email", "password", "tel", "textarea"]),
   value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
