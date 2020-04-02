@@ -10,16 +10,15 @@ router.get("/:locationId/", async (req, res) => {
     console.error("Error: No location id provided");
     return res.status(400).end();
   }
-  console.log("gettign tributes with locationid " + locationId);
   const data = await getTributesForLocation(locationId);
   return res.status(200).json(data);
 });
 
 // TODO: Data validation
 router.post("/", async (req, res) => {
-  const tribute = req.body;
-  await saveTribute(tribute);
-  return res.status(200).end();
+  const tributeData = req.body;
+  const tribute = await saveTribute(tributeData);
+  return res.status(200).json(tribute);
 });
 
 module.exports = router;
