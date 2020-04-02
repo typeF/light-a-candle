@@ -52,6 +52,7 @@ function App() {
   const [openDrawer, setOpenDrawer] = useState(false);
   const [location, setLocation] = useState({});
   const [memorials, setMemorials] = useState([]);
+  const [map, setMapbox] = useState(() => () => {});
 
   // Fetches candle data from back end
   useEffect(() => {
@@ -70,7 +71,12 @@ function App() {
 
   return (
     <div>
-      <Mapbox handleDrawer={setOpenDrawer} setLocation={setLocation} setMemorials={setMemorials} />
+      <Mapbox
+        mapBoxInstance={setMapbox}
+        handleDrawer={setOpenDrawer}
+        setLocation={setLocation}
+        setMemorials={setMemorials}
+      />
       <PageContainer>
         <Header isMainPage={isMainPage} />
         {isMainPage && (
@@ -79,7 +85,16 @@ function App() {
             <Notifications notifications={candlesLit} />
           </>
         )}
-        <Footer isMainPage={isMainPage} handleNotification={addNotification} count={candlesLit.length} />
+        <Footer
+          isMainPage={isMainPage}
+          handleNotification={addNotification}
+          count={candlesLit.length}
+          location={location}
+          map={map}
+          handleDrawer={setOpenDrawer}
+          setMemorials={setMemorials}
+          setLocation={setLocation}
+        />
         <ExpandButton type="button" onClick={() => setIsMainPage(!isMainPage)}>
           <ExpandMoreIcon />
         </ExpandButton>

@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import PropTypes from "prop-types";
+import placeHolderPortrait from "./placeholder-profile.svg";
 
 const HeroContainer = styled.div`
   display: flex;
@@ -39,7 +40,7 @@ const ProfileHero = ({ profileData }) => {
   const { img, name, title } = profileData;
   return (
     <HeroContainer>
-      <HeroImg src={img} alt="Worker Picture " />
+      <HeroImg src={img === "" ? placeHolderPortrait : img} alt="Worker Picture" />
       <HeroName>{name}</HeroName>
       <HeroTitle>{title}</HeroTitle>
     </HeroContainer>

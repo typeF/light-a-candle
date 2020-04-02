@@ -45,7 +45,7 @@ const Text = styled.p`
   width: 110%;
 `;
 
-function Footer({ isMainPage, handleNotification, count }) {
+function Footer({ isMainPage, handleNotification, count, map, handleDrawer, setMemorials, setLocation }) {
   const [onlyShowIcon, setOnlyShowIcon] = useState("");
   // Did this quickly, could probably be implemented better
   const [showProfileSummary, setShowProfileSummary] = useState(false);
@@ -81,6 +81,10 @@ function Footer({ isMainPage, handleNotification, count }) {
           setShowProfileSummary={setShowProfileSummary}
           setSummaryData={setSummaryData}
           handleClose={() => setOnlyShowIcon("")}
+          map={map}
+          handleDrawer={handleDrawer}
+          setMemorials={setMemorials}
+          setLocation={setLocation}
         />
       )}
       {showProfileSummary && (
