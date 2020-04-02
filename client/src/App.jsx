@@ -45,8 +45,6 @@ const ExpandButton = withStyles({
 //   { user: "Benard", message: "Thank you for saving my family. You are all heroes", date_created: Date.now() },
 // ];
 
-// const tempCandles = 100_389;
-
 function App() {
   // Boolean to swtich between 'homepage' & 'map'
   const [isMainPage, setIsMainPage] = useState(true);
