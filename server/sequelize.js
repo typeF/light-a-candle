@@ -3,16 +3,18 @@ const CandleModel = require("./models/candle");
 const LocationModel = require("./models/location");
 const TributeModel = require("./models/tribute");
 
-const sequelize = new Sequelize(
-  "postgres://postgres:123@localhost:5432/candle"
-);
+const DB_SERVER_URL = process.env.production
+  ? process.env.DATABASE_URL
+  : "postgres://postgres:123@localhost:5432/candle";
+
+const sequelize = new Sequelize(`${DB_SERVER_URL}`);
 
 sequelize
   .authenticate()
   .then(() => {
     console.log("Established connection with database");
   })
-  .catch(err => {
+  .catch((err) => {
     console.error(`Error with connection: ${err}`);
   });
 
@@ -24,5 +26,5 @@ module.exports = {
   Candle,
   Location,
   Tribute,
-  sequelize
+  sequelize,
 };
