@@ -1,7 +1,8 @@
 {
   "build": {
     "env": {
-      "MAPBOX_TOKEN": "@mapbox_token"
+      "MAPBOX_TOKEN": "@mapbox_token",
+      "REACT_APP_MAPBOX_TOKEN": "@react_app_mapbox_token"
     }
   }
 }
