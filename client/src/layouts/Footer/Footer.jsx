@@ -18,7 +18,34 @@ const IconsContainer = styled.div`
   justify-content: space-evenly;
 `;
 
-function Footer({ isMainPage, handleNotification }) {
+const Numbers = styled.div`
+  display: flex;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background-color: #667d7c;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+`;
+
+const NumbersText = styled.p`
+  font-size: 2.4rem;
+  color: white;
+  margin: 0;
+`;
+
+const Text = styled.p`
+  position: fixed;
+  left: 15%;
+  bottom: 6.5%;
+  margin: 1rem 0 0;
+  color: white;
+  font-size: 1rem;
+  width: 110%;
+`;
+
+function Footer({ isMainPage, handleNotification, count }) {
   const [onlyShowIcon, setOnlyShowIcon] = useState("");
   // Did this quickly, could probably be implemented better
   const [showProfileSummary, setShowProfileSummary] = useState(false);
@@ -34,9 +61,13 @@ function Footer({ isMainPage, handleNotification }) {
         <COVIDBanner />
       ) : (
         <IconsContainer>
-          {onlyShowIcon !== "addHero" && onlyShowIcon !== "lightCandle" && (
-            <AddHeroButton />
-          ) /* This is just a filler until it gets hooked up as well; */}
+          {onlyShowIcon !== "addHero" &&
+            onlyShowIcon !== "lightCandle" && (
+              <Numbers>
+                <NumbersText>{count}</NumbersText>
+                <Text>Candles Lit</Text>
+              </Numbers>
+            ) /* This is just a filler until it gets hooked up as well; */}
           {onlyShowIcon !== "candlesLit" && onlyShowIcon !== "addHero" && (
             <CandleWrapper addNotification={handleNotification} setOnlyShowIcon={setOnlyShowIcon} />
           )}

@@ -49,7 +49,7 @@ const tempCandles = 100_389;
 
 function App() {
   // Boolean to swtich between 'homepage' & 'map'
-  const [isMainPage, setIsMainPage] = useState(true);
+  const [isMainPage, setIsMainPage] = useState(false);
   const [candlesLit, setCandlesLit] = useState([]);
   const [openDrawer, setOpenDrawer] = useState(false);
   const [location, setLocation] = useState({});
@@ -82,7 +82,7 @@ function App() {
             <Notifications notifications={candlesLit} />
           </>
         )}
-        <Footer isMainPage={isMainPage} handleNotification={addNotification} />
+        <Footer isMainPage={isMainPage} handleNotification={addNotification} count={candlesLit.length} />
         <ExpandButton type="button" onClick={() => setIsMainPage(!isMainPage)}>
           <ExpandMoreIcon />
         </ExpandButton>
