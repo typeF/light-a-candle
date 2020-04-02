@@ -87,7 +87,7 @@ const SubmitProfile = ({ setShowProfileSummary, setSummaryData, handleClose }) =
         }
       })
       .catch((err) => {
-        console.log(err);
+        console.error(err);
       });
   };
 
@@ -148,6 +148,8 @@ const SubmitProfile = ({ setShowProfileSummary, setSummaryData, handleClose }) =
 
 SubmitProfile.propTypes = {
   handleClose: PropTypes.func.isRequired,
+  setShowProfileSummary: PropTypes.func.isRequired,
+  setSummaryData: PropTypes.func.isRequired,
 };
 
 export default SubmitProfile;

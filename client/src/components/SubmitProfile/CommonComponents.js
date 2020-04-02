@@ -1,4 +1,7 @@
+import React from "react";
+import PropTypes from "prop-types";
 import styled from "styled-components";
+import x from "../../assets/x.svg";
 
 export const Container = styled.div`
   background-color: #1e2a32;
@@ -12,19 +15,21 @@ export const Container = styled.div`
   justify-content: space-between;
 `;
 
-export const CloseButton = styled.div`
+const StyledCloseButton = styled.img`
   /* TODO: This needs to be refactored to look like a real close button */
+  cursor: pointer;
   position: absolute;
   top: 3%;
   right: 8%;
-  &:after {
-    content: "x";
-    color: #fff;
-    font-size: 3rem;
-    font-weight: 500;
-    font-family: "Noto Sans", sans-serif;
-  }
 `;
+
+export const CloseButton = ({ onClick }) => <StyledCloseButton onClick={onClick} src={x} alt="Close Button" />;
+CloseButton.propTypes = {
+  onClick: PropTypes.func,
+};
+CloseButton.defaultProps = {
+  onClick: () => {},
+};
 
 export const FormContainer = styled.div`
   width: 90%;
