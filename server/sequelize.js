@@ -3,11 +3,11 @@ const CandleModel = require("./models/candle");
 const LocationModel = require("./models/location");
 const TributeModel = require("./models/tribute");
 
-const DB_SERVER_URL = process.env.production
-  ? process.env.DATABASE_URL
-  : "postgres://postgres:123@localhost:5432/candle";
+// const DB_SERVER_URL = process.env.production
+//   ? process.env.DATABASE_URL
+//   : "postgres://postgres:123@localhost:5432/candle";
 
-const sequelize = new Sequelize(`${DB_SERVER_URL}`);
+const sequelize = new Sequelize(`${process.env.DATABASE_URL}`);
 
 sequelize
   .authenticate()
