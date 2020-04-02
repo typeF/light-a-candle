@@ -27,6 +27,7 @@ const ProfileSummaryContainer = styled.div`
   max-width: 375px;
   height: 100%;
   background-color: #1e2a32;
+  width: 100%;
 `;
 
 /*

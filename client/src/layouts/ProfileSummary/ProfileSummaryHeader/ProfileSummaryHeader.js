@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import PropTypes from "prop-types";
-import x from "./x.svg";
+import x from "../../../assets/x.svg";
 import chevronLeft from "./chevron-left.svg";
 
 const HeaderContainer = styled.div`
