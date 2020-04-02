@@ -45,8 +45,6 @@ const ExpandButton = withStyles({
 //   { user: "Benard", message: "Thank you for saving my family. You are all heroes", date_created: Date.now() },
 // ];
 
-const tempCandles = 100_389;
-
 function App() {
   // Boolean to swtich between 'homepage' & 'map'
   const [isMainPage, setIsMainPage] = useState(false);
@@ -71,7 +69,6 @@ function App() {
   };
 
   return (
-    // TODO: refractor HOC to manage mainPage toggle
     <div>
       <Mapbox handleDrawer={setOpenDrawer} setLocation={setLocation} setMemorials={setMemorials} />
       <PageContainer>
@@ -86,7 +83,6 @@ function App() {
         <ExpandButton type="button" onClick={() => setIsMainPage(!isMainPage)}>
           <ExpandMoreIcon />
         </ExpandButton>
-        {/* need to pass location  */}
         <CityDrawer isOpen={openDrawer} handleDrawer={setOpenDrawer} city={location} data={memorials} />
       </PageContainer>
     </div>
