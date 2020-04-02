@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import styled from "styled-components";
 import ChevronRightIcon from "@material-ui/icons/ChevronRight";
 import formatDate from "utils/formatDate";
+import placeHolderPortrait from "./placeholder-portrait.svg";
 
 const ItemContainer = styled.div`
   display: flex;
@@ -54,7 +55,7 @@ const ProfileButton = styled.button`
 function CityDrawerListItem({ name, title, img, date_died, handleClick, ...rest }) {
   return (
     <ItemContainer>
-      <ItemImg src={img} />
+      <ItemImg src={img === "" ? placeHolderPortrait : img} />
       <ItemMeta>
         <ItemName>{name}</ItemName>
         <ItemOccupatation>{title}</ItemOccupatation>

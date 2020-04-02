@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import PropTypes from "prop-types";
+import formatDate from "../../../utils/formatDate";
 
 const DetailsContainer = styled.div``;
 
@@ -36,11 +37,11 @@ const ProfileSummaryDetails = ({ profileData }) => {
       </DetailsSection>
       <DetailsSection>
         <DetailsHeading>Date of birth</DetailsHeading>
-        <DetailsContent>{dob}</DetailsContent>
+        <DetailsContent>{formatDate(dob)}</DetailsContent>
       </DetailsSection>
       <DetailsSection>
         <DetailsHeading>Date of death</DetailsHeading>
-        <DetailsContent>{dod}</DetailsContent>
+        <DetailsContent>{formatDate(dod)}</DetailsContent>
       </DetailsSection>
       <DetailsSection>
         <DetailsHeading>Tribute</DetailsHeading>
