@@ -17,7 +17,8 @@ export async function getTributesForLocation(locationId) {
 export async function saveTribute(data) {
   // TODO: Data validation
   try {
-    return await axios.post(`${server}/tributes`, data);
+    const tribute = await axios.post(`${server}/tributes`, data);
+    return tribute;
   } catch (err) {
     console.error(`Error while fetching tributesForLocation: ${err}`);
   }

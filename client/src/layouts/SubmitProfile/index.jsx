@@ -5,6 +5,7 @@ import PersonalDetails from "./PersonalDetails"; // Page 1
 import LocationDetails from "./LocationDetails"; // Page 2
 import TributeDetails from "./TributeDetails"; // Page 3
 import { saveTribute } from "../../api/tributesApi";
+import createMarker from "../../utils/createMarker";
 
 const Container = styled.div`
   /* TODO: It's probably better to use a portal (ie. modals) but this is the fastest way to get it on the screen for now
@@ -17,7 +18,15 @@ const Container = styled.div`
   z-index: 1;
 `;
 
-const SubmitProfile = ({ setShowProfileSummary, setSummaryData, handleClose }) => {
+const SubmitProfile = ({
+  setShowProfileSummary,
+  setSummaryData,
+  handleClose,
+  map,
+  handleDrawer,
+  setMemorials,
+  setLocation,
+}) => {
   const [pageNum, setPageNum] = useState(1);
 
   // TODO: should also probably use a reducer here
@@ -84,6 +93,10 @@ const SubmitProfile = ({ setShowProfileSummary, setSummaryData, handleClose }) =
           handleClose();
           setShowProfileSummary(true);
           setSummaryData(profileData);
+          createMarker(
+            { map, handleDrawer, setMemorials, setLocation },
+            { city, province, country, ...res.data, latitude: coords[1], longitude: coords[0] }
+          );
         }
       })
       .catch((err) => {
