@@ -3,7 +3,6 @@ import styled from "styled-components";
 import axios from "axios";
 import { withStyles } from "@material-ui/core/styles";
 import { IconButton } from "@material-ui/core";
-import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import { getAllCandles, saveCandle } from "api/candlesApi";
 import Hero from "./layouts/Hero/Hero";
 import Header from "./layouts/Header/Header";
@@ -33,11 +32,13 @@ const ExpandButton = withStyles({
   root: {
     position: "absolute",
     fontSize: "2rem",
-    bottom: "0.25%",
+    bottom: "2.75%",
     color: "#a5b9bd",
     "pointer-events": "initial",
   },
 })(IconButton);
+
+const ExpandIcon = styled.img``;
 
 // const tempData = [
 //   { user: "Alexa", message: "Thank you so much !", date_created: Date.now() },
@@ -96,7 +97,7 @@ function App() {
           setLocation={setLocation}
         />
         <ExpandButton type="button" onClick={() => setIsMainPage(!isMainPage)}>
-          <ExpandMoreIcon />
+          <ExpandIcon src="/vector.svg" />
         </ExpandButton>
         <CityDrawer isOpen={openDrawer} handleDrawer={setOpenDrawer} city={location} data={memorials} />
       </PageContainer>

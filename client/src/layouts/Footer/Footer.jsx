@@ -9,7 +9,7 @@ import ProfileSummary from "../ProfileSummary";
 
 const FooterContainer = styled.footer`
   width: 100%;
-  margin-bottom: 10%;
+  margin-bottom: 15%;
   pointer-events: initial;
 `;
 

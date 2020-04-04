@@ -3,7 +3,7 @@ import styled from "styled-components";
 
 const COVIDBlock = styled.div`
   display: flex;
-  background-color: #636c76;
+  background-color: #667d7c;
   width: 150px;
   height: 30px;
   border-radius: 25px;
