@@ -3,6 +3,7 @@ import ReactDOM from "react-dom";
 import Label from "../layouts/Mapbox/Label";
 import mapboxgl from "mapbox-gl";
 import { getTributesForLocation } from "../api/tributesApi";
+import server from "../api/config";
 
 // Ugly but it works. Don't judge me.
 export default function createMarker(fns, data) {
@@ -34,6 +35,11 @@ export default function createMarker(fns, data) {
     markerContainer
   );
   new mapboxgl.Marker(labelEl).setLngLat(coords).addTo(map);
+  const currentZoom = map.getZoom();
+  map.getSource("points").setData(`${server}/location`);
+  if (currentZoom > 3.5) {
+    labelEl.querySelector(".label-light").classList.remove("hidden");
+  }
 }
 
 const flyToLabelAndZoom = (map, coords) => {

@@ -1,9 +1,9 @@
 function formatPinDataObj(pins, rawCountArray) {
   const counts = buildCountArray(rawCountArray);
 
-  const updatedPins = pins.map(pin => {
+  const updatedPins = pins.map((pin) => {
     const { id, longitude, latitude } = pin;
-    const countObj = counts.find(count => count.locationId === id);
+    const countObj = counts.find((count) => count.locationId === id);
     if (!countObj) {
       console.error("Could not find matching countObj for pin");
       return;
@@ -13,24 +13,24 @@ function formatPinDataObj(pins, rawCountArray) {
       type: "Feature",
       geometry: {
         type: "Point",
-        coordinates: [longitude, latitude]
+        coordinates: [longitude, latitude],
       },
-      properties: pin
+      properties: pin,
     };
   });
 
   return {
     type: "FeatureCollection",
-    features: updatedPins
+    features: updatedPins,
   };
 }
 
 function buildCountArray(countsObj) {
-  return countsObj.map(count => {
+  return countsObj.map((count) => {
     const { locationId, totalTributes } = count.dataValues;
     return {
       locationId,
-      totalTributes
+      totalTributes,
     };
   });
 }
