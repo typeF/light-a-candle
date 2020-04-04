@@ -13,7 +13,6 @@ const NotificationContainer = styled.div`
 `;
 
 function Notifications({ notifications }) {
-  // TODO: create scrolling animation
   return (
     <NotificationContainer>
       <NotificationList notifications={notifications} />
