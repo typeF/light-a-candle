@@ -1,9 +1,12 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import PropTypes from "prop-types";
+
+import addHeroIcon from "assets/add-hero-icon.svg";
+
 import CandleWrapper from "../CandleWrapper/CandleWrapper";
 import COVIDBanner from "../../components/COVIDBanner/COVIDBanner";
-import AddHeroButton from "../../components/AddHeroButton/AddHeroButton";
+import FooterButton from "../../components/FooterButton/FooterButton";
 import SubmitProfile from "../SubmitProfile";
 import ProfileSummary from "../ProfileSummary";
 
@@ -61,18 +64,16 @@ function Footer({ isMainPage, handleNotification, count, map, handleDrawer, setM
         <COVIDBanner />
       ) : (
         <IconsContainer>
-          {onlyShowIcon !== "addHero" &&
-            onlyShowIcon !== "lightCandle" && (
-              <Numbers>
-                <NumbersText>{count}</NumbersText>
-                <Text>Candles Lit</Text>
-              </Numbers>
-            ) /* This is just a filler until it gets hooked up as well; */}
+          {onlyShowIcon !== "addHero" && onlyShowIcon !== "lightCandle" && (
+            <FooterButton>Candles lit</FooterButton>
+          ) /* This is just a filler until it gets hooked up as well; */}
           {onlyShowIcon !== "candlesLit" && onlyShowIcon !== "addHero" && (
             <CandleWrapper addNotification={handleNotification} setOnlyShowIcon={setOnlyShowIcon} />
           )}
           {onlyShowIcon !== "candlesLit" && onlyShowIcon !== "lightCandle" && (
-            <AddHeroButton handleClick={setOnlyShowIcon} />
+            <FooterButton icon={addHeroIcon} handleClick={() => setOnlyShowIcon("addHero")}>
+              add Hero
+            </FooterButton>
           )}
         </IconsContainer>
       )}

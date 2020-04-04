@@ -1,15 +1,7 @@
 import React, { useState } from "react";
-import styled from "styled-components";
 import PropTypes from "prop-types";
+import FooterButton from "components/FooterButton/FooterButton";
 import CandleForm from "../../components/CandleForm/CandleForm";
-import CandleButton from "../../components/CandleButton/CandleButton";
-
-const CandleText = styled.p`
-  font-size: 1rem;
-  position: fixed;
-  bottom: 5.125%;
-  color: white;
-`;
 
 function CandleWrapper({ addNotification, setOnlyShowIcon }) {
   const [showModal, setShowModal] = useState(false); // TODO: This is unnecessary with onlyShowIcon; Refactor later
@@ -30,9 +22,10 @@ function CandleWrapper({ addNotification, setOnlyShowIcon }) {
         // Convert Form to Dialog?
         <CandleForm handleClose={closeModal} handleSubmit={addNotification} />
       ) : (
-        <CandleButton handleClick={handleShow} />
+        <FooterButton icon="/candle-icon.svg" handleClick={() => handleShow()}>
+          Light a candle
+        </FooterButton>
       )}
-      <CandleText>Light a Candle</CandleText>
     </>
   );
 }

@@ -36,7 +36,7 @@ const Form = styled.div`
   height: 25%;
   margin: 0 auto;
   position: absolute;
-  bottom: 9.75%;
+  bottom: 10.85%;
 `;
 
 const CancelButton = withStyles({

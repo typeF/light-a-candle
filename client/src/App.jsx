@@ -48,7 +48,7 @@ const ExpandIcon = styled.img``;
 
 function App() {
   // Boolean to swtich between 'homepage' & 'map'
-  const [isMainPage, setIsMainPage] = useState(true);
+  const [isMainPage, setIsMainPage] = useState(false);
   const [candlesLit, setCandlesLit] = useState([]);
   const [openDrawer, setOpenDrawer] = useState(false);
   const [location, setLocation] = useState({});
