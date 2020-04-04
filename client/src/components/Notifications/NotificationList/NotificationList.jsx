@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import styled from "styled-components";
 import PropTypes from "prop-types";
 import NotificationListItem from "./NotificationListItem/NotificationListItem";
@@ -12,11 +12,21 @@ const List = styled.ul`
 `;
 
 function NotificationList({ notifications }) {
+  const messsagesEndRef = useRef(null);
+
+  // manages auto scroll
+  const scrollToBottom = () => {
+    messsagesEndRef.current.scrollIntoView({ behavior: "smooth" });
+  };
+
+  useEffect(scrollToBottom, [notifications]);
+
   return (
     <List>
       {notifications.map(({ user, message, date_created }) => {
         return <NotificationListItem key={user} user={user} message={message} date_created={date_created} />;
       })}
+      <div ref={messsagesEndRef} />
     </List>
   );
 }

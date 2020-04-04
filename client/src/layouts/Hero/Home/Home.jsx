@@ -19,10 +19,13 @@ const HomeMainText = styled.p`
   font-size: 2.5rem;
   margin: 0.5rem 0 1rem 0;
   font-weight: 500;
+  font-family: "Crimson Pro", sans-serif;
+  line-height: 3.3rem;
 `;
 
 const HomeBodyText = styled.p`
   font-size: 1.4rem;
+  line-height: 1.9rem;
   font-weight: 100;
   margin: 0;
   padding: 0 10%;
@@ -34,9 +37,10 @@ function Home({ count }) {
     <HomeContainer>
       <CandleIcon size="50px" />
       <HomeNumbers>{formatNumber(count)}</HomeNumbers>
-      <HomeMainText>Candles Lit</HomeMainText>
+      <HomeMainText>Candles lit</HomeMainText>
       <HomeBodyText>
-        to honor and remember all healthcare workers who devoted their lives to the fight of COVID-19.
+        in honour and remembrance of all the brave health care workers who have lost their lives in the fight against
+        COVID-19
       </HomeBodyText>
     </HomeContainer>
   );

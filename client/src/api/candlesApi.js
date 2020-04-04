@@ -14,7 +14,8 @@ export async function getAllCandles() {
 
 export async function saveCandle(data) {
   try {
-    const candles = await axios.post(`${server}/candles`, data); // data should be in format {name: "John", message: "Message"}
+    const candles = await axios.post(`${server}/candles`, data);
+    // data should be in format {name: "John", message: "Message"}
     return candles;
   } catch (err) {
     console.log(`Error saving candle: ${err}`);

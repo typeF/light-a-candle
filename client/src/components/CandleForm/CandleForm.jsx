@@ -36,7 +36,7 @@ const Form = styled.div`
   height: 25%;
   margin: 0 auto;
   position: absolute;
-  bottom: 9.75%;
+  bottom: 10.85%;
 `;
 
 const CancelButton = withStyles({
@@ -86,7 +86,12 @@ const CustomTextField = withStyles({
   },
 })(TextField);
 
-function CandleForm({ handleClose, handleSubmit }) {
+const Text = styled.p`
+  margin: 1rem 0 0;
+  color: white;
+`;
+
+function CandleForm({ handleClose, handleSubmit, children }) {
   const [name, setName] = useState("");
   const [message, setMessage] = useState("");
   // const [nameError, setNameError] = useState("");
@@ -137,6 +142,7 @@ function CandleForm({ handleClose, handleSubmit }) {
           <CandleIcon />
         </SubmitButton>
       </Form>
+      <Text>{children}</Text>
     </>
   );
 }
