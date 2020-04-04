@@ -48,7 +48,7 @@ const Text = styled.p`
   width: 110%;
 `;
 
-function Footer({ isMainPage, handleNotification, count, map, handleDrawer, setMemorials, setLocation }) {
+function Footer({ isMainPage, handleBack, handleNotification, count, map, handleDrawer, setMemorials, setLocation }) {
   const [onlyShowIcon, setOnlyShowIcon] = useState("");
   // Did this quickly, could probably be implemented better
   const [showProfileSummary, setShowProfileSummary] = useState(false);
@@ -65,7 +65,7 @@ function Footer({ isMainPage, handleNotification, count, map, handleDrawer, setM
       ) : (
         <IconsContainer>
           {onlyShowIcon !== "addHero" && onlyShowIcon !== "lightCandle" && (
-            <FooterButton>Candles lit</FooterButton>
+            <FooterButton handleClick={handleBack}>Candles lit</FooterButton>
           ) /* This is just a filler until it gets hooked up as well; */}
           {onlyShowIcon !== "candlesLit" && onlyShowIcon !== "addHero" && (
             <CandleWrapper addNotification={handleNotification} setOnlyShowIcon={setOnlyShowIcon} />
@@ -102,6 +102,7 @@ function Footer({ isMainPage, handleNotification, count, map, handleDrawer, setM
 
 Footer.propTypes = {
   isMainPage: PropTypes.bool,
+  handleBack: PropTypes.func.isRequired,
   handleNotification: PropTypes.func.isRequired,
 };
 

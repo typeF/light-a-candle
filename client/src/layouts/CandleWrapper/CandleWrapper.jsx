@@ -20,7 +20,9 @@ function CandleWrapper({ addNotification, setOnlyShowIcon }) {
     <>
       {showModal ? (
         // Convert Form to Dialog?
-        <CandleForm handleClose={closeModal} handleSubmit={addNotification} />
+        <CandleForm handleClose={closeModal} handleSubmit={addNotification}>
+          Light a candle
+        </CandleForm>
       ) : (
         <FooterButton icon="/candle-icon.svg" handleClick={() => handleShow()}>
           Light a candle

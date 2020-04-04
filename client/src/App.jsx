@@ -88,6 +88,7 @@ function App() {
         )}
         <Footer
           isMainPage={isMainPage}
+          handleBack={() => setIsMainPage(true)}
           handleNotification={addNotification}
           count={candlesLit.length}
           location={location}
@@ -96,9 +97,11 @@ function App() {
           setMemorials={setMemorials}
           setLocation={setLocation}
         />
-        <ExpandButton type="button" onClick={() => setIsMainPage(!isMainPage)}>
-          <ExpandIcon src="/vector.svg" />
-        </ExpandButton>
+        {isMainPage && (
+          <ExpandButton type="button" onClick={() => setIsMainPage(!isMainPage)}>
+            <ExpandIcon src="/vector.svg" />
+          </ExpandButton>
+        )}
         <CityDrawer isOpen={openDrawer} handleDrawer={setOpenDrawer} city={location} data={memorials} />
       </PageContainer>
     </div>
