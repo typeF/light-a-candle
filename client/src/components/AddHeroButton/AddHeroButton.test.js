@@ -3,10 +3,11 @@ import { render, fireEvent } from "@testing-library/react";
 import AddHeroButton from "./AddHeroButton";
 
 describe("<AddHeroButton>", () => {
-  const mockHandleClickFunction = jest.fn();
   let wrapper;
+  let mockHandleClickFunction;
 
   beforeEach(() => {
+    mockHandleClickFunction = jest.fn();
     wrapper = render(<AddHeroButton handleClick={mockHandleClickFunction} />);
   });
 
@@ -21,8 +22,8 @@ describe("<AddHeroButton>", () => {
     });
 
     it("Has an image element representing an icon", () => {
-      const { getByTestId } = wrapper;
-      expect(getByTestId("icon")).toBeTruthy();
+      const { getByAltText } = wrapper;
+      expect(getByAltText("add a hero")).toBeTruthy();
     });
   });
 
@@ -30,13 +31,20 @@ describe("<AddHeroButton>", () => {
     it("Runs handleClick when clicking 'Add a hero'", () => {
       const { getByText } = wrapper;
       fireEvent.click(getByText("Add a hero"));
-      expect(mockHandleClickFunction).toHaveBeenCalled();
+      expect(mockHandleClickFunction).toHaveBeenCalledTimes(1);
+      expect(mockHandleClickFunction).toHaveBeenCalledWith("addHero");
     });
 
     it("Runs handleClick when clicking on the icon", () => {
-      const { getByTestId } = wrapper;
-      fireEvent.click(getByTestId("icon"));
-      expect(mockHandleClickFunction).toHaveBeenCalled();
+      const { getByAltText } = wrapper;
+      fireEvent.click(getByAltText("add a hero"));
+      expect(mockHandleClickFunction).toHaveBeenCalledTimes(1);
+      expect(mockHandleClickFunction).toHaveBeenCalledWith("addHero");
+    });
+
+    it("Shouldn't run handleClick when clicking anywhere in the container", () => {
+      fireEvent.click(wrapper.container);
+      expect(mockHandleClickFunction).not.toHaveBeenCalled();
     });
   });
 });

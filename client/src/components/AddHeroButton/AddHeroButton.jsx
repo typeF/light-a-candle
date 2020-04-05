@@ -24,9 +24,9 @@ function AddHeroButton({ handleClick }) {
   return (
     <Container>
       <Icon
-        data-testid="icon"
         size="50px"
         src={addHeroIcon}
+        alt="add a hero"
         onClick={() => {
           handleClick("addHero");
         }}
