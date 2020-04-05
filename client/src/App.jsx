@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
-import axios from "axios";
+import io from "socket.io-client";
 import { withStyles } from "@material-ui/core/styles";
 import { IconButton } from "@material-ui/core";
 import { getAllCandles, saveCandle } from "api/candlesApi";
@@ -46,6 +46,10 @@ const ExpandIcon = styled.img``;
 //   { user: "Benard", message: "Thank you for saving my family. You are all heroes", date_created: Date.now() },
 // ];
 
+// instantiate socket connection
+const endpoint = "http://localhost:4000/";
+const socket = io(endpoint);
+
 function App() {
   // Boolean to swtich between 'homepage' & 'map'
   const [isMainPage, setIsMainPage] = useState(false);
@@ -54,6 +58,13 @@ function App() {
   const [location, setLocation] = useState({});
   const [memorials, setMemorials] = useState([]);
   const [map, setMapbox] = useState(() => () => {});
+
+  // init socket
+  useEffect(() => {
+    socket.on("connect", () => {
+      console.log("socket connected", socket.connected);
+    });
+  }, []);
 
   // Fetches candle data from back end
   useEffect(() => {
