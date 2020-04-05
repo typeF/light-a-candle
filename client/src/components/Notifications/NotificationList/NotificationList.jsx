@@ -23,8 +23,8 @@ function NotificationList({ notifications }) {
 
   return (
     <List>
-      {notifications.map(({ user, message, date_created }) => {
-        return <NotificationListItem key={user} user={user} message={message} date_created={date_created} />;
+      {notifications.map(({ user, message, createdAt }) => {
+        return <NotificationListItem key={user} user={user} message={message} date_created={createdAt} />;
       })}
       <div ref={messsagesEndRef} />
     </List>

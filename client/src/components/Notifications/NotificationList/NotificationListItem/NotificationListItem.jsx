@@ -48,13 +48,12 @@ function NotificationListItem({ user, message, date_created }) {
 NotificationListItem.propTypes = {
   user: PropTypes.string,
   message: PropTypes.string,
-  date_created: PropTypes.instanceOf(Date),
+  date_created: PropTypes.instanceOf(Date).isRequired,
 };
 
 NotificationListItem.defaultProps = {
   user: "Alexa",
   message: "Thanks",
-  date_created: Date.now(),
 };
 
 export default NotificationListItem;
