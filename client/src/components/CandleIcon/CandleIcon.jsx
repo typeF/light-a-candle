@@ -8,7 +8,7 @@ const Icon = styled.img`
 `;
 
 function CandleIcon({ size }) {
-  return <Icon size={size} src="/candle-icon.svg" />;
+  return <Icon size={size} src="/candle-icon.svg" alt="a candle icon" />;
 }
 
 CandleIcon.propTypes = {
