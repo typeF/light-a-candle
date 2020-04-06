@@ -7,9 +7,9 @@
     "dev": "nodemon server.js",
     "start": "node server.js",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "migrate": "sequelize db:migrate",
+    "migrate": "sequelize db:migrate --env development",
     "migrate-down": "sequelize db:migrate:undo:all",
-    "seed": "sequelize db:seed:all"
+    "seed": "sequelize db:seed:all --env development"
   },
   "author": "",
   "license": "ISC",

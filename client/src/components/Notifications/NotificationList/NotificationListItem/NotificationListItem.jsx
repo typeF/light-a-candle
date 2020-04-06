@@ -33,27 +33,22 @@ const SmallText = styled.small`
   color: #636c76;
 `;
 
-function NotificationListItem({ user, message, date_created }) {
+function NotificationListItem({ name, message, date_created }) {
   return (
     <ListItem>
       <CandleIcon size="25px" />
       <TextWrapper>
         <SmallText>{timeSince(date_created)}</SmallText>
-        <Message>{`${user}: ${message}`}</Message>
+        <Message>{`${name}: ${message}`}</Message>
       </TextWrapper>
     </ListItem>
   );
 }
 
 NotificationListItem.propTypes = {
-  user: PropTypes.string,
-  message: PropTypes.string,
+  name: PropTypes.string.isRequired,
+  message: PropTypes.string.isRequired,
   date_created: PropTypes.instanceOf(Date).isRequired,
-};
-
-NotificationListItem.defaultProps = {
-  user: "Alexa",
-  message: "Thanks",
 };
 
 export default NotificationListItem;

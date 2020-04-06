@@ -12,14 +12,15 @@ module.exports = {
 
   async saveCandle(candleData) {
     if (!candleData.name || !candleData.message) {
-      console.error("Candle is missing fields!");
+      console.log("Candle is missing fields!");
       return;
     }
     try {
       const candle = await Candle.create(candleData);
+      return candle;
       console.log(`Saved candle: ${JSON.stringify(candle)}`);
     } catch (err) {
-      console.err(`Error fetching candles: ${err}`);
+      console.log(`Error fetching candles: ${err}`);
     }
   },
 };

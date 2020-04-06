@@ -4,6 +4,7 @@ import io from "socket.io-client";
 import { withStyles } from "@material-ui/core/styles";
 import { IconButton } from "@material-ui/core";
 import { getAllCandles, saveCandle } from "api/candlesApi";
+import SocketContextProvider from "./contexts/socketContext";
 import Hero from "./layouts/Hero/Hero";
 import Header from "./layouts/Header/Header";
 import Notifications from "./components/Notifications/Notifications";
@@ -61,9 +62,23 @@ function App() {
 
   // init socket
   useEffect(() => {
+    // verify connection
     socket.on("connect", () => {
       console.log("socket connected", socket.connected);
     });
+
+    // listen for new candles
+    socket.on("newCandle", (data) => {
+      const update = data;
+      // add new candle to existing state
+      setCandlesLit((state) => [...state, update]);
+    });
+
+    return () => {
+      socket.off("candles-get");
+      // closes connection on unmount
+      socket.emit("disconnect");
+    };
   }, []);
 
   // Fetches candle data from back end
@@ -78,11 +93,10 @@ function App() {
   const addNotification = (notification) => {
     setIsMainPage(true);
     saveCandle(notification);
-    setCandlesLit((state) => [...state, notification]);
   };
 
   return (
-    <div>
+    <SocketContextProvider socket={socket}>
       <Mapbox
         mapBoxInstance={setMapbox}
         handleDrawer={setOpenDrawer}
@@ -115,7 +129,7 @@ function App() {
         )}
         <CityDrawer isOpen={openDrawer} handleDrawer={setOpenDrawer} city={location} data={memorials} />
       </PageContainer>
-    </div>
+    </SocketContextProvider>
   );
 }
 
