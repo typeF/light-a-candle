@@ -1,5 +1,5 @@
 import React from "react";
-import { render } from "@testing-library/react";
+import { cleanup, render } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import CandleForm from "./CandleForm";
 
@@ -14,9 +14,7 @@ describe("<CandleForm>", () => {
     wrapper = render(<CandleForm handleClose={handleCloseMockFn} handleSubmit={handleSubmitMockFn} />);
   });
 
-  afterEach(() => {
-    wrapper.unmount();
-  });
+  afterEach(cleanup);
 
   describe("Testing UI components", () => {
     it("Has a 'Your Name' input", () => {
