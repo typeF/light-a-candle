@@ -1,5 +1,5 @@
 import React from "react";
-import { render, fireEvent } from "@testing-library/react";
+import { cleanup, render, fireEvent } from "@testing-library/react";
 import CandleButton from "./CandleButton";
 
 describe("<CandleButton>", () => {
@@ -11,9 +11,7 @@ describe("<CandleButton>", () => {
     wrapper = render(<CandleButton handleClick={handleClickMockFunction} />);
   });
 
-  afterEach(() => {
-    wrapper.unmount();
-  });
+  afterEach(cleanup);
 
   it("Has a candle icon", () => {
     const { getByAltText } = wrapper;

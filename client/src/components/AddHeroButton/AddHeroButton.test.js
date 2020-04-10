@@ -1,5 +1,5 @@
 import React from "react";
-import { render, fireEvent } from "@testing-library/react";
+import { cleanup, render, fireEvent } from "@testing-library/react";
 import AddHeroButton from "./AddHeroButton";
 
 describe("<AddHeroButton>", () => {
@@ -11,9 +11,7 @@ describe("<AddHeroButton>", () => {
     wrapper = render(<AddHeroButton handleClick={mockHandleClickFunction} />);
   });
 
-  afterEach(() => {
-    wrapper.unmount();
-  });
+  afterEach(cleanup);
 
   describe("Testing UI elements", () => {
     it("Has the words 'Add a hero' in it", () => {
