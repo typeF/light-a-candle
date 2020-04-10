@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 import addHeroIcon from "../../assets/add-hero-icon.svg";
-import * as colors from "../../fixtures/colors";
+import colors from "../../fixtures/colors";
 
 const Container = styled.div`
   display: flex;
@@ -26,6 +26,7 @@ function AddHeroButton({ handleClick }) {
       <Icon
         size="50px"
         src={addHeroIcon}
+        alt="add a hero"
         onClick={() => {
           handleClick("addHero");
         }}
