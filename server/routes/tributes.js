@@ -11,6 +11,9 @@ router.get("/:locationId/", async (req, res) => {
     return res.status(400).end();
   }
   const data = await getTributesForLocation(locationId);
+  if (!data) {
+    return res.status(400).end();
+  }
   return res.status(200).json(data);
 });
 
