@@ -1,5 +1,5 @@
 const { Location, Tribute, sequelize } = require("../sequelize");
-const formatPinDataObj = require("../util/locationUtils");
+const { formatPinDataObj } = require("../util/locationUtils");
 
 module.exports = {
   async getAllPins() {
