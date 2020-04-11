@@ -31,8 +31,25 @@ jest.mock("../actions/tributes", () => {
       return;
     },
 
-    saveTribute: async () => {
-      return;
+    saveTribute: async (tributeData) => {
+      if (!tributeData) {
+        return;
+      }
+
+      const { longitude, latitude, city, province, country } = tributeData;
+
+      if (!city || !province || !country) {
+        return;
+      }
+
+      if (!longitude || !latitude) {
+        // console.error("Error saving tribute: No coordinates provided");
+        return;
+      }
+
+      return {
+        ...tributeData,
+      };
     },
   };
 });
@@ -57,6 +74,41 @@ describe("GET /tributes/:locationId", () => {
     const res = await request.get("/1");
     expect(res.body[0]).toHaveProperty("firstName");
     expect(res.status).toBe(200);
+    done();
+  });
+});
+
+describe("POST /tributes", () => {
+  it("should return 400 if no tributeData provided", async (done) => {
+    expect.assertions(1);
+    const res = await request.post("/").send({});
+    expect(res.status).toBe(400);
+    done();
+  });
+
+  it("should return 400 if data is incomplete", async (done) => {
+    expect.assertions(1);
+    const res = await request.post("/").send({ city: "Calgary" });
+    expect(res.status).toBe(400);
+    done();
+  });
+
+  it("should return 400 if coordinates incomplete", async (done) => {
+    expect.assertions(1);
+    const res = await request
+      .post("/")
+      .send({ city: "Calgary", country: "Canada", province: "Canada", firstName: "Joe" });
+    expect(res.status).toBe(400);
+    done();
+  });
+
+  it("should return 200 if data is complete", async (done) => {
+    expect.assertions(2);
+    const res = await request
+      .post("/")
+      .send({ latitude: 100, longitude: 50, city: "Calgary", country: "Canada", province: "Canada", firstName: "Joe" });
+    expect(res.status).toBe(200);
+    expect(res.body).toHaveProperty("firstName");
     done();
   });
 });

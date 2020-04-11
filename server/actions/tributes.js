@@ -7,10 +7,20 @@ module.exports = {
   },
 
   async saveTribute(data) {
+    if (!data) {
+      return;
+    }
+
     const { longitude, latitude, city, province, country } = data;
 
-    if (!longitude || !longitude) {
+    // TODO: Type validation for data
+    if (!city || !province || !country) {
+      return;
+    }
+
+    if (!longitude || !latitude) {
       console.error("Error saving tribute: No coordinates provided");
+      return;
     }
 
     const existingLocation = await Location.findAll({
