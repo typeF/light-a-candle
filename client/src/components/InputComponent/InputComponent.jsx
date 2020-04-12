@@ -2,7 +2,6 @@ import React from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 import colors from "../../fixtures/colors";
-import { fontFamily } from "../../fixtures/typography";
 
 const Container = styled.div(({ customStyles }) => ({
   "border-bottom": `1px solid ${colors.lilac}`,
@@ -62,12 +61,18 @@ const InputComponent = ({ containerCustomStyles, label, placeholder, value, setV
   };
 
   return (
-    <Container customStyles={containerCustomStyles}>
-      {label && <Label>{label}</Label>}
+    <Container data-testid="input-container" customStyles={containerCustomStyles}>
+      {label && <Label data-testid="input-label">{label}</Label>}
       {type === "textarea" ? (
-        <TextArea placeholder={placeholder} value={value} onChange={textAreaAutoGrow} />
+        <TextArea data-testid="input-element" placeholder={placeholder} value={value} onChange={textAreaAutoGrow} />
       ) : (
-        <Input type={type} placeholder={placeholder} value={value} onChange={(e) => setValue(e.target.value)} />
+        <Input
+          data-testid="input-element"
+          type={type}
+          placeholder={placeholder}
+          value={value}
+          onChange={(e) => setValue(e.target.value)}
+        />
       )}
     </Container>
   );
