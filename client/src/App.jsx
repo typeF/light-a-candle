@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
-import axios from "axios";
 import { withStyles } from "@material-ui/core/styles";
 import { IconButton } from "@material-ui/core";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
@@ -11,6 +10,7 @@ import Notifications from "./components/Notifications/Notifications";
 import Footer from "./layouts/Footer/Footer";
 import CityDrawer from "./layouts/CityDrawer/CityDrawer";
 import Mapbox from "./layouts/Mapbox";
+import getPinGeoJson from "./api/locationApi";
 
 const PageContainer = styled.div`
   height: 100vh;
@@ -53,6 +53,7 @@ function App() {
   const [location, setLocation] = useState({});
   const [memorials, setMemorials] = useState([]);
   const [map, setMapbox] = useState(() => () => {});
+  const [geoJsonData, setGeoJsonData] = useState({});
 
   // Fetches candle data from back end
   useEffect(() => {
@@ -76,6 +77,8 @@ function App() {
         handleDrawer={setOpenDrawer}
         setLocation={setLocation}
         setMemorials={setMemorials}
+        geoJsonData={geoJsonData}
+        setGeoJsonData={setGeoJsonData}
       />
       <PageContainer>
         <Header isMainPage={isMainPage} />
@@ -95,7 +98,13 @@ function App() {
           setMemorials={setMemorials}
           setLocation={setLocation}
         />
-        <ExpandButton type="button" onClick={() => setIsMainPage(!isMainPage)}>
+        <ExpandButton
+          type="button"
+          onClick={() => {
+            getPinGeoJson().then((res) => setGeoJsonData(res));
+            setIsMainPage(!isMainPage);
+          }}
+        >
           <ExpandMoreIcon />
         </ExpandButton>
         <CityDrawer isOpen={openDrawer} handleDrawer={setOpenDrawer} city={location} data={memorials} />
