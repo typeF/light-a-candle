@@ -1,16 +1,16 @@
-import React, { useState, useEffect } from "react";
-import styled from "styled-components";
-import { withStyles } from "@material-ui/core/styles";
 import { IconButton } from "@material-ui/core";
+import { withStyles } from "@material-ui/core/styles";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import { getAllCandles, saveCandle } from "api/candlesApi";
-import Hero from "./layouts/Hero/Hero";
-import Header from "./layouts/Header/Header";
-import Notifications from "./components/Notifications/Notifications";
-import Footer from "./layouts/Footer/Footer";
-import CityDrawer from "./layouts/CityDrawer/CityDrawer";
-import Mapbox from "./layouts/Mapbox";
+import React, { useEffect, useState } from "react";
+import styled from "styled-components";
 import getPinGeoJson from "./api/locationApi";
+import Notifications from "./components/Notifications/Notifications";
+import CityDrawer from "./layouts/CityDrawer/CityDrawer";
+import Footer from "./layouts/Footer/Footer";
+import Header from "./layouts/Header/Header";
+import Hero from "./layouts/Hero/Hero";
+import Mapbox from "./layouts/Mapbox";
 
 const PageContainer = styled.div`
   height: 100vh;
@@ -52,7 +52,6 @@ function App() {
   const [openDrawer, setOpenDrawer] = useState(false);
   const [location, setLocation] = useState({});
   const [memorials, setMemorials] = useState([]);
-  const [map, setMapbox] = useState(() => () => {});
   const [geoJsonData, setGeoJsonData] = useState({});
 
   // Fetches candle data from back end
@@ -73,7 +72,6 @@ function App() {
   return (
     <div>
       <Mapbox
-        mapBoxInstance={setMapbox}
         handleDrawer={setOpenDrawer}
         setLocation={setLocation}
         setMemorials={setMemorials}
@@ -93,15 +91,15 @@ function App() {
           handleNotification={addNotification}
           count={candlesLit.length}
           location={location}
-          map={map}
-          handleDrawer={setOpenDrawer}
-          setMemorials={setMemorials}
-          setLocation={setLocation}
+          setGeoJsonData={setGeoJsonData}
+          geoJsonData={geoJsonData}
         />
         <ExpandButton
           type="button"
           onClick={() => {
-            getPinGeoJson().then((res) => setGeoJsonData(res));
+            // TODO: Remove after testing
+            console.log(geoJsonData);
+            // getPinGeoJson().then((res) => setGeoJsonData(res));
             setIsMainPage(!isMainPage);
           }}
         >

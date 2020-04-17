@@ -10,7 +10,7 @@ const MapContainer = styled.div`
   position: "absolute";
 `;
 
-const Mapbox = ({ handleDrawer, setLocation, setMemorials, mapBoxInstance, geoJsonData, setGeoJsonData }) => {
+const Mapbox = ({ handleDrawer, setLocation, setMemorials, geoJsonData, setGeoJsonData }) => {
   const [map, setMap] = useState(null);
   const mapContainer = useRef(null);
 
@@ -23,9 +23,11 @@ const Mapbox = ({ handleDrawer, setLocation, setMemorials, mapBoxInstance, geoJs
   useEffect(() => {
     if (map) {
       document.querySelectorAll(".mapboxgl-marker").forEach((marker) => marker.remove());
-      // Needs a setTimeout to not render regular markers, not sure why
+      // Needs a setTimeout to render markers properly otherwise mapbox will use
+      // their default marker styling, not sure why
       setTimeout(() => {
         addMarkers(map)(geoJsonData);
+        map.getSource("points").setData(geoJsonData);
       }, 0);
     }
   }, [geoJsonData]);

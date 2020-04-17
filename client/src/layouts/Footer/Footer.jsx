@@ -45,7 +45,17 @@ const Text = styled.p`
   width: 110%;
 `;
 
-function Footer({ isMainPage, handleNotification, count, map, handleDrawer, setMemorials, setLocation }) {
+function Footer({
+  isMainPage,
+  handleNotification,
+  count,
+  map,
+  handleDrawer,
+  setMemorials,
+  setLocation,
+  geoJsonData,
+  setGeoJsonData,
+}) {
   const [onlyShowIcon, setOnlyShowIcon] = useState("");
   // Did this quickly, could probably be implemented better
   const [showProfileSummary, setShowProfileSummary] = useState(false);
@@ -81,10 +91,8 @@ function Footer({ isMainPage, handleNotification, count, map, handleDrawer, setM
           setShowProfileSummary={setShowProfileSummary}
           setSummaryData={setSummaryData}
           handleClose={() => setOnlyShowIcon("")}
-          map={map}
-          handleDrawer={handleDrawer}
-          setMemorials={setMemorials}
-          setLocation={setLocation}
+          geoJsonData={geoJsonData}
+          setGeoJsonData={setGeoJsonData}
         />
       )}
       {showProfileSummary && (
