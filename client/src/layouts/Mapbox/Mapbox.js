@@ -27,6 +27,7 @@ const Mapbox = ({ handleDrawer, setLocation, setMemorials, geoJsonData, setGeoJs
       // their default marker styling, not sure why
       setTimeout(() => {
         addMarkers(map)(geoJsonData);
+        // Refreshes map
         map.getSource("points").setData(geoJsonData);
       }, 0);
     }

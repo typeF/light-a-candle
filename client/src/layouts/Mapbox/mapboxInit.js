@@ -2,6 +2,7 @@ import mapboxgl from "mapbox-gl";
 import server from "../../api/config";
 import mapPin from "./Marker/map-pin.png";
 import getPinGeoJson from "../../api/locationApi";
+import toggleLabelVisibility from "./mapBoxUtils/toggleLabelVisibility";
 
 const url = `${server}/location`;
 const defaultZoom = 3;
@@ -40,18 +41,7 @@ const initMap = ({ setMap, mapContainer, setGeoJsonData, addMarkers }) => {
       !(prevZoom > zoomThreshold && currentZoom > zoomThreshold);
     zoom.setPrevZoom(currentZoom);
     if (crossedThreshold) {
-      const labels = document.getElementsByClassName("label");
-      Array.prototype.forEach.call(labels, (label) => {
-        const isLabelLight = label.classList.contains("label-light");
-        if (currentZoom <= zoomThreshold) {
-          label.classList.add("hidden");
-          return;
-        }
-
-        if (isLabelLight) {
-          label.classList.remove("hidden");
-        }
-      });
+      toggleLabelVisibility(currentZoom, zoomThreshold);
     }
   };
 

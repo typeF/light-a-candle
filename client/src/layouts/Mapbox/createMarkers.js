@@ -3,6 +3,7 @@ import ReactDOM from "react-dom";
 import mapboxgl from "mapbox-gl";
 import { getTributesForLocation } from "../../api/tributesApi";
 import Label from "./Label";
+import toggleLabelVisibility from "./mapBoxUtils/toggleLabelVisibility";
 
 const createMarkers = (clickHandler) => {
   const { handleDrawer, setLocation, setMemorials } = clickHandler;
@@ -37,12 +38,13 @@ const createMarkers = (clickHandler) => {
         /* eslint-disable react/no-render-return-value */
         const labelEl = ReactDOM.render(
           <div data-location={id}>
-            <Label background="light" count={count} clickHandler={clickHandler} />
+            <Label count={count} clickHandler={clickHandler} />
           </div>,
           markerContainer
         );
         new mapboxgl.Marker(labelEl).setLngLat(marker.geometry.coordinates).addTo(map);
       });
+      toggleLabelVisibility(map.getZoom(), 3.5);
     };
   };
 };

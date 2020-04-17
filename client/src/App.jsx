@@ -4,7 +4,6 @@ import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import { getAllCandles, saveCandle } from "api/candlesApi";
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
-import getPinGeoJson from "./api/locationApi";
 import Notifications from "./components/Notifications/Notifications";
 import CityDrawer from "./layouts/CityDrawer/CityDrawer";
 import Footer from "./layouts/Footer/Footer";
@@ -97,9 +96,6 @@ function App() {
         <ExpandButton
           type="button"
           onClick={() => {
-            // TODO: Remove after testing
-            console.log(geoJsonData);
-            // getPinGeoJson().then((res) => setGeoJsonData(res));
             setIsMainPage(!isMainPage);
           }}
         >
