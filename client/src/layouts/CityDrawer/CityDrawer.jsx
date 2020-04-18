@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
 import { withStyles } from "@material-ui/core/styles";
-import { SwipeableDrawer, IconButton, Button } from "@material-ui/core";
+import { SwipeableDrawer, IconButton } from "@material-ui/core";
 import ClearIcon from "@material-ui/icons/Clear";
 import ExpandLessIcon from "@material-ui/icons/ExpandLess";
 import CityDrawerHeader from "./CityDrawerHeader/CityDrawerHeader";

@@ -14,11 +14,12 @@ const PhotoInstruction = styled.p`
   margin-bottom: 1rem;
 `;
 
-const DivWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-`;
+// Commented out to reduce console noise until needed
+// const DivWrapper = styled.div`
+//   display: flex;
+//   flex-direction: column;
+//   align-items: center;
+// `;
 
 const DeceasedImage = styled.img`
   max-width: 128px;

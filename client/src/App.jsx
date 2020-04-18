@@ -1,15 +1,14 @@
-import React, { useState, useEffect } from "react";
-import styled from "styled-components";
-import axios from "axios";
-import { withStyles } from "@material-ui/core/styles";
 import { IconButton } from "@material-ui/core";
+import { withStyles } from "@material-ui/core/styles";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import { getAllCandles, saveCandle } from "api/candlesApi";
-import Hero from "./layouts/Hero/Hero";
-import Header from "./layouts/Header/Header";
+import React, { useEffect, useState } from "react";
+import styled from "styled-components";
 import Notifications from "./components/Notifications/Notifications";
-import Footer from "./layouts/Footer/Footer";
 import CityDrawer from "./layouts/CityDrawer/CityDrawer";
+import Footer from "./layouts/Footer/Footer";
+import Header from "./layouts/Header/Header";
+import Hero from "./layouts/Hero/Hero";
 import Mapbox from "./layouts/Mapbox";
 
 const PageContainer = styled.div`
@@ -52,7 +51,7 @@ function App() {
   const [openDrawer, setOpenDrawer] = useState(false);
   const [location, setLocation] = useState({});
   const [memorials, setMemorials] = useState([]);
-  const [map, setMapbox] = useState(() => () => {});
+  const [geoJsonData, setGeoJsonData] = useState({});
 
   // Fetches candle data from back end
   useEffect(() => {
@@ -72,10 +71,11 @@ function App() {
   return (
     <div>
       <Mapbox
-        mapBoxInstance={setMapbox}
         handleDrawer={setOpenDrawer}
         setLocation={setLocation}
         setMemorials={setMemorials}
+        geoJsonData={geoJsonData}
+        setGeoJsonData={setGeoJsonData}
       />
       <PageContainer>
         <Header isMainPage={isMainPage} />
@@ -90,12 +90,15 @@ function App() {
           handleNotification={addNotification}
           count={candlesLit.length}
           location={location}
-          map={map}
-          handleDrawer={setOpenDrawer}
-          setMemorials={setMemorials}
-          setLocation={setLocation}
+          setGeoJsonData={setGeoJsonData}
+          geoJsonData={geoJsonData}
         />
-        <ExpandButton type="button" onClick={() => setIsMainPage(!isMainPage)}>
+        <ExpandButton
+          type="button"
+          onClick={() => {
+            setIsMainPage(!isMainPage);
+          }}
+        >
           <ExpandMoreIcon />
         </ExpandButton>
         <CityDrawer isOpen={openDrawer} handleDrawer={setOpenDrawer} city={location} data={memorials} />
