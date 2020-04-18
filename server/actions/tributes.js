@@ -7,10 +7,20 @@ module.exports = {
   },
 
   async saveTribute(data) {
+    if (!data) {
+      return;
+    }
+
     const { longitude, latitude, city, province, country } = data;
 
-    if (!longitude || !longitude) {
+    // TODO: Type validation for data
+    if (!city || !province || !country) {
+      return;
+    }
+
+    if (!longitude || !latitude) {
       console.error("Error saving tribute: No coordinates provided");
+      return;
     }
 
     const existingLocation = await Location.findAll({
@@ -33,8 +43,14 @@ module.exports = {
       locationId = newLocation.id;
     }
 
-    const tribute = Tribute.create({ locationId, ...data });
-    delete tribute.img;
-    return tribute;
+    data.dob = new Date(data.dob);
+    data.dod = new Date(data.dod);
+    try {
+      const tribute = await Tribute.create({ locationId, ...data });
+      delete tribute.img;
+      return tribute;
+    } catch (err) {
+      console.error(`Error saving tribute: ${err}`);
+    }
   },
 };

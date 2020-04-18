@@ -1,18 +1,18 @@
 import React from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
-import { lilac } from "../../fixtures/colors";
+import colors from "../../fixtures/colors";
 import { fontFamily } from "../../fixtures/typography";
 
 const Container = styled.div(({ customStyles }) => ({
-  "border-bottom": "1px solid #d9cdf0",
+  "border-bottom": `1px solid ${colors.lilac}`,
   display: "flex",
   "flex-direction": "column",
   ...customStyles,
 }));
 
 const Label = styled.p`
-  color: ${lilac};
+  color: ${colors.lilac};
   font-family: "Noto Sans", serif;
   margin: 0;
 `;
@@ -20,7 +20,7 @@ const Label = styled.p`
 const Input = styled.input`
   background-color: inherit;
   border: 0;
-  color: ${lilac};
+  color: ${colors.lilac};
   flex: 1;
   margin: 4px 0;
   outline: 0;
@@ -28,14 +28,14 @@ const Input = styled.input`
   font-family: ${(props) => props.fontFamily || '"Noto Sans", serif'};
 
   &::placeholder {
-    color: ${lilac};
+    color: ${colors.lilac};
   }
 `;
 
 const TextArea = styled.textarea`
   background-color: inherit;
   border: 0;
-  color: ${lilac};
+  color: ${colors.lilac};
   flex: 1;
   font-family: "Noto Sans", serif;
   margin: 4px 0;
@@ -44,7 +44,7 @@ const TextArea = styled.textarea`
   outline: 0;
 
   &::placeholder {
-    color: #d9cdf0;
+    color: ${colors.lilac};
   }
 `;
 

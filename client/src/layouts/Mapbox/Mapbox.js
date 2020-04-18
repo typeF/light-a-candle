@@ -86,7 +86,6 @@ const Mapbox = ({ handleDrawer, setLocation, setMemorials, mapBoxInstance }) => 
           });
         }
       };
-      const existingLabel = document.querySelector(`div[data-location="${5}"`);
 
       map.loadImage(mapPin, (err, img) => {
         if (err) throw err;

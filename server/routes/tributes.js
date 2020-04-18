@@ -11,6 +11,9 @@ router.get("/:locationId/", async (req, res) => {
     return res.status(400).end();
   }
   const data = await getTributesForLocation(locationId);
+  if (!data) {
+    return res.status(400).end();
+  }
   return res.status(200).json(data);
 });
 
@@ -18,6 +21,9 @@ router.get("/:locationId/", async (req, res) => {
 router.post("/", async (req, res) => {
   const tributeData = req.body;
   const tribute = await saveTribute(tributeData);
+  if (!tribute) {
+    return res.status(400).end();
+  }
   return res.status(200).json(tribute);
 });
 
