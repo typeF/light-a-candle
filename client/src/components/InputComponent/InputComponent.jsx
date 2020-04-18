@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 import colors from "../../fixtures/colors";
-import { fontFamily } from "../../fixtures/typography";
+// import { fontFamily } from "../../fixtures/typography";
 
 const Container = styled.div(({ customStyles }) => ({
   "border-bottom": `1px solid ${colors.lilac}`,
